@@ -50,6 +50,7 @@ export class VistaJuego extends Vista{
         this.xnube1=0
         this.xnube2=-300
         this.xagua=-50
+
         //Creación del canvas
         this.canva=document.createElement('canvas')
         this.ctx=this.canva.getContext('2d')
@@ -58,7 +59,7 @@ export class VistaJuego extends Vista{
         this.canva.height=692
 
         this.draw.bind(this)
-        setInterval(this.moverAgua.bind(this),40)
+        this.movimiento=setInterval(this.moverAgua.bind(this),40)
         setInterval(this.moverNubes.bind(this), 25)
     }
 
@@ -92,13 +93,30 @@ export class VistaJuego extends Vista{
         this.draw()
     }
 
+    /**
+     * Método moverAgua que que borra el lienzo y dibuja moviendo el elemento del agua
+     */
     moverAgua(){
         this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
         if(this.xagua==0){
-            this.xagua=this.xagua-80
+            this.intervalo=setInterval(this.moverAguaAtras.bind(this),40)
         }
         else{
             this.xagua=this.xagua+1
+        }
+        this.draw()
+    }
+    
+    /**
+     * Método moverAguaAtras que mueve el elemento del agua hacia la izquierda
+     */
+    moverAguaAtras(){
+        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
+        if(this.xagua==-70){
+            let intervalo=setInterval(this.moverAgua.bind(this),40)
+        }
+        else{
+            this.xagua=this.xagua-1
         }
         this.draw()
     }

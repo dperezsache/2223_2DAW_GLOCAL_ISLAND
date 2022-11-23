@@ -31,8 +31,8 @@ class Controlador{
 		this.divinicio=document.getElementById('divInicio')
 		this.vistaInicio=new VistaInicio(this.divinicio, this)
 		
-		this.vistaInicio.mostrar(false)
-		this.vistaJuego.mostrar(true)
+		this.vistaInicio.mostrar(true)
+		this.vistaJuego.mostrar(false)
 	}
 
 	/**
