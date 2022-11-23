@@ -49,6 +49,12 @@ body{
     position:absolute;
     left:460px;
 }
+#divLogo{
+    animation-name: movLogo;
+    animation-duration: 2s;
+    animation-iteration-count:infinite;
+    animation-direction: alternate;
+}
 
 #divInicio #divAgua{
     width: 100%;
@@ -64,8 +70,27 @@ div img{
 }
 
 button{
-    width:100px;
-	margin-top:10px;
+    width: 150px;
+    height: 60px;
+    border: none;
+    margin-top: 10px;
+}
+#botonComenzar{
+    background-image: URL("img/botonComenzar.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size: 150px 100px;
+    background-color: transparent;
+    
+}
+#botonRanking{
+    background-image: URL("img/boton_ranking.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size: 150px 100px;
+    background-color: transparent;
+    
+    
 }
 
 #hidden{
@@ -85,8 +110,9 @@ button{
 #divBotones{
     display:inline-block;
     position:absolute;
-    top:550px;
-    left:615px;
+    top:520px;
+    left:580px;
+    margin-top: 20px;
 }
 
 #imgSol{
@@ -95,7 +121,6 @@ button{
     animation: sol;
     animation-duration: 40s;
     animation-iteration-count: infinite;
-    overflow: hidden;
     animation-play-state:20s;
 }
 
@@ -106,7 +131,6 @@ button{
     left:-1000px;
     animation-duration: 40s;
     animation-iteration-count: infinite;
-    overflow: hidden;
 }
 
 .imgNubeGrande{
@@ -128,6 +152,11 @@ button{
     animation-iteration-count: infinite;
     animation-direction: reverse;
     animation-timing-function: linear;
+}
+
+@keyframes movLogo {
+    from{width:400px;}
+    to{width:420px;}
 }
 
 @keyframes movNube {
