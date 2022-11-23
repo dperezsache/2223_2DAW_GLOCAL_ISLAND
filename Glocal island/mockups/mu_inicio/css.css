@@ -12,7 +12,7 @@ html{
 }
 
 body{
-	height:90%;
+	height:100%;
 	width:100%;
 	margin:0;
 }
@@ -45,9 +45,9 @@ body{
 } 
 
 #divInicio #divLogo{
-    width:400px;
+    width:29.28257687%;
     position:absolute;
-    left:460px;
+    left:33.6749634%;
 }
 #divLogo{
     animation-name: movLogo;
@@ -58,9 +58,9 @@ body{
 
 #divInicio #divAgua{
     width: 100%;
-    height: 200px;
+    height: 32.55208333%;/*La altura ideada es de 768px para el body, y para estos dos div seria de 200px*/
     position:absolute;
-    top:528px;
+    top:68.75%;
     background-color: blue;
 }
 
@@ -70,54 +70,50 @@ div img{
 }
 
 button{
-    width: 150px;
-    height: 60px;
+    width: 100%;/*150px de ancho por boton, su div tendrá el ancho del tamaño del botón*/
+    height: 83.33333333%;
     border: none;
-    margin-top: 10px;
+    margin-top: 16.6666667%;
 }
 #botonComenzar{
     background-image: URL("img/botonComenzar.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size: 150px 100px;
-    background-color: transparent;
+                    
+    background-size: 66.66666667% 166.66666667%;/*Para el calculo del background-size, usé el mismo metodo, cogí las medidas en px iniciales y calculé*/
+    background-color: transparent;              /*Ambas medidas eran de 100px, la altura antes del porcentaje era de 60px y el ancho de 150px*/
     
 }
 #botonRanking{
     background-image: URL("img/boton_ranking.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size: 150px 100px;
+    background-size: 66.66666667% 166.66666667%;
     background-color: transparent;
     
     
 }
 
-#hidden{
-    background-color: black;
-    overflow: hidden;
-    width: 200px;
-    height: 200px;
-}
-
 #imgIslas{
-    width:700px;
+    width:51.24450952%;/*La imagen de la isla seria de unos 700px y se distribuiria en el body 1366px*/
     position:absolute;
-    left:300px;
-    top:80px;
+    left:21.96193265%;
+    top:10.41666667%;
 }
 
 #divBotones{
+    width: 10.98096633%;/*Los botones al medir 150px, hemos cogido esa referencia para calcular el porcentaje del elemento*/
+    height: 7.8125%;
     display:inline-block;
     position:absolute;
-    top:520px;
-    left:580px;
-    margin-top: 20px;
+    top:67.70833333%;
+    left:42.45973646%;/*580px;*/
+    margin-top: 2.604166667%;
 }
 
 #imgSol{
     position:absolute;
-    width: 100px;
+    width: 7.320644217%;
     animation: sol;
     animation-duration: 40s;
     animation-iteration-count: infinite;
@@ -126,17 +122,16 @@ button{
 
 #imgLuna{
     position:absolute;
-    width: 100px;
+    width: 7.320644217%;
     animation: luna;
-    left:-1000px;
+    left:-50%;/*Propiedad para evitar que la luna aparezca antes de empezar su animación*/
     animation-duration: 40s;
     animation-iteration-count: infinite;
 }
 
 .imgNubeGrande{
-    width:100px;
+    width:7.320644217%;/*El tamaño de la nube sería de 100px y su body de 1366px*/
     position: absolute;
-    left:-190px;
     animation-name:movNube ;
     animation-duration: 40s;
     animation-iteration-count: infinite;
@@ -145,74 +140,78 @@ button{
 
 .imgNubePeque{
     position: absolute;
-    width:200px;
-    left:-150px;
+    width:14.64128843%;/*Tamaño de la nube mas grande, la idea era de 200px, su body es de 1366px*/
     animation-name:movNube ;
     animation-duration: 40s;
     animation-iteration-count: infinite;
     animation-direction: reverse;
     animation-timing-function: linear;
 }
+/*ANIMACIONES DE LA PÁGINA DE INICIO. MOVIMIENTO Y CICLO DIA Y NOCHE*/
 
+/*Movimiento del logotipo cambiando su width para el efecto de pulso del logotipo establecido en la página de inicio*/
 @keyframes movLogo {
-    from{width:400px;}
-    to{width:420px;}
+    from{width:29.28257687%;}/*Para la animación, hemos especificado que parta de este porcentaje que es el paso de 400px sobre el ancho deñ body*/
+    to{width:30.74670571%;}/*Hasta este porcentaje, que es el resultado de 420px pasados a % sobre el ancho del body*/
 }
-
+/*Movimiento de las imagenes de nube en la página de inicio, se usa tanto en una dirección como para la otra*/
 @keyframes movNube {
-    from{left:-150px;}
-    to{left:1366px;}
+    from{left:-10.98096633%;}/*Le especificamos que comience mas atrás de la parte visible(-150px) para hacer efecto de aparición de la imagen*/
+    to{left:100%;}/*hasta el fin de la parte visible por la parte derecha(1366px del body), para hacer que se marche*/
 }
+/*------ANIMACIONES SOL Y LUNA------*/
+/*Para las animaciones de las imagenes del sol y la luna, he repartido sus tiempos de aparición entre dos animaciones*/
 
+/*El movimiento de la luna empieza a ser visible a partir de la mitad de su tiempo de animación, para así dejar en primer lugar el movimiento del sol*/
 @keyframes luna {
-    30%{opacity: 0;}
-    51%{left:0px; top:250px;}
-    52%{left:0px; top:250px;opacity: 1;}
-    75%{left:550px;top:0px;}
-    100%{left:1310px;top:250px;}
+    30%{opacity: 0;}/*Le quitamos la visibilidad*/
+    51%{left:0%; top:36.87315634%;}
+    52%{left:0%; top:36.87315634%;opacity: 1;}/*A partir de este instante la luna empieza a ser visible, y le decimos que parta desde el inicio del body*/
+    75%{left:40.26354319%;top:0%;}/*en un cuarto del tiempo, se posicionará en el centro (550px) y subirá hasta la parte alta del body*/
+    100%{left:95.90043924%;top:36.87315634%;}/*para finalmente irse, posicionandose mas allá del body y a una altura como la de inicio*/
 }
-
+/*Para la animación del sol, la idea es la misma pero sus tiempos de aparición y desaparición es en la primera mitad del tiempo*/
 @keyframes sol {
-    0%{left:0px; top:220px;}
-    25%{left:550px;top:0px;opacity: 1;}
-    50%{left:1310px;top:220px;opacity: 1;;width: 100px;}
-    51%{left:1310px;top:220px;opacity: 0}
-    100%{left:1310px;top:220px;opacity: 0;width: 0px;}
+    0%{left:0px; top:36.87315634%;}
+    25%{left:40.26354319%;top:0px;opacity: 1;}
+    50%{left:95.90043924%;top:36.87315634%;opacity: 1;width: 7.320644217%;}
+    51%{left:95.90043924%;top:36.87315634%;opacity: 0}
+    100%{left:95.90043924%;top:36.87315634%;opacity: 0;width: 0%;}
 }
-
+/*--------------------------*/
+/*Animación ambiental para crear un ciclo dia/noche en la página de inicio*/
 @keyframes dianoche {
    from {background-color:#3AE8A5;}
    to {background-color:#837D7C;}
 }
 
-.loading{
+.carga{
     height:120px;
     line-height:110px;
     position:absolute;
-    left:0;
-    right:0;
-    top:100px;
-    bottom:0;
     display:block;
 }
-
+/*
 @keyframes wave-animation{
     0%{background-position:100px bottom};
     100%{background-position:100px bottom};
 }
-
-@keyframes loading-animation{
-    0%{background-size:200px 200px};
-    100%{background-size:200px 200px};
+*/
+/*Animación del movimiento de olas, para esta animación, jugamos con la imagen de fondo de un div con forma de ola en su parte superior
+y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimiento de ola*/
+@keyframes carga-animacion{
+    0%{background-size:20% 100% ;}
+    50%{background-size:35% 100% ;}
+    100%{background-size:50% 100%;}
 }
 
-.wave{
+.ola{
     background-image:url('https://i.imgur.com/uFpLbYt.png');
     color:rgba(0,0,0,0);
-    animation:wave-animation 3s infinite linear alternate, loading-animation 10s infinite linear alternate;
-    background-size:200px 100px;
+    animation:ola-animacion 3s infinite linear alternate, carga-animacion 10s infinite linear alternate-reverse;
+    background-size:50% 70%;
     background-repeat:repeat-x;
-    opacity:0.4;
+    opacity:0.5;
 }
 
 /* -----CSS Pantalla de Juego----- */
