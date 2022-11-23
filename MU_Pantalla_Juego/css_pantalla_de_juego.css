@@ -1,5 +1,9 @@
 /* CSS Pantalla de Juego */
-
+@font-face{
+	font-family:"Mabook";
+	src:
+		url("fuente/mabook/Mabook.ttf");
+}
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
 	height:768px;
@@ -47,8 +51,6 @@ div.respuestas{
 	top:50%;
 	position:relative;
 	width:18%;
-	border-radius:50px;
-	background-color: #FFC150;
 }
 
 div#divPregunta{
@@ -58,10 +60,43 @@ div#divPregunta{
 	height:40%;
 	position:absolute;
 	width:18%;
-	border-radius:50px;
+}
+
+p#textoPregunta{
+	position: absolute;
+	top:7%;
+	padding:7%;
+	text-align: center;
+	font-size: 1.2em;
+	font-family: Mabook;
+}
+
+p#textoRespuesta{
+	position: absolute;
+	top:30%;
+	left: 40%;
+	text-align: center;
+	font-size: 3em;
+	font-family: Mabook;
 }
 
 img#marcoPregunta{
-	width:130%;
-	height:130%;
+	width:100%;
+	height:100%;
+}
+
+img#grifo{
+	width:60%;
+	height:auto;
+	margin: 0 auto;
+	left:20%;
+	top:45%;
+}
+
+img#icono{
+	width:20%;
+	height:auto;
+	top:-3%;
+	left:-3%;
+	margin: 0 auto;
 }
