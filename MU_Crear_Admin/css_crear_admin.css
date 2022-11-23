@@ -21,6 +21,9 @@ div#divInicioSesion{
     width: 100%;
     height: 100%;
     color: #513400;
+	font-family:Mabook;
+	font-size:1.5em;
+    font-weight: bold;
 }
 
 img#logoCorporativo{
@@ -29,17 +32,36 @@ img#logoCorporativo{
 }
 
 form#formulario_inicio{
-	font-size:1.5em;
-    font-weight: bold;
     margin:0 auto;
     width: 33%;
-    height: 33%;
+    height: 40%;
     background-color: #FFCA6A;
     border:1px solid  black;
 	border-radius:50px;
 	padding-top:2%;
-	font-family:Mabook;
 }
+
+select#selectorAdmin{
+	border:1px solid #513400;
+	background-color: #d7a549;
+	font-family:Mabook;
+	font-weight: bold;
+	color: #513400;
+	border-radius: 10px;
+	padding: 3px;
+	width:40%;
+	height:15%;
+	font-size:0.9em;
+}
+option.optionsAdmin{
+	border:1px solid #513400;
+	background-color: #d7a549;
+	font-family:Mabook;
+	font-weight: bold;
+	color: #513400;
+	font-size:0.9em;
+}
+
 button#btnEnviar{
 	background-image:url("img/botón_enviar.png");
 	background-color:transparent;

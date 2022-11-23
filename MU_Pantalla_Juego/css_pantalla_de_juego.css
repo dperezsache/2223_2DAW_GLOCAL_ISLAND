@@ -1,0 +1,67 @@
+/* CSS Pantalla de Juego */
+
+/*La resolución nativa será 1366x768 y se hará adaptable*/
+html{
+	height:768px;
+	width:1366px;
+	overflow:hidden;
+}
+
+body{
+	height:100%;
+	width:100%;
+}
+
+img{
+	position:absolute;
+	height:auto;
+	width:120px;
+}
+
+div#divCanvas{
+	height:100%;
+	width:90%;
+	background-color: #FFA90D;
+	position:relative;
+}
+
+div#divJuego{
+	float:left;
+	height:100%;
+	width:60%;
+	background-color: #CBD8FE;
+}
+
+div#divRespuesta1{
+	margin-left:1%;
+}
+
+div#divRespuesta2{
+	margin-left:2%;
+	margin-right:1%;
+}
+
+div.respuestas{
+	float:left;
+	height:40%;
+	top:50%;
+	position:relative;
+	width:18%;
+	border-radius:50px;
+	background-color: #FFC150;
+}
+
+div#divPregunta{
+	float:left;
+	left:71%;
+	top:5%;
+	height:40%;
+	position:absolute;
+	width:18%;
+	border-radius:50px;
+}
+
+img#marcoPregunta{
+	width:130%;
+	height:130%;
+}
