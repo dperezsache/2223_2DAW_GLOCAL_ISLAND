@@ -75,8 +75,8 @@ div img{
     text-align: center;
 }
 
-button{
-    width:110px;
+#divBotones button{
+    width:150px;
     height: 50px;
 	margin-top:10px;
     background-color: #FFA90D;
@@ -84,11 +84,10 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+#divBotones button:hover{
     background-color:#C4830A;
-    width: 150px;
+    width: 180px;
     height: 60px;
-
 }
 
 #hidden{

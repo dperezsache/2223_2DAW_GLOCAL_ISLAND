@@ -13,6 +13,7 @@ export class VistaJuego extends Vista{
 		super(divinicio)
         this.controlador=controlador
         //Declaración de elementos
+        this.juego=document.getElementById('divJuego')
         this.pregunta=document.getElementById('divPregunta')
         this.respuesta1=document.getElementById('divRespuesta1')
         this.respuesta2=document.getElementById('divRespuesta2')
@@ -20,12 +21,87 @@ export class VistaJuego extends Vista{
         this.btnlogo=document.getElementById('logo')
         this.btnlogo.onclick=this.pulsarLogo.bind(this)
         this.arrastrar()
+        this.iniciar()
 	}
 
+    /**
+     * Método pulsarLogo que se inicia al pulsar el logo de la esquina izquierda y llama al controlador
+     */
     pulsarLogo(){
         this.controlador.pulsarLogo()
     }
 
+    /**
+     * Método iniciar que crea los objetos y el canvas
+     */
+    iniciar(){
+        this.isla=new Image()
+        this.sol=new Image()
+        this.luna=new Image()
+        this.nube=new Image()
+        this.agua=new Image()
+
+        this.isla.src='img/isla.png'
+        this.sol.src='img/sol.png'
+        this.luna.src='img/luna.png'
+        this.nube.src='img/nube.png'
+        this.agua.src='img/agua.png'
+
+        this.xnube1=0
+        this.xnube2=-300
+        this.xagua=-50
+        //Creación del canvas
+        this.canva=document.createElement('canvas')
+        this.ctx=this.canva.getContext('2d')
+        this.juego.appendChild(this.canva)
+        this.canva.width=820
+        this.canva.height=692
+
+        this.draw.bind(this)
+        setInterval(this.moverAgua.bind(this),40)
+        setInterval(this.moverNubes.bind(this), 25)
+    }
+
+    /**
+     * Método draw que pinta los objetos de la isla
+     */
+    draw(){
+        this.ctx.fillStyle='#473DFF'
+        this.ctx.fillRect(0,520,900,150)
+        this.ctx.drawImage(this.isla, 0, 60, 750, 700)
+        this.ctx.drawImage(this.nube,this.xnube1,100,100,50)
+        this.ctx.drawImage(this.nube,this.xnube2,150,200,100)
+        this.ctx.drawImage(this.agua,this.xagua,560,900,130)
+    }
+
+    /**
+     * Método mover que borra el lienzo y pinta moviendo los objetos
+     */
+    moverNubes(){
+        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
+        if(this.xnube1==800){
+            this.xnube1=-100
+        }
+        else if(this.xnube2==800){
+            this.xnube2=-150
+        }
+        else{
+            this.xnube1=this.xnube1+1
+            this.xnube2=this.xnube2+1
+        }
+        this.draw()
+    }
+
+    moverAgua(){
+        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
+        if(this.xagua==0){
+            this.xagua=this.xagua-80
+        }
+        else{
+            this.xagua=this.xagua+1
+        }
+        this.draw()
+    }
 	/**
      * Método arrastrar que determina los elementos que se pueden arrastrar y dónde pueden ser soltados
      */
@@ -98,5 +174,4 @@ export class VistaJuego extends Vista{
             }
         }
     }
-
 }
