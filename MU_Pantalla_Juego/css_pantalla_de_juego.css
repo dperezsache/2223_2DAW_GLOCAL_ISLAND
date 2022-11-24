@@ -1,0 +1,102 @@
+/* CSS Pantalla de Juego */
+@font-face{
+	font-family:"Mabook";
+	src:
+		url("fuente/mabook/Mabook.ttf");
+}
+/*La resolución nativa será 1366x768 y se hará adaptable*/
+html{
+	overflow:hidden;
+}
+
+body{
+	height:100%;
+	width:100%;
+}
+
+img{
+	position:absolute;
+	height:auto;
+	width:120px;
+}
+
+div#divCanvas{
+	height:100%;
+	width:90%;
+	background-color: #FFA90D;
+	position:relative;
+}
+
+div#divJuego{
+	float:left;
+	height:100%;
+	width:60%;
+	background-color: #CBD8FE;
+}
+
+div#divRespuesta1{
+	margin-left:1%;
+}
+
+div#divRespuesta2{
+	margin-left:2%;
+	margin-right:1%;
+}
+
+div.respuestas{
+	float:left;
+	height:40%;
+	top:50%;
+	position:relative;
+	width:18%;
+	background-image: url(img/cartaBambu.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+div#divPregunta{
+	float:left;
+	left:71%;
+	top:5%;
+	height:40%;
+	position:absolute;
+	width:18%;
+	background-image: url(img/cartaBambu.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+p#textoPregunta{
+	position: absolute;
+	top:5%;
+	padding:13%;
+	left:-6%;
+	text-align: center;
+	font-size: 1.2em;
+	font-family: Mabook;
+}
+
+p#textoRespuesta{
+	position: absolute;
+	top:30%;
+	left: 40%;
+	text-align: center;
+	font-size: 3em;
+	font-family: Mabook;
+}
+
+img#grifo{
+	width:60%;
+	height:auto;
+	margin: 0 auto;
+	left:20%;
+	top:45%;
+}
+
+img#icono{
+	width:20%;
+	height:auto;
+	top:-3%;
+	left:-3%;
+	margin: 0 auto;
+}
