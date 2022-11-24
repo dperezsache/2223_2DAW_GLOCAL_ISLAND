@@ -6,8 +6,6 @@
 }
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
-	height:768px;
-	width:1366px;
 	overflow:hidden;
 }
 
@@ -70,8 +68,9 @@ div#divPregunta{
 
 p#textoPregunta{
 	position: absolute;
-	top:7%;
-	padding:7%;
+	top:5%;
+	padding:13%;
+	left:-6%;
 	text-align: center;
 	font-size: 1.2em;
 	font-family: Mabook;
