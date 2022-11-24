@@ -127,5 +127,34 @@
         {     
             $this->conexion = new mysqli($this->servidor,  $this->usuario,  $this->contrasenia, $this->bd);
         }
+
+        /**
+         * Comprobar si existe un administrador en la aplicación.
+         * @return Boolean True si existe, false si no.
+         */
+        public function checkAdmin()
+        {
+            try
+            {
+                $this->conectar();
+                $consulta = $this->conexion->prepare('SELECT * FROM Administrador');
+                $consulta->execute();
+                $resultado = $consulta->get_result();
+                
+                $consulta->close();
+                $this->conexion->close();
+
+                if($resultado->num_rows > 0)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch(mysqli_sql_exception $e)
+            {
+                return false;
+            }
+        }
     }
 ?>

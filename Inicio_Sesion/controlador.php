@@ -32,5 +32,14 @@
         {
             $this->modelo->altaAdmin($nombre, $password);
         }
+
+        /**
+         * Comprobar si existe un administrador en la aplicación.
+         * @return Boolean True si existe, false si no.
+         */
+        public function checkAdmin()
+        {
+            return $this->modelo->checkAdmin();
+        }
     }
 ?>

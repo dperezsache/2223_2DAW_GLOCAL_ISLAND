@@ -1,9 +1,14 @@
 <?php
     require_once('controlador.php');
-    
-    if(isset($_POST['nombre']) && isset($_POST['password']) )
+    $controlador = new Controlador();
+
+    // Si ya hay un administrador en la aplicación. Volver al login.
+    if($controlador->checkAdmin())
     {
-        $controlador = new Controlador();
+        header('Location: indexLogin.php');
+    }
+    else if(isset($_POST['nombre']) && isset($_POST['password']) )
+    {
         $controlador->altaAdmin($_POST['nombre'], $_POST['password']);
     }
 ?>
