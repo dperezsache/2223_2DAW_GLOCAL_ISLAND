@@ -36,7 +36,7 @@
 			<img id="logoCorporativo" src="../recursos/img/logo1.png"/>
             <form id="formulario_alta" method="post" action="altaAdmin.php">
                 <label for="nombre">Usuario a Crear</label><br/>
-                <input type="text" name="nombre" maxlength="150" pattern="[a-zA-Z0-9]+" required/><br/><br/>
+                <input type="text" name="nombre" maxlength="150" required/><br/><br/>
 
                 <label for="password">Clave</label><br>
                 <input type="password" name="password" required/><br/><br/>

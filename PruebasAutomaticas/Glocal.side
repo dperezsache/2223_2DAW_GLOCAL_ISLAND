@@ -1,0 +1,145 @@
+{
+  "id": "f09920fc-4404-4de6-94eb-d79259468ebb",
+  "version": "2.0",
+  "name": "Glocal",
+  "url": "http://localhost/Glocal/Inicio_Sesion/login/index.php",
+  "tests": [{
+    "id": "0c7c6e71-16f1-4298-b4c7-dbd273bc5958",
+    "name": "Test_contravacio",
+    "commands": [{
+      "id": "e5218207-f558-4d60-9346-fb023da46dce",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Glocal/Inicio_Sesion/login/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e893c2ea-ca02-4720-ae7c-d6be9e1803f0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1456x876",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "32a60bf8-2fcc-475b-bb09-9eb22f5213be",
+      "comment": "",
+      "command": "click",
+      "target": "name=nombre",
+      "targets": [
+        ["name=nombre", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4903ec03-3c9b-4082-99d7-cdbac049fd2b",
+      "comment": "",
+      "command": "type",
+      "target": "name=nombre",
+      "targets": [
+        ["name=nombre", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "prueba"
+    }, {
+      "id": "2c552f3a-eb39-4ab4-96af-c09177516b69",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnEnviar",
+      "targets": [
+        ["id=btnEnviar", "id"],
+        ["css=#btnEnviar", "css:finder"],
+        ["xpath=//button[@id='btnEnviar']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "73a6eeb6-2a61-4892-b6c2-5608ba6798ca",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Inserta todos los datos.",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "c6580284-bbd9-40b6-932b-1ea600ef8bba",
+    "name": "Test_adminvacio",
+    "commands": [{
+      "id": "b119de6f-f822-45e1-8dfc-9bab1e0f00e6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/Glocal/Inicio_Sesion/login/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3ba25036-639d-4680-9e6e-640ac92482da",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1456x876",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8fbeeaed-54a8-494a-bbbb-61dda281754f",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "092d1584-9cba-473c-8c1d-ac0380fbfdbc",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "dfg"
+    }, {
+      "id": "52cb3401-46ac-4a9a-a490-9ce2cb643e76",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnEnviar",
+      "targets": [
+        ["id=btnEnviar", "id"],
+        ["css=#btnEnviar", "css:finder"],
+        ["xpath=//button[@id='btnEnviar']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b50304f1-431b-4cd9-a900-69b84dfe6ce9",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Inserta todos los datos.",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "cb4d5aad-9885-4519-a70a-e407da86e4c1",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost/", "http://localhost/Glocal/Inicio_Sesion/login/index.php", "https://07.2daw.esvirgua.com/Glocal/Inicio_Sesion/login/index.php"],
+  "plugins": []
+}
