@@ -111,14 +111,15 @@ export class VistaJuego extends Vista{
      * Método moverAguaAtras que mueve el elemento del agua hacia la izquierda
      */
     moverAguaAtras(){
-        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
+        /* this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
         if(this.xagua==-70){
-            let intervalo=setInterval(this.moverAgua.bind(this),40)
+            // let intervalo=setInterval(this.moverAgua.bind(this),40)
         }
         else{
             this.xagua=this.xagua-1
-        }
-        this.draw()
+            this.draw()
+        } */
+        
     }
 	/**
      * Método arrastrar que determina los elementos que se pueden arrastrar y dónde pueden ser soltados
@@ -183,8 +184,8 @@ export class VistaJuego extends Vista{
         // Coger elelemento draggable
         const id = e.dataTransfer.getData('text/plain')
         const draggable = document.getElementById(id)
-        if(e.target.tagName=='DIV'){
-            //Control de error cuando soltamos la respuesta en la caja en la que ya está
+        if(e.target.tagName=='DIV'){        //Solo dejamos que entren div
+             //Control de error cuando soltamos la respuesta en la caja en la que ya está
             if(e.target.attributes.length==2){
                 e.target.appendChild(draggable)			//lo añadimos al objeto
                 let pregunta=document.getElementById('divPregunta')
