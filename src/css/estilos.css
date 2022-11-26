@@ -3,10 +3,10 @@
 	src: url("../fonts/Mabook.ttf");
 }
 
-html{
+/*html{
     width: 1366px;
     height: 768px;
-}
+}*/
 
 body{
     width: 100%;
@@ -66,6 +66,22 @@ button#btnEnviar{
 	background-size:150px 100px;
 	background-repeat:no-repeat;
 	width:30%;
-	height:25%;
+	height:100px;
 	border:0px;
+}
+@media only screen and (min-width: 360px) and (max-width: 768px){
+    img#logoCorporativo{
+        margin-top: 20%;
+        width:70%;
+        height:auto;
+    }
+    form#formulario_inicio{
+        width:60%;
+        height: 30.83355177%;
+        
+    }
+    button#btnEnviar{
+        height: 50px;
+        width:45%;
+    }
 }

@@ -1,8 +1,8 @@
 
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
-	height:768px;
-	width:1366px;
+	/*height:768px;
+	width:1366px;*/
 	overflow:hidden;
 	background-color: white;
 }
@@ -47,9 +47,13 @@ body{
 #divInicio #divLogo{
     width:29.28257687%;
     position:absolute;
-    left:0;
-    right: 0;
-    margin: auto;
+    left:33.6749634%;
+}
+#divLogo{
+    animation-name: movLogo;
+    animation-duration: 2s;
+    animation-iteration-count:infinite;
+    animation-direction: alternate;
 }
 
 #divInicio #divAgua{
@@ -67,16 +71,13 @@ div img{
 }
 
 #divBotones{
+    width: 10.98096633%;/*Los botones al medir 150px, hemos cogido esa referencia para calcular el porcentaje del elemento*/
+    height: 7.8125%;
     display:inline-block;
     position:absolute;
     top:67.70833333%;
-    left:0;
-    right:0;
-    margin:auto;
-    text-align: center;
+    left:42.45973646%;/*580px;*/
     margin-top: 2.604166667%;
-    width: 10.98096633%;/*Los botones al medir 150px, hemos cogido esa referencia para calcular el porcentaje del elemento*/
-    height: 7.8125%;
     
 }
 
@@ -113,12 +114,10 @@ div img{
 }
 
 #imgIslas{
-    width:700px;
+    width:51.24450952%;/*La imagen de la isla seria de unos 700px y se distribuiria en el body 1366px*/
     position:absolute;
-    top:80px;
-    left:0;
-    right: 0;
-    margin: auto;
+    left:21.96193265%;
+    top:10.41666667%;
 }
 
 #imgSol{
@@ -144,7 +143,6 @@ div img{
 .imgNubeGrande{
     width:7.320644217%;/*El tamaño de la nube sería de 100px y su body de 1366px*/
     position: absolute;
-    left:-190px;
     animation-name:movNube ;
     animation-duration: 40s;
     animation-iteration-count: infinite;
@@ -154,7 +152,6 @@ div img{
 .imgNubePeque{
     position: absolute;
     width:14.64128843%;/*Tamaño de la nube mas grande, la idea era de 200px, su body es de 1366px*/
-    left:-150px;
     animation-name:movNube ;
     animation-duration: 40s;
     animation-iteration-count: infinite;
@@ -163,16 +160,21 @@ div img{
 }
 
 /*ANIMACIONES DE LA PÁGINA DE INICIO. MOVIMIENTO Y CICLO DIA Y NOCHE*/
+
+/*Movimiento del logotipo cambiando su width para el efecto de pulso del logotipo establecido en la página de inicio*/
 @keyframes movLogo {
     from{width:29.28257687%;}/*Para la animación, hemos especificado que parta de este porcentaje que es el paso de 400px sobre el ancho deñ body*/
     to{width:30.74670571%;}/*Hasta este porcentaje, que es el resultado de 420px pasados a % sobre el ancho del body*/
 }
-
+/*Movimiento de las imagenes de nube en la página de inicio, se usa tanto en una dirección como para la otra*/
 @keyframes movNube {
     from{left:-10.98096633%;}/*Le especificamos que comience mas atrás de la parte visible(-150px) para hacer efecto de aparición de la imagen*/
     to{left:100%;}/*hasta el fin de la parte visible por la parte derecha(1366px del body), para hacer que se marche*/
 }
+/*------ANIMACIONES SOL Y LUNA------*/
+/*Para las animaciones de las imagenes del sol y la luna, he repartido sus tiempos de aparición entre dos animaciones*/
 
+/*El movimiento de la luna empieza a ser visible a partir de la mitad de su tiempo de animación, para así dejar en primer lugar el movimiento del sol*/
 @keyframes luna {
     30%{opacity: 0;}/*Le quitamos la visibilidad*/
     51%{left:0%; top:36.87315634%;}
@@ -180,17 +182,18 @@ div img{
     75%{left:40.26354319%;top:0%;}/*en un cuarto del tiempo, se posicionará en el centro (550px) y subirá hasta la parte alta del body*/
     100%{left:95.90043924%;top:36.87315634%;}/*para finalmente irse, posicionandose mas allá del body y a una altura como la de inicio*/
 }
-
+/*Para la animación del sol, la idea es la misma pero sus tiempos de aparición y desaparición es en la primera mitad del tiempo*/
 @keyframes sol {
     0%{left:0px; top:36.87315634%;}
     25%{left:40.26354319%;top:0px;opacity: 1;}
-    50%{left:95.90043924%;top:36.87315634%;opacity: 1;width: 7.320644217%;}
+    50%{left:95.90043924%;top:36.87315634%;opacity: 1;}
     51%{left:95.90043924%;top:36.87315634%;opacity: 0}
-    100%{left:95.90043924%;top:36.87315634%;opacity: 0;width: 0%;}
+    100%{left:95.90043924%;top:36.87315634%;opacity: 0;}
 }
-
+/*--------------------------*/
+/*Animación ambiental para crear un ciclo dia/noche en la página de inicio*/
 @keyframes dianoche {
-   from {background-color:#cbe7fe;}
+   from {background-color:#3AE8A5;}
    to {background-color:#837D7C;}
 }
 
@@ -200,12 +203,14 @@ div img{
     position:absolute;
     display:block;
 }
-
+/*
 @keyframes wave-animation{
     0%{background-position:100px bottom};
     100%{background-position:100px bottom};
 }
-
+*/
+/*Animación del movimiento de olas, para esta animación, jugamos con la imagen de fondo de un div con forma de ola en su parte superior
+y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimiento de ola*/
 @keyframes carga-animacion{
     0%{background-size:20% 100% ;}
     50%{background-size:35% 100% ;}
@@ -224,6 +229,10 @@ div img{
 /* ----------CSS Pantalla de Juego---------- */
 
 /* Clase que se añade a las tarjetas de respuesta cuando intentamos meter la pregunta en él */
+canvas{
+    width:100%;
+    height: 100%;
+}
 .drag-over {
     background-color:#C4830A !important;
 }
@@ -330,4 +339,53 @@ p#textoRespuesta{
 
 .dragging-pregunta{
     cursor:grabbing !important;
+}
+
+/*Media querie ideada para smartphones*/
+@media only screen and (min-width: 360px) and (max-width: 768px) {
+    /*Para el paso a porcentaje, escogímos de medida una partalla con un width de 455px y un height de 768px para los calculos*/
+	#divBotones{
+        display: none;
+    }
+    #imgIslas{
+        width:87.91208791%;/*400px la imagen seria de unos 400px*/
+        position:absolute;
+        left:8.791208791%;/*40px de left*/
+        top:38.45833333%;/*280px de top*/
+    }
+    #divAgua{
+        height: 30.04166667% !important;
+        top:70.3125% !important;
+    }
+    #divLogo{
+        width: 87.91208791%;
+        top:13.02083333%;
+        left:13.18681319%!important;
+    }
+    .imgNubeGrande{
+        top:13.02083333%;
+        width:32.96703297%;/*El tamaño de la nube sería de 100px y su body de 1366px*/
+    }
+    
+    .imgNubePeque{
+        top:19.53125%;
+        width:21.97802198%;/*Tamaño de la nube mas grande, la idea era de 200px, su body es de 1366px*/
+        
+    }
+    #imgSol{
+        width:13.02083333%;
+    }
+    #imgLuna{
+        width:13.02083333%;
+    }
+    /*Ajuste de las animaciones para la adaptación a la resolución elegida*/
+    @keyframes movLogo {
+        from{width:76.92307692%;}
+        to{width:81.31868132%;}
+    }
+    @keyframes carga-animacion{
+        0%{background-size:45% 100% ;}
+        50%{background-size:60% 100% ;}
+        100%{background-size:85% 100%;}
+    }
 }
