@@ -32,6 +32,14 @@ body{
 }
 
 /* -----PANTALLA DE INICIO----- */
+audio{
+    width:50px;
+    position:absolute;
+    left:96.5%;
+    background-color: #3AE8A5;
+    opacity: 0.5;
+}
+
 #divInicio{
 	height:100%;
 	width: 100%;
