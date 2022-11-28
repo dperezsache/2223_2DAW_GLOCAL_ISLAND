@@ -1,0 +1,38 @@
+body{
+    margin:0;
+    padding:0;
+    text-align: center;
+}
+
+#divCategoria{
+    height: 1000px;
+    width: 100%;
+    background-color: aquamarine;
+}
+
+nav{
+    background-color: orange;
+    height: 100px;
+    width: 100%;
+    display: flex;
+}
+
+nav li{
+	display: inline-block;
+    flex-grow: 1;
+    margin: auto;
+
+}
+
+li > img{
+    height: 100px;
+}
+li > a{
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+li:hover{
+    background-color: darkorange ;
+}
