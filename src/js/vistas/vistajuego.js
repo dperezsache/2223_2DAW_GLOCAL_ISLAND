@@ -1,17 +1,18 @@
-"use script" //activo modo estricto
+"use strict" //activo modo estricto
 import {Vista} from './vista.js'
 /**
  * Clase VistaJuego que muestra el juego
  * Gestiona los elementos y métodos de esta Vista
  */
-export class VistaJuego extends Vista{
+export class VistaJuego extends Vista {
 	/**
      * Contructor de la clase VistaJuego
      * @param {Objeto} divinicio div de la vista
      */
-	constructor(divinicio, controlador){
+	constructor(divinicio, controlador) {
 		super(divinicio)
         this.controlador=controlador
+
         //Declaración de elementos
         this.juego=document.getElementById('divJuego')
         this.pregunta=document.getElementById('divPregunta')
@@ -27,14 +28,15 @@ export class VistaJuego extends Vista{
     /**
      * Método pulsarLogo que se inicia al pulsar el logo de la esquina izquierda y llama al controlador
      */
-    pulsarLogo(){
+    pulsarLogo() {
         this.controlador.pulsarLogo()
     }
 
     /**
      * Método iniciar que crea los objetos y el canvas
      */
-    iniciar(){
+    iniciar() {
+        // Imágenes
         this.isla=new Image()
         this.sol=new Image()
         this.luna=new Image()
@@ -51,6 +53,35 @@ export class VistaJuego extends Vista{
         this.xnube2=-300
         this.xagua=-50
 
+        // Pájaros
+        this.temporizadorPajaro1 = null
+        this.pajaro1 = {
+            img: null,
+            x: 0,
+            y: 100,
+            width: 32,
+            height: 32,
+            frameActual: 0,
+            totalFrames: 6
+        }
+        this.pajaro1.img = new Image()
+        this.pajaro1.img.src = '../../img/sprites/pajaros/pajaro1/sprite_pajaro1.png'
+        this.pajaro1.img.onload = this.moverPajaros.bind(this, this.pajaro1, this.temporizadorPajaro1)
+        
+        this.temporizadorPajaro2 = null
+        this.pajaro2 = {
+            img: null,
+            x: 0,
+            y: 150,
+            width: 32,
+            height: 32,
+            frameActual: 0,
+            totalFrames: 6
+        }
+        this.pajaro2.img = new Image()
+        this.pajaro2.img.src = '../../img/sprites/pajaros/pajaro2/sprite_paloma.png'
+        this.pajaro2.img.onload = this.moverPajaros.bind(this, this.pajaro2, this.temporizadorPajaro2)
+
         //Creación del canvas
         this.canva=document.createElement('canvas')
         this.ctx=this.canva.getContext('2d')
@@ -59,58 +90,143 @@ export class VistaJuego extends Vista{
         this.canva.height=692
 
         this.draw.bind(this)
-        this.movimiento=setInterval(this.moverAgua.bind(this),40)
+        this.movimiento=setInterval(this.moverAgua.bind(this), 40)
         setInterval(this.moverNubes.bind(this), 25)
     }
 
     /**
      * Método draw que pinta los objetos de la isla
      */
-    draw(){
-        this.ctx.fillStyle='#473DFF'
-        this.ctx.fillRect(0,520,900,150)
+    draw() {
+        this.ctx.fillStyle = '#473DFF'
+        this.ctx.fillRect(0, 520, 900, 150)
         this.ctx.drawImage(this.isla, 0, 60, 750, 700)
-        this.ctx.drawImage(this.nube,this.xnube1,100,100,50)
-        this.ctx.drawImage(this.nube,this.xnube2,150,200,100)
-        this.ctx.drawImage(this.agua,this.xagua,560,900,130)
+        this.ctx.drawImage(this.nube, this.xnube1, 100, 100, 50)
+        this.ctx.drawImage(this.nube, this.xnube2, 150, 200, 100)
+        this.ctx.drawImage(this.agua, this.xagua, 560, 900, 130)
+        this.ctx.drawImage(this.pajaro1.img, this.pajaro1.frameActual * this.pajaro1.width, 0, this.pajaro1.width, this.pajaro1.height, this.pajaro1.x, this.pajaro1.y, this.pajaro1.width, this.pajaro1.height)
+        this.ctx.drawImage(this.pajaro2.img, this.pajaro2.frameActual * this.pajaro2.width, 0, this.pajaro2.width, this.pajaro2.height, this.pajaro2.x, this.pajaro2.y, this.pajaro2.width, this.pajaro2.height)
+    }
+
+    /**
+     * Darles un movimiento aleatorio a los pájaros.
+     * @param {Object} pajaro Objeto del pájaro.
+     * @param {Number} temporizador ID del setInterval, para poder detener movimiento del pájaro.
+     */
+    moverPajaros(pajaro, temporizador) {
+        let opcion = Math.floor((Math.random() * (2 - 1 + 1)) + 1)  // Generar opción de movimiento random
+        pajaro.frameActual = 0
+
+        switch(opcion) {
+            case 1:
+                pajaro.x = -100
+                temporizador = setInterval(function() {this.pajaroMovimiento1(pajaro, temporizador)}.bind(this), 50)
+                break
+
+            case 2:
+                pajaro.x = 1000
+                temporizador = setInterval(function() {this.pajaroMovimiento2(pajaro, temporizador)}.bind(this), 40)
+                break
+
+            default:
+                break
+        }
+    }
+
+    /**
+     * Realiza el movimiento de principio a fin del canvas del pájaro pasado.
+     * @param {Object} pajaro Objeto del pájaro.
+     * @param {Number} temporizador ID del setInterval, para poder detener movimiento del pájaro.
+     */
+    pajaroMovimiento1(pajaro, temporizador) {
+        this.ctx.clearRect(pajaro.x, pajaro.y, pajaro.width, pajaro.height)
+
+        pajaro.frameActual++
+        if (pajaro.frameActual >= pajaro.totalFrames) {
+            pajaro.frameActual = 0
+        }
+
+        // Una vez llegado al final del canvas, llamar a función para obtener otro movimiento.
+        if (pajaro.x == 1000) {
+            console.log(temporizador)
+            clearInterval(temporizador)
+            this.moverPajaros(pajaro, temporizador)
+            return
+        }
+        else {
+            pajaro.x = pajaro.x + 5
+        }
+
+        this.draw()
+    }
+
+    /**
+     * Realiza el movimiento del final al principio del canvas del pájaro pasado.
+     * @param {Object} pajaro Objeto del pájaro.
+     * @param {Number} temporizador ID del setInterval, para poder detener movimiento del pájaro.
+     */
+    pajaroMovimiento2(pajaro, temporizador) {
+        this.ctx.clearRect(pajaro.x, pajaro.y, pajaro.width, pajaro.height)
+
+        pajaro.frameActual++
+        if (pajaro.frameActual >= pajaro.totalFrames) {
+            pajaro.frameActual = 0
+        }
+
+        // Una vez llegado al inicio del canvas, llamar a función para obtener otro movimiento.
+        if (pajaro.x == -100) {
+            console.log(temporizador)
+            clearInterval(temporizador)
+            this.moverPajaros(pajaro, temporizador)
+            return
+        }
+        else {
+            pajaro.x = pajaro.x - 5
+        }
+
+        this.draw()
     }
 
     /**
      * Método mover que borra el lienzo y pinta moviendo los objetos
      */
-    moverNubes(){
+    moverNubes() {
         this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
-        if(this.xnube1==800){
+
+        if(this.xnube1==800) {
             this.xnube1=-100
         }
-        else if(this.xnube2==800){
+        else if(this.xnube2==800) {
             this.xnube2=-150
         }
-        else{
+        else {
             this.xnube1=this.xnube1+1
             this.xnube2=this.xnube2+1
         }
+
         this.draw()
     }
 
     /**
      * Método moverAgua que que borra el lienzo y dibuja moviendo el elemento del agua
      */
-    moverAgua(){
+    moverAgua() {
         this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
-        if(this.xagua==0){
+
+        if(this.xagua==0) {
             this.intervalo=setInterval(this.moverAguaAtras.bind(this),40)
         }
-        else{
+        else {
             this.xagua=this.xagua+1
         }
+
         this.draw()
     }
     
     /**
      * Método moverAguaAtras que mueve el elemento del agua hacia la izquierda
      */
-    moverAguaAtras(){
+    moverAguaAtras() {
         /* this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
         if(this.xagua==-70){
             // let intervalo=setInterval(this.moverAgua.bind(this),40)
@@ -124,7 +240,7 @@ export class VistaJuego extends Vista{
 	/**
      * Método arrastrar que determina los elementos que se pueden arrastrar y dónde pueden ser soltados
      */
-    arrastrar(){
+    arrastrar() {
         this.pregunta.addEventListener('dragstart', this.dragStart)
 
         this.respuesta1.addEventListener('dragenter', this.dragEnter)
@@ -140,7 +256,7 @@ export class VistaJuego extends Vista{
 
     /**
      * Método  dragStart que se ejecuta cuando se coge la pregunta y se arrastra
-     * @param {Objeto} e DragEvent
+     * @param {Object} e DragEvent
      */
     dragStart(e) {
         e.dataTransfer.setData('text/plain', e.target.id)
@@ -148,11 +264,12 @@ export class VistaJuego extends Vista{
 
     /**
      * Método dragEnter que se ejecuta cuando la pregunta entra en uno de los div de respuesta
-     * @param {Objeto} e DragEvent
+     * @param {Object} e DragEvent
      */
     dragEnter(e) {
         e.preventDefault()
-        if(e.target.tagName=='DIV'){        //Solo permitimos que entre los div
+
+        if(e.target.tagName=='DIV') {        //Solo permitimos que entre los div
             //Damos el estilo drag-over
             e.target.classList.add('drag-over')
         }
@@ -160,7 +277,7 @@ export class VistaJuego extends Vista{
 
     /**
      * Método dragOver que se ejecuta cuando arrastramos la pregunta encima de los div de respuesta
-     * @param {Objeto} e DragEvent
+     * @param {Object} e DragEvent
      */
     dragOver(e) {
         e.preventDefault()
@@ -169,7 +286,7 @@ export class VistaJuego extends Vista{
 
     /**
      * Método dragLeave que se ejecuta cuando la pregunta sale de los div de respuesta
-     * @param {Objeto} e DragEvent
+     * @param {Object} e DragEvent
      */
     dragLeave(e) {
         e.target.classList.remove('drag-over')
@@ -181,12 +298,14 @@ export class VistaJuego extends Vista{
      */
     drop(e) {
         e.target.classList.remove('drag-over')
-        // Coger elelemento draggable
+
+        // Coger el elemento draggable
         const id = e.dataTransfer.getData('text/plain')
         const draggable = document.getElementById(id)
-        if(e.target.tagName=='DIV'){        //Solo dejamos que entren div
+
+        if(e.target.tagName=='DIV') {        //Solo dejamos que entren div
              //Control de error cuando soltamos la respuesta en la caja en la que ya está
-            if(e.target.attributes.length==2){
+            if(e.target.attributes.length==2) {
                 e.target.appendChild(draggable)			//lo añadimos al objeto
                 let pregunta=document.getElementById('divPregunta')
                 pregunta.classList.add('drop-pregunta')

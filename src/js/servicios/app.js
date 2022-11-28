@@ -1,23 +1,23 @@
-"use script" //activo modo estricto
+"use strict" //activo modo estricto
 import {Modelo} from '../modelos/modelo.js'
 import {VistaJuego} from '../vistas/vistajuego.js'
 import {VistaInicio} from '../vistas/vistainicio.js'
 /**
  * Clase Controlador que administra las vistas
  */
-class Controlador{
+class Controlador {
 	/**
 	 * Constructor de la clase Controlador
 	 * Cuando carga la web ejecuta el método iniciar
 	 */
-	constructor(){
+	constructor() {
 		window.onload=this.iniciar.bind(this)
 	}
 
 	/**
 	 * Método iniciar que es el primero en ejecutarse cuando se carga la pantalla
 	 */
-	iniciar(){
+	iniciar() {
 		console.log('¡Bienvenido a Glocal Island!')
 		this.modelo=new Modelo(this, this.iniciarVistas.bind(this))
 	}
@@ -25,7 +25,7 @@ class Controlador{
 	/**
 	 * Método iniciarVistar que se ejecuta al iniciar el modelo
 	 */
-	iniciarVistas(){
+	iniciarVistas() {
 		this.divjuego=document.getElementById('divCanvas')
 		this.vistaJuego=new VistaJuego(this.divjuego, this)
 		this.divinicio=document.getElementById('divInicio')
@@ -38,7 +38,7 @@ class Controlador{
 	/**
 	 * Método que oculta todas las vistas
 	 */
-	ocultarVistas(){
+	ocultarVistas() {
 		this.vistaInicio.mostrar(false)
 		this.vistaJuego.mostrar(false)
 	}
@@ -46,7 +46,7 @@ class Controlador{
 	/**
 	 * Método pulsarLogo que oculta las vistas y muestra la del inicio
 	 */
-	pulsarLogo(){
+	pulsarLogo() {
 		this.ocultarVistas()
 		this.vistaInicio.mostrar(true)
 	}
@@ -54,7 +54,7 @@ class Controlador{
 	/**
 	 * Método pulsarComenzarInicio quer oculta las vistas y muestra la del juego
 	 */
-	pulsarComenzarInicio(){
+	pulsarComenzarInicio() {
 		this.ocultarVistas()
 		this.vistaJuego.mostrar(true)
 	}
@@ -63,7 +63,7 @@ class Controlador{
 	 * Método getModelo, devuelve el modelo de la aplicación
 	 * @return {Modelo} El modelo de la aplicación
 	 **/
-	getModelo(){
+	getModelo() {
 		return this.modelo
 	}
 }

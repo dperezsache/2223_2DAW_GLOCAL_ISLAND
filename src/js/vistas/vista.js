@@ -1,4 +1,4 @@
-"use script" //activo modo estricto
+"use strict" //activo modo estricto
 /**
  * Clase Vista con métodos y atributos general que tendrán todas las Vistas 
 */

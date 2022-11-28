@@ -1,4 +1,4 @@
-"use script" //activo modo estricto
+"use strict" //activo modo estricto
 import {Vista} from './vista.js'
 /**
  * Clase VistaJuego que muestra el juego
