@@ -1,38 +1,87 @@
+/* -----CSS DE LA GESTIÓN DEL ADMIN----- */
+
+@font-face{
+	font-family:"Mabook";
+	src:
+		url("fuente/mabook/Mabook.ttf");
+}
+
+@font-face{
+	font-family:"Comfortaa";
+	src:
+		url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
+
+}
+
 body{
     margin:0;
     padding:0;
     text-align: center;
+    font-family: "Comfortaa";
+}
+
+h1{
+    font-family: "Mabook";
 }
 
 #divCategoria{
     height: 1000px;
     width: 100%;
-    background-color: aquamarine;
 }
 
+/*-----MENU-----*/
 nav{
     background-color: orange;
     height: 100px;
     width: 100%;
     display: flex;
+    font-family: "Comfortaa";
+    font-weight: bold;
 }
 
 nav li{
 	display: inline-block;
     flex-grow: 1;
     margin: auto;
-
+    padding-top: 2%;
+    height: 50px;
 }
 
 li > img{
     height: 100px;
+    position: relative;
+    top: -40px;
 }
+
 li > a{
     cursor: pointer;
     display: block;
     height: 100%;
     width: 100%;
 }
+
 li:hover{
     background-color: darkorange ;
+}
+
+/*-----CATEGORIAS-----*/
+
+#divCrudCategorias{
+    margin-top: 30px;
+    font-size: 1.5em;
+}
+
+#divCrudCategorias input,button{
+    margin-top: 40px;
+    font-family: "Comfortaa";
+}
+
+#divCrudCategorias button{
+    width: 100px;
+    height: 50px;
+    background-color: orange;
+}
+
+#divCrudCategorias button:hover{
+    background-color: darkorange;
 }
