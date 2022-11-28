@@ -22,6 +22,7 @@ body{
 
 h1{
     font-family: "Mabook";
+    margin-top: 60px;
 }
 
 #divCategoria{
@@ -31,12 +32,16 @@ h1{
 
 /*-----MENU-----*/
 nav{
-    background-color: orange;
+    background-color: #FFA90D;
     height: 100px;
     width: 100%;
-    display: flex;
     font-family: "Comfortaa";
     font-weight: bold;
+}
+
+nav ul{
+    display: flex;
+    justify-content: center;
 }
 
 nav li{
@@ -47,13 +52,13 @@ nav li{
     height: 50px;
 }
 
-li > img{
+li img{
     height: 100px;
     position: relative;
     top: -40px;
 }
 
-li > a{
+li  a{
     cursor: pointer;
     display: block;
     height: 100%;
@@ -61,12 +66,12 @@ li > a{
 }
 
 li:hover{
-    background-color: darkorange ;
+    background-color: #3AE8A5 ;
 }
 
 /*-----CATEGORIAS-----*/
 
-#divCrudCategorias{
+#divCrudCategorias, #divCrudSubcategorias{
     margin-top: 30px;
     font-size: 1.5em;
 }
@@ -76,12 +81,23 @@ li:hover{
     font-family: "Comfortaa";
 }
 
-#divCrudCategorias button{
-    width: 100px;
-    height: 50px;
-    background-color: orange;
+#divCrudSubcategorias input,button,select{
+    margin-top: 40px;
+    font-family: "Comfortaa";
 }
 
-#divCrudCategorias button:hover{
-    background-color: darkorange;
+#divCrudCategorias button,#divCrudSubcategorias button{
+    width: 100px;
+    height: 50px;
+    background-color: #FFA90D;
+    cursor: pointer;
 }
+
+#divCrudCategorias button:hover, #divCrudSubcategorias button:hover{
+    background-color: #FF8400;
+}
+
+#divCrudSubcategorias select{
+    width: 167px;
+}
+

@@ -11,6 +11,7 @@
         <div id="divCategoria">
             <!-- MENU -->
             <nav>
+                <ul>
                 <li>
                     <img src="../logo/logo1.png">
                 </li>
@@ -18,7 +19,7 @@
                     <a>Listado</a>
                 </li>
                 <li>
-                    <a>Categorias</a>
+                    <a>Categorías</a>
                 </li>
                 <li>
                     <a>Preguntas</a>
@@ -26,6 +27,7 @@
                 <li>
                     <a>Cerrar sesión</a>
                 </li>
+                </ul>
             </nav>
             <!-- LISTADO -->
             <div id="divListado"></div>
@@ -34,10 +36,26 @@
             <div id="divCrudCategorias">
                 <h1>NUEVA CATEGORIA</h1>
                 <form>
-                    <label>Nueva categoria</label>
+                    <label>Nueva categoría</label>
                     <input type="text"><br>
                     <label>Icono</label>
                     <input type="text"><br>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
+            <!-- CRUD SUBCATEGORIAS -->
+            <div id="divCrudSubcategorias">
+                <h1>NUEVA SUBCATEGORIA</h1>
+                <form>
+                    <label>Nueva subcategoría</label>
+                    <input type="text"><br>
+                    <label>Categoría</label>
+                    <select>
+                        <option></option>
+                    </select><br>
+                    <button type="reset">Cancelar</button>
                     <button type="submit">Enviar</button>
                 </form>
             </div>
