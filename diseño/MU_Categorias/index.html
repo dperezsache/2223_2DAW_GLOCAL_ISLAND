@@ -22,6 +22,9 @@
                     <a>Categorías</a>
                 </li>
                 <li>
+                    <a>Reflexiones</a>
+                </li>
+                <li>
                     <a>Preguntas</a>
                 </li>
                 <li>
@@ -30,8 +33,10 @@
                 </ul>
             </nav>
             <!-- LISTADO -->
-            <div id="divListado"></div>
+            <div id="divListado">
 
+            </div>
+    
             <!-- CRUD CATEGORIAS -->
             <div id="divCrudCategorias">
                 <h1>NUEVA CATEGORIA</h1>
@@ -58,8 +63,41 @@
                     <button type="reset">Cancelar</button>
                     <button type="submit">Enviar</button>
                 </form>
+                <h1>SUBCATEGORIAS</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Opciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Categoria1</td>
+                            <td>B/D</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
+            <!-- MODIFICACIÓN -->
+            <div id="divCrudSubcategorias">
+                <h1>MODIFICAR SUBCATEGORIA</h1>
+                <form>
+                    <label>Nuevo nombre</label>
+                    <input type="text"><br>
+                    <label>Categoría</label>
+                    <select>
+                        <option></option>
+                    </select><br>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
             <!-- CRUD PREGUNTAS -->
             <div id="divPreguntas"></div>
         </div>
