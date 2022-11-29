@@ -71,7 +71,8 @@
                                 echo '<option value='.$i.'>'.$fila['nombre'].'</option>';
                                 $i++;
                             }
-
+                            // Cerrar conexión
+                            mysqli_close($conexion);
                         ?>
                     </select><br>
                     <button type="reset">Cancelar</button>
@@ -90,10 +91,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Categoria1</td>
-                            <td>B/D</td>
-                        </tr>
+                        <?php
+                            $conexionListado = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+                            $consultaListado = 'SELECT nombre
+                            FROM Subcategorias
+                            ORDER BY id';
+
+                            $nombresSubcategorias=mysqli_query($conexionListado,$consultaListado);
+                            while($fila = $nombresSubcategorias->fetch_array()){
+                                echo '<tr>';
+                                    echo '<td>'.$fila['nombre'].'</td>';
+                                    echo '<td>M/B</td>';
+                                echo'</tr>';
+                            }
+                            // Cerrar conexión
+                            mysqli_close($conexionListado);
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -109,7 +122,7 @@
                         <option></option>
                     </select><br>
                     <button type="reset">Cancelar</button>
-                    <button type="submit">Enviar</button>
+                    <button type="submit" name="enviarModSubCat">Enviar</button>
                 </form>
             </div>
 
@@ -119,66 +132,83 @@
     </body>
 </html>
 <?php
-    try 
-    {
-        //If para hacer la inserción si se pulsa el botón de crear las categorías
-        if(isset ($_POST["enviarCat"])){
-            //Conexión con la base de datos
-            $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-            //Valores introducidos en el formulario, los recogemos en variables
-            $nombre = $_POST['nombreCat'];
-            $icono = $_POST['iconoCat'];
-            /*var_dump($_POST);*/
-            $array_nombres = [];
-            $length = count($_POST["nombreSubCat"]);
-            $x = 0;
-            for($x=0;$x<$length;$x++){
-                $array_nombres[$x]=$_POST["nombreSubCat"][$x];
-            }
-            
-
-            //Consulta preparada para insertar Categorias en la bbdd
-            $consulta2 = $conexion2->prepare('INSERT INTO Categorias(nombre,icono) VALUES(?,?)');
-            $consulta2->bind_param('ss', $nombre,$icono);
-            $consulta2->execute();
-
-            //Conexión con la base de datos
-            $idcategoria = "SELECT id
-            FROM Categorias
-            WHERE nombre='".$nombre."';";
-            $idSacado=mysqli_query($conexion2,$idcategoria);
-            while($fila = $idSacado->fetch_array()){
-               $id=$fila['id'];
-            }
-            
-            //Consulta preparada para insertar subcategorias en la bbdd
-            $consulta3 = $conexion2->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
-            for($x=0;$x<$length;$x++){
-                $consulta3->bind_param('si', $array_nombres[$x],$id);
-                $consulta3->execute();
-            }
-            
+    //If para hacer la inserción si se pulsa el botón de crear las categorías
+    if(isset ($_POST["enviarCat"])){
+        //Conexión con la base de datos
+        $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+        //Valores introducidos en el formulario, los recogemos en variables
+        $nombre = $_POST['nombreCat'];
+        $icono = $_POST['iconoCat'];
+        $array_nombres = [];
+        $length = count($_POST["nombreSubCat"]);
+        $x = 0;
+        for($x=0;$x<$length;$x++){
+            $array_nombres[$x]=$_POST["nombreSubCat"][$x];
         }
-        //If para hacer la inserción si se pulsa el botón de crear las subcategorías
-        if(isset ($_POST["enviarSubCat"])){
-    
-            //Valores introducidos en el formulario, los recogemos en variables
-            $nombre = $_POST['nombreSubCat'];
-            $categoria = $_POST['categoria'];
-            
-            //Consulta preparada para insertar Subcategotias en la bbdd
-            $consulta = $conexion->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
-            $consulta->bind_param('si', $nombre,$categoria);
-            $consulta->execute();
-            
-            // Cerrar consulta y conexión
-            $consulta->close();
-            $conexion->close();
+        
+
+        //Consulta preparada para insertar Categorias en la bbdd
+        $consulta2 = $conexion2->prepare('INSERT INTO Categorias(nombre,icono) VALUES(?,?)');
+        $consulta2->bind_param('ss', $nombre,$icono);
+        $consulta2->execute();
+        // Cerrar conexión
+        mysqli_close($conexion2);
+
+        //Conexión con la base de datos
+        $conexion3 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+        
+        $idcategoria = "SELECT id
+        FROM Categorias
+        WHERE nombre='".$nombre."';";
+        $idSacado=mysqli_query($conexion3,$idcategoria);
+        while($fila = $idSacado->fetch_array()){
+            $id=$fila['id'];
         }
+        
+        //Consulta preparada para insertar subcategorias en la bbdd
+        $consulta3 = $conexion3->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
+        for($x=0;$x<$length;$x++){
+            $consulta3->bind_param('si', $array_nombres[$x],$id);
+            $consulta3->execute();
+        }
+        // Cerrar conexión
+        mysqli_close($conexion3);
     }
-    catch(mysqli_sql_exception $e)
-    {
-        echo '<p>' . $e->getMessage() . '</p>';
-        echo '<p><a href="index.php">Volver</a></p>';
+
+    //If para hacer la inserción si se pulsa el botón de crear las subcategorías
+    if(isset ($_POST["enviarSubCat"])){
+        
+        //Conexión con la base de datos
+        $conexion4 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+        //Valores introducidos en el formulario, los recogemos en variables
+        $nombre = $_POST['nombreSubCat'];
+        $categoria = $_POST['categoria'];
+        
+        //Consulta preparada para insertar Subcategotias en la bbdd
+        $consultaSubCat = $conexion4->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
+        $consultaSubCat->bind_param('si', $nombre,$categoria);
+        $consultaSubCat->execute();
+        
+        // Cerrar conexión
+        mysqli_close($conexion4);
+    }
+
+    //If para hacer la modificación de subcategorias existentes
+    if(isset ($_POST["enviarModSubCat"])){
+
+        //Conexión con la base de datos
+        $conexionModificar = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+        //Valores introducidos en el formulario, los recogemos en variables
+        $nombre = $_POST['nombreSubCat'];
+        $categoria = $_POST['categoria'];
+        
+        //Consulta preparada para insertar Subcategotias en la bbdd
+        $consultaSubCat = $conexion4->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
+        $consultaSubCat->bind_param('si', $nombre,$categoria);
+        $consultaSubCat->execute();
+        
+        // Cerrar conexión
+        mysqli_close($conexion4);
     }
 ?>
