@@ -1,5 +1,6 @@
 /* -----CSS DE LA GESTIÓN DEL ADMIN----- */
 
+/*TIPOGRAFIAS*/
 @font-face{
 	font-family:"Mabook";
 	src:
@@ -12,7 +13,7 @@
 		url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
 
 }
-
+/*ELEMENTOS GENERALES*/
 body{
     margin:0;
     padding:0;
@@ -26,7 +27,23 @@ h1{
     font-size: 50px;
 }
 
+table{
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
+    min-width: 300px;
+}
 
+td, th{
+    border: 1px black solid;
+    height: 30px;
+    padding: 10px;
+}
+
+tr a{
+    cursor: pointer;
+    margin: 0 10px;
+}
 
 /*-----MENU-----*/
 nav{
@@ -112,6 +129,8 @@ li a{
     }
 
 }
+/*-----LISTADO-----*/
+
 
 /*-----CATEGORIAS-----*/
 
@@ -147,20 +166,5 @@ li a{
     font-family: 'Comfortaa';
 }
 
-/* TABLA SUBCATEGORIAS */
-table{
-    text-align: center;
-    border-collapse: collapse;
-    margin: auto;
-    width: 300px;
-}
 
-td, th{
-    border: 1px black solid;
-    height: 30px;
-}
 
-tr a{
-    cursor: pointer;
-    margin: 0 10px;
-}
