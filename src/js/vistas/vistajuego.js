@@ -58,17 +58,28 @@ export class VistaJuego extends Vista{
      * Método iniciar que crea los objetos y el canvas
      */
     iniciar(){
+        
         this.isla=new Image()
         this.sol=new Image()
         this.luna=new Image()
         this.nube=new Image()
         this.agua=new Image()
+        //CREACION DEL SPRITE TORNADO
+        this.sprtTornado=new Image()
+        this.sprtTornado.src='../../img/sprites/tornado/tornado.png'
+
+        //CREACIÓN DEL SPRITE TORMENTA
+        this.sprtTormenta1=new Image()
+        this.sprtTormenta1.src='../../img/sprites/rayo/rayo.png'
+
+        this.sprtTormenta2=new Image()
+        this.sprtTormenta2.src='../../img/sprites/rayo/rayo.png'
+
 
         this.isla.src='../../img/isla.png'
         this.sol.src='../../img/sol.png'
         this.luna.src='../../img/luna.png'
         this.nube.src='../../img/nube.png'
-        //this.agua.src='../../img/agua.png'
 
         this.xnube1=0
         this.xnube2=-300
@@ -84,7 +95,6 @@ export class VistaJuego extends Vista{
         this.canva.height=692
 
         this.draw.bind(this)
-        this.movimiento=setInterval(this.moverAgua.bind(this),40)
         setInterval(this.moverNubes.bind(this), 25)
         this.tiempoRespuesta=60;
 
@@ -95,19 +105,43 @@ export class VistaJuego extends Vista{
         this.end =   { x: this.canva.width+1000,   y: 600 };
         this.swAgua=0;
         this.alturaAgua=200;
+
+        //VARIABLE PARA LOS FRAMES DEL SPRTTORNADO
+        this.indiceFrameTornado=1;
+        this.tornadoIzq=0
+        this.swTornado=1
+        setInterval(this.movTornado.bind(this),70)
+
+        //VARIABLES PARA FRAMES DE TORMENTA
+        this.indiceFrameTormenta=6;
+        this.tormentaPeq=0;
+        this.tormentaGr=0
+        this.swTormenta=1;
+        setInterval(this.aparicionTormenta.bind(this),100);
+        
     }
 
     /**
      * Método draw que pinta los objetos de la isla
      */
     draw(){
+        if(this.contadorErrores["aire"]>=9){
+            this.ctx.drawImage(this.sprtTornado,this.indiceFrameTornado*191,0,191,173,this.tornadoIzq,-100,191,830)
+        }
+        if(this.contadorErrores["aire"]>=6){
+            this.ctx.drawImage(this.sprtTormenta1,this.indiceFrameTormenta*66,0,66,224,this.tormentaIzq+50,90,91,830)
+            this.ctx.drawImage(this.sprtTormenta2,this.indiceFrameTormenta*66,0,66,224,this.tormentaGr+50,120,111,830)
+        }
+       
+        //this.indiceFrameTormenta++
+        
         this.ctx.fillStyle='#473DFF'
         this.ctx.fillRect(0,520,900,150)
         this.ctx.drawImage(this.isla, 0, 60, 750, 700)
         this.ctx.drawImage(this.nube,this.xnube1,100,100,50)
         this.ctx.drawImage(this.nube,this.xnube2,150,200,100)
         this.ctx.drawImage(this.agua,this.xagua,560,this.anchoAgua,130)
-
+        
         if(this.cp1.x>2000)
             this.swAgua=0;
         if(this.cp2.x<-200)
@@ -131,7 +165,46 @@ export class VistaJuego extends Vista{
         this.ctx.stroke();
         
     }
+    aparicionTormenta(){
+        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
+        this.indiceFrameTormenta++
+        this.draw();
+        if(this.indiceFrameTormenta==7){
+            this.indiceFrameTormenta=0;
+            this.tormentaIzq=this.xnube1
+            this.tormentaGr=this.xnube2
+            console.log("direccion de la tormenta",this.tormentaIzq)
+        }
+        
+    }
+    /**
+     * Método para la creación del movimiento del sprite del tornado
+     */
+    movTornado(){
+        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
+        //CONDICIÓN PARA LA VUELTA DEL SPRT TORNADO
+       if(this.indiceFrameTornado==4)
+        this.indiceFrameTornado=1;
 
+        this.indiceFrameTornado++
+
+        if(this.tornadoIzq==1000)
+            this.swTornado=0
+        if(this.tornadoIzq==-1000)
+            this.swTornado=1
+
+        if(this.swTornado==1)
+         this.tornadoIzq+=5
+
+        if(this.swTornado==0)
+         this.tornadoIzq-=5
+
+        
+        
+        
+        //console.log(this.framesTornado)
+        this.draw()
+    }
     /**
      * Método mover que borra el lienzo y pinta moviendo los objetos
      */
@@ -149,38 +222,7 @@ export class VistaJuego extends Vista{
             this.xnube2=this.xnube2+1
         }
         this.draw()
-    }
-
-    /**
-     * Método moverAgua que que borra el lienzo y dibuja moviendo el elemento del agua
-     */
-    moverAgua(){
-      /*  console.log('Moviendo aguaaaa')*/
-        this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
-        if(this.anchoAgua==5000){
-            this.intervalo=setInterval(this.moverAguaAtras.bind(this),40)
-        }
-        else{
-           this.xagua=this.xagua
-            this.anchoAgua=this.anchoAgua+10;
-        }
-        this.draw()
-    }
-    
-    /**
-     * Método moverAguaAtras que mueve el elemento del agua hacia la izquierda
-     */
-    moverAguaAtras(){
-        /* this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
-        if(this.xagua==-70){
-            // let intervalo=setInterval(this.moverAgua.bind(this),40)
-        }
-        else{
-            this.xagua=this.xagua-1
-            this.draw()
-        } */
-        
-    }
+    }   
 	/**
      * Método arrastrar que determina los elementos que se pueden arrastrar y dónde pueden ser soltados
      */
@@ -283,7 +325,7 @@ export class VistaJuego extends Vista{
         this.pregunta=document.createElement('div')
         this.pregunta.id="divPregunta";
         this.pregunta.draggable=true;
-        this.pregunta.setAttribute("value","agua")
+        this.pregunta.setAttribute("value","aire")
         this.divJuegoCartas.appendChild(this.pregunta)
 
         let p=document.createElement('p')
@@ -335,22 +377,28 @@ export class VistaJuego extends Vista{
         p.appendChild(document.createTextNode(this.puntuacionGlobal));
     }
     eventosErrores(categoria){
+        let coloresCielo={
+            3:'#D1D4D7',
+            6:'#D1B487',
+            9:'#F3B960'
+        }
         this.contadorErrores[categoria]++
         console.log("La categoria es: ",categoria)
         console.log("CONTADOR DE ERRORES: ",this.contadorErrores)
 
         
-        if(this.contadorErrores["agua"]%3==0){
+        if(this.contadorErrores["agua"]%3==0 && this.contadorErrores["agua"]!=0){
             if(this.alturaAgua<320)
                 this.alturaAgua+=10;
         }
-        if(this.contadorErrores["tierra"]%3==0){
+        if(this.contadorErrores["tierra"]%3==0 && this.contadorErrores["tierra"]!=0){
             //this.contadorErrores["tierra"]=0;
             console.log("ERROR DE TIERRA")
         }
-        if(this.contadorErrores["aire"]%3==0){
+        if(this.contadorErrores["aire"]%3==0 && this.contadorErrores["aire"]!=0){
             //this.contadorErrores["aire"]=0
             console.log("ERROR DE AIRE")
+            this.juego.style.backgroundColor=coloresCielo[this.contadorErrores["aire"]];
         }
         
         
