@@ -1,8 +1,8 @@
 
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
-	/*height:768px;
-	width:1366px;*/
+	height:768px;
+	/*width:1366px;*/
 	overflow:hidden;
 	background-color: white;
 }
@@ -308,6 +308,16 @@ div#divRespuesta1{
 div#divRespuesta2{
 	margin-left:2%;
 	margin-right:1%;
+}
+div#divPuntuacion{
+    position: absolute;
+    top:50px;
+    left: 400px;
+}
+div#divCronometro{
+    position:absolute;
+    top:20px;
+    left:1500px;
 }
 
 div.respuestas{
