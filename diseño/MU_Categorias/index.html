@@ -12,29 +12,47 @@
             <!-- MENU -->
             <nav>
                 <ul>
-                <li>
+                <li id="flex0">
                     <img src="../logo/logo1.png">
                 </li>
-                <li>
+                <li class="opciones">
                     <a>Listado</a>
                 </li>
-                <li>
+                <li class="opciones">
                     <a>Categorías</a>
                 </li>
-                <li>
+                <li class="opciones">
                     <a>Reflexiones</a>
                 </li>
-                <li>
+                <li class="opciones">
                     <a>Preguntas</a>
                 </li>
-                <li>
+                <li class="opciones" id="flex1">
                     <a>Cerrar sesión</a>
                 </li>
                 </ul>
             </nav>
             <!-- LISTADO -->
             <div id="divListado">
-
+                <h1>LISTADO DE PREGUNTAS</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Opciones
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Categoria1</td>
+                            <td><a>✎</a><a>🗑</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
     
             <!-- CRUD CATEGORIAS -->
@@ -45,6 +63,10 @@
                     <input type="text"><br>
                     <label>Icono</label>
                     <input type="text"><br>
+                    <label>Nuevas subcategoría</label><br>
+                    <input type="text" placeholder="Categoria 1"><br>
+                    <input type="text" placeholder="Categoria 2"><br>
+                    <input type="text"placeholder="Categoria 3"><br>
                     <button type="reset">Cancelar</button>
                     <button type="submit">Enviar</button>
                 </form>
@@ -78,7 +100,7 @@
                     <tbody>
                         <tr>
                             <td>Categoria1</td>
-                            <td>B/D</td>
+                            <td><a>✎</a><a>🗑</a></td>
                         </tr>
                     </tbody>
                 </table>

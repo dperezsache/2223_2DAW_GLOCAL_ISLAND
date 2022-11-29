@@ -21,14 +21,12 @@ body{
 }
 
 h1{
-    font-family: "Mabook";
+    font-family: "Mabook", "Comfortaa" ;
     margin-top: 60px;
+    font-size: 50px;
 }
 
-#divCategoria{
-    height: 1000px;
-    width: 100%;
-}
+
 
 /*-----MENU-----*/
 nav{
@@ -43,19 +41,32 @@ nav ul{
     display: flex;
 }
 
+/*Flex-grow y flex-shrink 2 para las opciones para darle más importancia*/
 nav li{
 	display: inline-block;
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex-grow: 2;
+    flex-shrink: 2;
     margin: auto;
     height: 100px;
+}
+
+/*Id para poner flex-grow y flex-shrink 0 para el logo porque no necesita más espacio*/
+#flex0{
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+/*Id para poner flex-grow y flex-shrink 1 para el cierre de sesión porque no necesita más espacio*/
+#flex1{
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 li img{
     height: 100px;
 }
 
-li  a{
+li a{
     cursor: pointer;
     display: block;
     height: 60px;
@@ -63,7 +74,7 @@ li  a{
     padding-top: 40px;
 }
 
-li:hover{
+.opciones:hover{
     background-color: #3AE8A5 ;
 }
 
@@ -73,7 +84,7 @@ li:hover{
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 620px){
     ul{
       position: fixed;
       width: 45%;
@@ -82,20 +93,25 @@ li:hover{
       text-align: center;
       transition: all .5s;
       display: block !important;
+      padding-inline-start: 0px;
     }
+
     nav ul li{
       display: block;
       margin: 50px 0;
       line-height: 30px;
     }
+
     nav ul li a{
       font-size: 20px;
     }
+
     a:hover,a.active{
       background: none;
       color: #0082e6;
     }
-  }
+
+}
 
 /*-----CATEGORIAS-----*/
 
@@ -105,7 +121,7 @@ li:hover{
 }
 
 #divCrudCategorias input,button{
-    margin-top: 40px;
+    margin: 20px 0;
     font-family: "Comfortaa";
 }
 
@@ -119,6 +135,7 @@ li:hover{
     height: 50px;
     background-color: #FFA90D;
     cursor: pointer;
+    border:0;
 }
 
 #divCrudCategorias button:hover, #divCrudSubcategorias button:hover{
@@ -127,6 +144,7 @@ li:hover{
 
 #divCrudSubcategorias select{
     width: 167px;
+    font-family: 'Comfortaa';
 }
 
 /* TABLA SUBCATEGORIAS */
@@ -140,4 +158,9 @@ table{
 td, th{
     border: 1px black solid;
     height: 30px;
+}
+
+tr a{
+    cursor: pointer;
+    margin: 0 10px;
 }
