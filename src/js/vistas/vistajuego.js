@@ -31,8 +31,20 @@ export class VistaJuego extends Vista{
 
         this.tiempoRespuesta=setInterval(this.tiempoRestante.bind(this),1000);
 
-
+        //CONTADOR ERRORES Y ACIERTOS
+        this.contadorErrores={
+            "agua":0,
+            "tierra":0,
+            "aire":0
+        }
+        this.contadorAciertos={
+            "agua":0,
+            "tierra":0,
+            "aire":0
+        }
+        //CONTADOR PARA HACER APARECER UN NUMERO POR RESPUESTA, BORRAR AQUI Y EN LA CREACIÓN DINÁMICA DE LAS CARTAS (THIS.NUEVAPREGUNTA())
         this.contadorProvisional=0;
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
     /**
@@ -56,7 +68,7 @@ export class VistaJuego extends Vista{
         this.sol.src='../../img/sol.png'
         this.luna.src='../../img/luna.png'
         this.nube.src='../../img/nube.png'
-        this.agua.src='../../img/agua.png'
+        //this.agua.src='../../img/agua.png'
 
         this.xnube1=0
         this.xnube2=-300
@@ -75,6 +87,14 @@ export class VistaJuego extends Vista{
         this.movimiento=setInterval(this.moverAgua.bind(this),40)
         setInterval(this.moverNubes.bind(this), 25)
         this.tiempoRespuesta=60;
+
+        //VARIABLES PARA EL MONTAJE DEL AGUA DINAMICA
+        this.start = { x: -1000,    y: 750  };
+        this.cp1 =   { x: 305,   y: 600  };
+        this.cp2 =   { x: 410,   y: 750  };
+        this.end =   { x: this.canva.width+1000,   y: 600 };
+        this.swAgua=0;
+        this.alturaAgua=200;
     }
 
     /**
@@ -87,6 +107,28 @@ export class VistaJuego extends Vista{
         this.ctx.drawImage(this.nube,this.xnube1,100,100,50)
         this.ctx.drawImage(this.nube,this.xnube2,150,200,100)
         this.ctx.drawImage(this.agua,this.xagua,560,this.anchoAgua,130)
+
+        if(this.cp1.x>2000)
+            this.swAgua=0;
+        if(this.cp2.x<-200)
+            this.swAgua=1
+
+        if(this.swAgua==1){
+            this.cp1.x+=10;
+            this.cp2.x+=10;
+        }else{
+            this.cp1.x-=10;
+            this.cp2.x-=10;
+        }
+       
+
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.start.x, this.start.y);
+        this.ctx.bezierCurveTo(this.cp1.x, this.cp1.y, this.cp2.x, this.cp2.y, this.end.x, this.end.y);
+        this.ctx.lineWidth=this.alturaAgua;
+        this.ctx.strokeStyle="#3673A7";
+        this.ctx.stroke();
         
     }
 
@@ -214,10 +256,13 @@ export class VistaJuego extends Vista{
             if(div.getAttribute('value')=="Correcto"){
                 
                 this.rachaAciertos++
+                this.contadorAciertos[draggable.getAttribute('value')]++;
+                console.log("CONTADOR DE ACIERTOS: ",this.contadorAciertos)
                 clearInterval(this.tiempoRespuesta);
-                
                 this.sumarPuntuacion(this.tiempoRespuesta*this.rachaAciertos);
+                
             }else{
+                this.eventosErrores(draggable.getAttribute('value'))
                 this.rachaAciertos=0;
             }
                
@@ -238,6 +283,7 @@ export class VistaJuego extends Vista{
         this.pregunta=document.createElement('div')
         this.pregunta.id="divPregunta";
         this.pregunta.draggable=true;
+        this.pregunta.setAttribute("value","agua")
         this.divJuegoCartas.appendChild(this.pregunta)
 
         let p=document.createElement('p')
@@ -273,7 +319,6 @@ export class VistaJuego extends Vista{
     tiempoRestante(){
         if(this.tiempoRespuesta>0){
             this.tiempoRespuesta--;
-            console.log(this.tiempoRespuesta);
          }
          this.borrarCrono();
          let p=document.createElement('p');
@@ -283,17 +328,32 @@ export class VistaJuego extends Vista{
     }
     sumarPuntuacion(puntuacion){
         this.puntuacionGlobal+=puntuacion
-        console.log("PUNTUACION GLOBAL",this.puntuacionGlobal);
         this.borrarPuntuacion();
         
         let p=document.createElement('p');
         this.divPuntuacion.appendChild(p);
         p.appendChild(document.createTextNode(this.puntuacionGlobal));
-        /*this.puntuacionGlobal+=puntuacion;
-        /*let p=document.createElement=('p')
-        this.respuesta1.appendChild(p);
-        p.appendChild(document.createTextNode(this.puntuacionGlobal));*/
-       /* console.log('PUNTUACIÓN',this.puntuacionGlobal);*/
+    }
+    eventosErrores(categoria){
+        this.contadorErrores[categoria]++
+        console.log("La categoria es: ",categoria)
+        console.log("CONTADOR DE ERRORES: ",this.contadorErrores)
+
+        
+        if(this.contadorErrores["agua"]%3==0){
+            if(this.alturaAgua<320)
+                this.alturaAgua+=10;
+        }
+        if(this.contadorErrores["tierra"]%3==0){
+            //this.contadorErrores["tierra"]=0;
+            console.log("ERROR DE TIERRA")
+        }
+        if(this.contadorErrores["aire"]%3==0){
+            //this.contadorErrores["aire"]=0
+            console.log("ERROR DE AIRE")
+        }
+        
+        
     }
     borrarCrono(){
         while(this.divCronometro.firstElementChild)
