@@ -35,11 +35,11 @@
             <!-- CRUD CATEGORIAS -->
             <div id="divCrudCategorias">
                 <h1>NUEVA CATEGORIA</h1>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     <label>Nueva categoria</label>
                     <input type="text" name="nombreCat" required><br>
                     <label>Icono</label>
-                    <input type="text"  name="iconoCat" required><br><br>
+                    <input type="file"  name="iconoCat" required><br><br>
                     <label>Nuevas subcategoría</label><br>
                     <input type="text"  name="nombreSubCat[]" required><br>
                     <input type="text"  name="nombreSubCat[]" required><br>
@@ -55,7 +55,6 @@
                         $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
                         //Valores introducidos en el formulario, los recogemos en variables
                         $nombre = $_POST['nombreCat'];
-                        $icono = $_POST['iconoCat'];
                         $array_nombres = [];
                         $length = count($_POST["nombreSubCat"]);
                         $x = 0;
@@ -63,10 +62,14 @@
                             $array_nombres[$x]=$_POST["nombreSubCat"][$x];
                         }
                         
+                        $nom_archivo = $_FILES['iconoCat']['name'];
+                        $ruta = "../../../img/subidas_bbdd/".$nom_archivo;
+                        $archivo=$_FILES['iconoCat']['tmp_name'];
+                        $subir=move_uploaded_file($archivo,$ruta);
 
                         //Consulta preparada para insertar Categorias en la bbdd
                         $consulta2 = $conexion2->prepare('INSERT INTO Categorias(nombre,icono) VALUES(?,?)');
-                        $consulta2->bind_param('ss', $nombre,$icono);
+                        $consulta2->bind_param('ss', $nombre,$ruta);
                         $consulta2->execute();
                         // Cerrar conexión
                         mysqli_close($conexion2);
