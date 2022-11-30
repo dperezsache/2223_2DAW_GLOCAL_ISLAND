@@ -42,6 +42,7 @@ export class VistaJuego extends Vista {
         }
 
         this.temporizadorPersona = null
+        this.mostrado = false
         this.persona = {
             img: null,
             x: 0,
@@ -73,6 +74,8 @@ export class VistaJuego extends Vista {
             indiceImg: 0
         }
 
+        this.textoEstado = ''
+
         this.btnlogo=document.getElementById('logo')
         this.btnlogo.onclick=this.pulsarLogo.bind(this)
         this.arrastrar()
@@ -96,6 +99,7 @@ export class VistaJuego extends Vista {
         this.juego.appendChild(this.canva)
         this.canva.width=820
         this.canva.height=692
+        this.canva.addEventListener('mousemove', this.estadoIsla.bind(this))
 
         // Imágenes
         this.isla=new Image()
@@ -162,6 +166,7 @@ export class VistaJuego extends Vista {
         this.persona.img = new Image()
         this.persona.img.src = '../../img/sprites/personajes/personaje4/Download51878.png'
         this.persona.img.onload = this.animarPersona.bind(this, this.persona, this.temporizadorPersona)
+        this.persona.img.onmouseover = this.estadoIsla.bind(this)
 
         // VARIABLES PARA EL MONTAJE DEL AGUA DINAMICA
         this.start = { x: -1000,    y: 750  };
@@ -192,6 +197,9 @@ export class VistaJuego extends Vista {
         this.ctx.drawImage(this.pajaro2.img, this.pajaro2.frameActual * this.pajaro2.width, 0, this.pajaro2.width, this.pajaro2.height, this.pajaro2.x, this.pajaro2.y, this.pajaro2.width, this.pajaro2.height)
 
         // Persona
+        this.ctx.fillStyle = "white"
+        this.ctx.font = 'bold 15px Arial'
+        this.ctx.fillText(this.textoEstado, this.persona.x,  this.persona.y)
         this.ctx.drawImage(this.persona.img, this.persona.frameActual * this.persona.width, this.persona.columna * this.persona.height, this.persona.width, this.persona.height, this.persona.x, this.persona.y, this.persona.width, this.persona.height)
    
         // AGUA
@@ -221,6 +229,21 @@ export class VistaJuego extends Vista {
         // Peces
         this.ctx.drawImage(this.pez1.img[this.pez1.indiceImg], this.pez1.x, this.pez1.y)
         this.ctx.drawImage(this.pez2.img[this.pez2.indiceImg], this.pez2.x, this.pez2.y)
+    }
+
+    /**
+     * Muestra un mensaje con el estado actual de la isla.
+     * @param {Event} e Evento de mousemove 
+     */
+    estadoIsla(e) {
+        if(e.offsetX > this.persona.x && e.offsetX < this.persona.x + this.persona.width) {
+            this.textoEstado = 'Hola mundo'
+            this.draw()
+        }
+        else {
+            this.textoEstado = ''
+        }
+        
     }
 
     /**
@@ -327,8 +350,6 @@ export class VistaJuego extends Vista {
      * @param {Number} limiteX Limite del eje X hasta dónde mover a la persona
      */
     personaAnimacionAndar1(persona, temporizador, limiteX) {
-        //this.ctx.clearRect(persona.x, persona.y, persona.width, persona.height)
-
         persona.frameActual++
         if (persona.frameActual >= persona.totalFrames) {
             persona.frameActual = 0
@@ -353,8 +374,6 @@ export class VistaJuego extends Vista {
      * @param {Number} limiteX Limite del eje X hasta dónde mover a la persona
      */
     personaAnimacionAndar2(persona, temporizador, limiteX) {
-        //this.ctx.clearRect(persona.x, persona.y, persona.width, persona.height)
-
         persona.frameActual++
         if (persona.frameActual >= persona.totalFrames) {
             persona.frameActual = 0
@@ -378,8 +397,6 @@ export class VistaJuego extends Vista {
      * @param {Number} temporizador ID del setInterval, para poder detener movimiento de la persona.
      */
     personaAnimacion(persona, temporizador) {
-        //this.ctx.clearRect(persona.x, persona.y, persona.width, persona.height)
-
         persona.frameActual++
         if (persona.frameActual >= persona.totalFrames) {
             clearInterval(temporizador)
@@ -444,7 +461,6 @@ export class VistaJuego extends Vista {
      * @param {Number} temporizador ID del setInterval, para poder detener movimiento del pez.
      */
     pezAnim1(pez, temporizador) {
-        this.ctx.clearRect(pez.x, pez.y, pez.width, pez.height);
         if (pez.x >= 1000) {
             clearInterval(temporizador)
             this.moverPeces(pez, temporizador)
