@@ -42,7 +42,6 @@ export class VistaJuego extends Vista {
         }
 
         this.temporizadorPersona = null
-        this.mostrado = false
         this.persona = {
             img: null,
             x: 0,
@@ -196,10 +195,22 @@ export class VistaJuego extends Vista {
         this.ctx.drawImage(this.pajaro1.img, this.pajaro1.frameActual * this.pajaro1.width, 0, this.pajaro1.width, this.pajaro1.height, this.pajaro1.x, this.pajaro1.y, this.pajaro1.width, this.pajaro1.height)
         this.ctx.drawImage(this.pajaro2.img, this.pajaro2.frameActual * this.pajaro2.width, 0, this.pajaro2.width, this.pajaro2.height, this.pajaro2.x, this.pajaro2.y, this.pajaro2.width, this.pajaro2.height)
 
+        // Texto de estado
+        if(this.textoEstado != '') {
+            this.ctx.font = 'bold 25px Calibri'
+
+            this.ctx.fillStyle = 'white'
+            this.ctx.strokeStyle = 'black'
+            this.ctx.lineWidth = 1
+
+            this.ctx.fillText(this.textoEstado, this.persona.x,  this.persona.y)
+            this.ctx.strokeText(this.textoEstado, this.persona.x,  this.persona.y)
+    
+            this.ctx.fill()
+            this.ctx.stroke()
+        }
+
         // Persona
-        this.ctx.fillStyle = "white"
-        this.ctx.font = 'bold 15px Arial'
-        this.ctx.fillText(this.textoEstado, this.persona.x,  this.persona.y)
         this.ctx.drawImage(this.persona.img, this.persona.frameActual * this.persona.width, this.persona.columna * this.persona.height, this.persona.width, this.persona.height, this.persona.x, this.persona.y, this.persona.width, this.persona.height)
    
         // AGUA
@@ -232,18 +243,17 @@ export class VistaJuego extends Vista {
     }
 
     /**
-     * Muestra un mensaje con el estado actual de la isla.
+     * Prepara un mensaje con el estado actual de la isla al pasar por el personaje.
      * @param {Event} e Evento de mousemove 
      */
     estadoIsla(e) {
         if(e.offsetX > this.persona.x && e.offsetX < this.persona.x + this.persona.width) {
-            this.textoEstado = 'Hola mundo'
+            this.textoEstado = '¡Que buen día hace!'
             this.draw()
         }
         else {
             this.textoEstado = ''
         }
-        
     }
 
     /**
@@ -307,11 +317,13 @@ export class VistaJuego extends Vista {
 
         // Si la persona está al límite derecho o izquierdo de la isla, cambiar la dirección
         if (opcion == 1 || opcion == 2) {
-            if (persona.x > 700)
+            if (persona.x > 700) {
                 opcion = 2
+            }
             
-            else if (persona.x < 170)
+            else if (persona.x < 170) {
                 opcion = 1
+            }
         }
 
         switch(opcion) {
@@ -337,9 +349,6 @@ export class VistaJuego extends Vista {
                 persona.totalFrames = 7     // Asignar el total de frames que tiene la columna del sprite
                 temporizador = setInterval(function() {this.personaAnimacion(persona, temporizador)}.bind(this), 150)
                 break
-            
-            default:
-                break
         }
     }
 
@@ -347,7 +356,7 @@ export class VistaJuego extends Vista {
      * Mover persona de izquierda a derecha de la isla
      * @param {Object} persona Objeto de la persona.
      * @param {Number} temporizador ID del setInterval, para poder detener movimiento de la persona.
-     * @param {Number} limiteX Limite del eje X hasta dónde mover a la persona
+     * @param {Number} limiteX Limite del eje X hasta dónde mover la persona.
      */
     personaAnimacionAndar1(persona, temporizador, limiteX) {
         persona.frameActual++
@@ -368,10 +377,10 @@ export class VistaJuego extends Vista {
     }
 
     /**
-     * Mover persona de derecha a izquierda de la isla
+     * Mover persona de derecha a izquierda de la isla.
      * @param {Object} persona Objeto de la persona.
      * @param {Number} temporizador ID del setInterval, para poder detener movimiento de la persona.
-     * @param {Number} limiteX Limite del eje X hasta dónde mover a la persona
+     * @param {Number} limiteX Limite del eje X hasta dónde mover la persona.
      */
     personaAnimacionAndar2(persona, temporizador, limiteX) {
         persona.frameActual++
