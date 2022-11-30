@@ -1,10 +1,10 @@
 "use strict" //activo modo estricto
-import { ModeloAdmin } from '../modelos/modeloadmin.js'
-import { VistaListado } from '../vistas/vistalistado.js'
-import { VistaCategorias } from '../vistas/vistacategorias.js'
-import { VistaPreguntas } from '../vistas/vistapreguntas.js'
-import { VistaNavAdmin } from '../vistas/vistanavadmin.js'
-import { VistaSubcategorias } from '../vistas/vistasubcategorias.js'
+import {ModeloAdmin} from '../modelos/modeloadmin.js'
+import {VistaListado} from '../vistas/vistalistado.js'
+import {VistaCategorias} from '../vistas/vistacategorias.js'
+import {VistaPreguntas} from '../vistas/vistapreguntas.js'
+import {VistaNavAdmin} from '../vistas/vistanavadmin.js'
+import {VistaSubcategorias} from '../vistas/vistasubcategorias.js'
 
 /**
  * Clase Controlador que administra las vistas del administrador
@@ -22,6 +22,7 @@ class ControladorAdmin {
 	 * Método iniciar que es el primero en ejecutarse cuando se carga la pantalla
 	 */
 	iniciar() {
+		this.mostrarSubcategorias = false
 		this.modelo = new ModeloAdmin(this, this.iniciarVistas.bind(this))
 	}
 
@@ -44,7 +45,20 @@ class ControladorAdmin {
         this.divPreguntas = document.getElementById('divPreguntas')
         this.vistaPreguntas = new VistaPreguntas(this.divPreguntas, this)
 
-		this.pulsarNavListado()	// Iniciar en vista de listado
+		this.pulsarNavListado()		// Iniciar en vista listado
+	}
+
+	/**
+	 * Método para la comprobación de que mostrar en vista categorías
+	 * @param {Number} 1 para subcategorías, 0 para categorías
+	 */
+	mostrarCatSubcat(valor) {
+		if(valor == 1) {
+			this.mostrarSubcategorias = true
+		}
+		else {
+			this.mostrarSubcategorias = false
+		}
 	}
 
 	/**
@@ -52,9 +66,14 @@ class ControladorAdmin {
 	 */
 	pulsarNavListado() {
 		this.vistaListado.mostrar(true)
-		this.vistaCategorias.mostrar(false)
-		this.vistaSubcategorias.mostrar(false)
 		this.vistaPreguntas.mostrar(false)
+		console.log('list')
+		if(this.mostrarSubcategorias) {
+			this.vistaSubcategorias.mostrar(false)
+		}
+		else {
+			this.vistaCategorias.mostrar(false)
+		}
 	}
 
 	/**
@@ -62,9 +81,14 @@ class ControladorAdmin {
 	 */
 	pulsarNavCategorias() {
         this.vistaListado.mostrar(false)
-        this.vistaCategorias.mostrar(true)
-		this.vistaSubcategorias.mostrar(true)
-        this.vistaPreguntas.mostrar(false)
+		this.vistaPreguntas.mostrar(false)
+		console.log('cat')
+		if(this.mostrarSubcategorias) {
+			this.vistaSubcategorias.mostrar(true)
+		}
+		else {
+			this.vistaCategorias.mostrar(true)
+		}
 	}
 
 	/**
@@ -72,9 +96,14 @@ class ControladorAdmin {
 	 */
 	pulsarNavPreguntas() {
         this.vistaListado.mostrar(false)
-        this.vistaCategorias.mostrar(false)
-		this.vistaSubcategorias.mostrar(false)
         this.vistaPreguntas.mostrar(true)
+		console.log('preg')
+		if(this.mostrarSubcategorias) {
+			this.vistaSubcategorias.mostrar(false)
+		}
+		else {
+			this.vistaCategorias.mostrar(false)
+		}
 	}
 
 	/**
