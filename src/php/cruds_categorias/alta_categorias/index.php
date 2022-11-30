@@ -48,7 +48,7 @@
                         <input id="subcategoria2" type="text"  name="nombreSubCat[]" required><br>
                         <input id="subcategoria3" type="text"  name="nombreSubCat[]" required><br>
                         <button type="reset" name="cancelar">Cancelar</button>
-                        <button type="submit" name="enviarCat">Enviar</button>
+                        <button id="botonEnviarCategoria" type="submit" name="enviarCat">Enviar</button>
                     </form>
                 </div>
                 <?php
