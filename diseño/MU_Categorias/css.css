@@ -192,6 +192,24 @@ nav #btnMenu {
         display: block;
     }
 	
+    label{
+        font-size: 1em;
+    }
+}
+
+@media (max-width:540px){
+    label, td, th{
+        font-size: 0.7em;
+    }
+    h1{
+        font-size: 25px;
+    }
+    td,th{
+        padding:5px;
+    }
+    form,input{
+        padding: 1px 0;
+    }
 }
 /*-----LISTADO-----*/
 
