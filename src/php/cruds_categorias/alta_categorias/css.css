@@ -1,0 +1,145 @@
+/* -----CSS DE LA GESTIÓN DEL ADMIN----- */
+
+@font-face{
+	font-family:"Mabook";
+	src:
+		url("fuente/mabook/Mabook.ttf");
+}
+
+@font-face{
+	font-family:"Comfortaa";
+	src:
+		url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
+
+}
+
+body{
+    margin:0;
+    padding:0;
+    text-align: center;
+    font-family: "Comfortaa";
+}
+
+h1{
+    font-family: "Mabook";
+    margin-top: 60px;
+}
+
+#divCategoria{
+    height: 1000px;
+    width: 100%;
+}
+
+/*-----MENU-----*/
+nav{
+    background-color: #FFA90D;
+    height: 100px;
+    width: 100%;
+    font-family: "Comfortaa";
+    font-weight: bold;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav li{
+	display: inline-block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: auto;
+    height: 100px;
+}
+
+li img{
+    height: 100px;
+}
+
+li  a{
+    cursor: pointer;
+    display: block;
+    height: 60px;
+    width: 100%;
+    padding-top: 40px;
+}
+
+li:hover{
+    background-color: #3AE8A5 ;
+}
+
+@media screen and (max-width: 800px){
+    nav{
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 600px){
+    ul{
+      position: fixed;
+      width: 45%;
+      height: 100vh;
+      background: #13bbbb;
+      text-align: center;
+      transition: all .5s;
+      display: block !important;
+    }
+    nav ul li{
+      display: block;
+      margin: 50px 0;
+      line-height: 30px;
+    }
+    nav ul li a{
+      font-size: 20px;
+    }
+    a:hover,a.active{
+      background: none;
+      color: #0082e6;
+    }
+  }
+
+/*-----CATEGORIAS-----*/
+
+#divCrudCategorias, #divCrudSubcategorias{
+    margin-top: 30px;
+    font-size: 1.5em;
+}
+
+#divCrudCategorias input,button{
+    margin-top: 40px;
+    font-family: "Comfortaa";
+}
+
+#divCrudSubcategorias input,button,select{
+    margin-top: 40px;
+    font-family: "Comfortaa";
+}
+
+#divCrudCategorias button,#divCrudSubcategorias button{
+    width: 100px;
+    height: 50px;
+    background-color: #FFA90D;
+    cursor: pointer;
+}
+
+#divCrudCategorias button:hover, #divCrudSubcategorias button:hover{
+    background-color: #FF8400;
+}
+
+#divCrudSubcategorias select{
+    width: 167px;
+    font-family: 'Comfortaa';
+}
+
+
+/* TABLA SUBCATEGORIAS */
+table{
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
+    width: 300px;
+}
+
+td, th{
+    border: 1px black solid;
+    height: 30px;
+}
