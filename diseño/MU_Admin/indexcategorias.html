@@ -41,7 +41,7 @@
                 </ul>
             </nav>
         </header>
-        <!-- LISTADO -->
+<!--         
         <div id="divListado">
             <h1>LISTADO DE PREGUNTAS</h1>
             <table>
@@ -74,7 +74,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
         <!-- CRUD CATEGORIAS -->
         <div id="divCrudCategorias">
@@ -98,10 +98,12 @@
             <h1>CREAR SUBCATEGORIA</h1>
             <form>
                 <label for="nuevaSubcategoria">Nueva subcategoría</label>
-                <input id="nuevaSubcategoria" type="text"><br>
+                <input id="nuevaSubcategoria" type="text" ><br>
                 <label for="categoria">Categoría</label>
                 <select id="categoria">
-                    <option></option>
+                    <option>Agua</option>
+                    <option>Tierra</option>
+                    <option>Aire</option>
                 </select><br>
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
@@ -132,39 +134,18 @@
             <h1>MODIFICAR SUBCATEGORIA</h1>
             <form>
                 <label for="modNombre">Subcategoría</label>
-                <input type="text" id="modNombre"><br>
+                <input type="text" id="modNombre" value="Ahorro de agua"><br>
                 <label for="modCat">Categoría</label>
                 <select id="modCat">
-                    <option></option>
+                    <option>Agua</option>
+                    <option>Tierra</option>
+                    <option>Aire</option>
                 </select><br>
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
             </form>
         </div>
 
-        <!-- REFLEXIONES -->
-        <div id="divReflexiones">
-            <h1>CREAR REFLEXION</h1>
-            <form>
-                <label for="reflexion">Reflexión</label>
-                <textarea name="reflexion" id="reflexion"></textarea><br>
-                <label for="numPreguntas">Número de preguntas</label>
-                <select id="numPreguntas">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select><br>
-                <button type="reset">Cancelar</button>
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
         <!-- CRUD PREGUNTAS -->
         <div id="divPreguntas"></div>
         </div>
