@@ -1,0 +1,204 @@
+{
+  "id": "7067915b-c6f2-40be-9585-4cc1a3acc3c5",
+  "version": "2.0",
+  "name": "Glocal_Admin",
+  "url": "https://14.2daw.esvirgua.com/proyecto/src/php/cruds_categorias/alta_categorias/index.php",
+  "tests": [{
+    "id": "a9374af3-eeed-467c-a5b6-c62cc3d63c3f",
+    "name": "datosVacios",
+    "commands": [{
+      "id": "f638047b-d98c-4c44-a1e3-2d9ea5a7086f",
+      "comment": "",
+      "command": "open",
+      "target": "https://14.2daw.esvirgua.com/proyecto/src/php/cruds_categorias/alta_categorias/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9d5041bb-6187-483a-9757-707bb4bd958f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1456x876",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "75849cfd-383f-4e95-8d83-f30d7134aca7",
+      "comment": "",
+      "command": "click",
+      "target": "id=liCategorias",
+      "targets": [
+        ["id=liCategorias", "id"],
+        ["linkText=Categorias", "linkText"],
+        ["css=#liCategorias", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[@id='liCategorias']", "xpath:attributes"],
+        ["xpath=//div[@id='divCategoria']/nav/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b40ecba6-d4c2-4e13-aaab-fc0aad0ec1e7",
+      "comment": "",
+      "command": "click",
+      "target": "id=botonEnviarCategoria",
+      "targets": [
+        ["id=botonEnviarCategoria", "id"],
+        ["name=enviarCat", "name"],
+        ["css=#botonEnviarCategoria", "css:finder"],
+        ["xpath=//button[@id='botonEnviarCategoria']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Enviar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c63f4b53-a7fd-4d7d-a66d-e6c494d55ff2",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Error al introducir datos: Alguno de los campos no está relleno, por favor complete el formulario.",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "cb4628b3-64fa-4bc5-9085-50a9f6baef2f",
+    "name": "Imagen blanco",
+    "commands": [{
+      "id": "b0420c76-a0dc-411e-aa3d-cfd4a2f1cc1d",
+      "comment": "",
+      "command": "open",
+      "target": "https://14.2daw.esvirgua.com/proyecto/src/php/cruds_categorias/alta_categorias/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "88e1198c-c029-4eb0-9736-47d71c194f81",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1456x876",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a13d3d26-c0d6-4ea5-9063-7d211992132b",
+      "comment": "",
+      "command": "click",
+      "target": "id=liCategorias",
+      "targets": [
+        ["id=liCategorias", "id"],
+        ["linkText=Categorias", "linkText"],
+        ["css=#liCategorias", "css:finder"],
+        ["xpath=//a[contains(text(),'Categorias')]", "xpath:link"],
+        ["xpath=//a[@id='liCategorias']", "xpath:attributes"],
+        ["xpath=//div[@id='divCategoria']/nav/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Categorias')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6b7537a-d6bd-446e-9b5b-cb443157e4cf",
+      "comment": "",
+      "command": "click",
+      "target": "id=nuevaCategoria",
+      "targets": [
+        ["id=nuevaCategoria", "id"],
+        ["name=nombreCat", "name"],
+        ["css=#nuevaCategoria", "css:finder"],
+        ["xpath=//input[@id='nuevaCategoria']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff92bcd7-fda0-4d08-b1f5-d674f1a4d055",
+      "comment": "",
+      "command": "type",
+      "target": "id=nuevaCategoria",
+      "targets": [
+        ["id=nuevaCategoria", "id"],
+        ["name=nombreCat", "name"],
+        ["css=#nuevaCategoria", "css:finder"],
+        ["xpath=//input[@id='nuevaCategoria']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Categoria1"
+    }, {
+      "id": "da983eb9-a0c7-4202-b69f-5088d4a52d32",
+      "comment": "",
+      "command": "type",
+      "target": "id=subcategoria1",
+      "targets": [
+        ["id=subcategoria1", "id"],
+        ["name=nombreSubCat[]", "name"],
+        ["css=#subcategoria1", "css:finder"],
+        ["xpath=//input[@id='subcategoria1']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "SUBCAT1"
+    }, {
+      "id": "d5d375af-f1eb-42ca-9cc3-9b8914c89cde",
+      "comment": "",
+      "command": "type",
+      "target": "id=subcategoria2",
+      "targets": [
+        ["id=subcategoria2", "id"],
+        ["css=#subcategoria2", "css:finder"],
+        ["xpath=//input[@id='subcategoria2']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "SUBCAT2"
+    }, {
+      "id": "54569c47-1f5c-453e-bee4-70640105c170",
+      "comment": "",
+      "command": "type",
+      "target": "id=subcategoria3",
+      "targets": [
+        ["id=subcategoria3", "id"],
+        ["css=#subcategoria3", "css:finder"],
+        ["xpath=//input[@id='subcategoria3']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/input[5]", "xpath:idRelative"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": "SUBCAT3"
+    }, {
+      "id": "d8fda6f6-b4d1-43e2-b771-968b63ab07f8",
+      "comment": "",
+      "command": "click",
+      "target": "id=botonEnviarCategoria",
+      "targets": [
+        ["id=botonEnviarCategoria", "id"],
+        ["name=enviarCat", "name"],
+        ["css=#botonEnviarCategoria", "css:finder"],
+        ["xpath=//button[@id='botonEnviarCategoria']", "xpath:attributes"],
+        ["xpath=//form[@id='formNuevaCategoria']/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Enviar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "beba7b00-01fa-4c95-b6b7-1e43db045acd",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Error al introducir datos: Alguno de los campos no está relleno, por favor complete el formulario.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6c2613b5-bddc-4fbf-a73a-cfd4ab31ecdd",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c5672edb-af20-48a4-b216-63159ddcf97c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a9374af3-eeed-467c-a5b6-c62cc3d63c3f"]
+  }],
+  "urls": ["https://14.2daw.esvirgua.com/proyecto/src/php/cruds_categorias/alta_categorias/index.php"],
+  "plugins": []
+}
