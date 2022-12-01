@@ -67,7 +67,7 @@
                 <?php echo'<input id="desaparecido" type="text" value='.$idCategoria.'  name="IconoCategoria" readonly>';?><br>
                 <?php echo'<img src="'.$iconoCategoria.'">'?><br>
                 <label>Icono</label>
-                <input type="file"  name="iconoCat" required><br><br>
+                <input type="file"   accept="image/png, image/jpeg" name="iconoCat" required><br><br>
                 <br>
                 <button type="submit" name="enviarModIcon">Enviar</button>
             </form>

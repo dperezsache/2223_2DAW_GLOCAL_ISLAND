@@ -50,7 +50,7 @@
                 <label for="nuevaCategoria">Nueva categoria</label>
                 <input id="nuevaCategoria" type="text" name="nombreCat" required><br>
                 <label for="icono">Icono</label>
-                <input id="icono" type="file"  name="iconoCat" required><br><br>
+                <input id="icono" type="file"  accept="image/png, image/jpeg" name="iconoCat" required><br><br>
                 <label for="nuevasSubcategorias">Nuevas subcategoría</label><br>
                 <input title="nuevasSubcategorias" placeholder="Subcategoria 1" type="text"  name="nombreSubCat[]" required><br>
                 <input title="nuevasSubcategorias" placeholder="Subcategoria 2" type="text"  name="nombreSubCat[]" required><br>
