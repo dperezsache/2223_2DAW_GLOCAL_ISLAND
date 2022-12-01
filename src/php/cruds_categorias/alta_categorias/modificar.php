@@ -1,6 +1,12 @@
 <!-- MODIFICACIÓN -->
 <?php
     $idSubcategoria = $_GET["id"];
+
+    session_start();
+
+    if(!isset($_SESSION['nombre'])) {
+        header('Location: ../../../index.php/html/index.html');
+    }
 ?>
 
 <html>
@@ -65,7 +71,7 @@
                 </form>
             </div>
         </div>
-        
+        <script type="module" src="../../../js/servicios/controladormodadmin.js"></script>
     </body>
 </html>
 <?php

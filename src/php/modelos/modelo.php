@@ -60,7 +60,7 @@
                             
                             $_SESSION['nombre'] = $nombre;
                             $_SESSION['perfil'] = 'GI';
-                            header('Location: logueado.php');
+                            header('Location: ../../php/cruds_categorias/alta_categorias/index.php');
                         }
                         else 
                         {

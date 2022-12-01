@@ -1,10 +1,10 @@
-"use strict" //activo modo estricto
+"use strict"
 /**
  * Clase Modelo para el administrador de la aplicación
  */ 
 export class ModeloAdmin {
 	/**
-	 * 
+	 * Constructor de la clase
 	 * @param {Object} controlador para que el modelo mire al controlador
 	 * @param {Function} callback método inicar del controlador
 	 */

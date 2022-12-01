@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['nombre'])) {
+        header('Location: ../../../index.php/html/index.html');
+    }
+?>
 <html>
     <head>
 		<meta charset="utf-8">

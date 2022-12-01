@@ -62,10 +62,16 @@ class ControladorAdmin {
 	}
 
 	/**
+	 * Atención a la pulsación sobre el logo
+	 */
+	pulsarNavLogo() {
+		window.location.href = '../../../index.php/html/index.html'
+	}
+
+	/**
 	 * Atención a la pulsación sobre el enlace de categorías
 	 */
 	pulsarNavListado() {
-		console.log('listado')
 		this.vistaListado.mostrar(true)
 		this.vistaPreguntas.mostrar(false)
 		this.vistaSubcategorias.mostrar(false)
@@ -76,7 +82,6 @@ class ControladorAdmin {
 	 * Atención a la pulsación sobre el enlace de categorías
 	 */
 	pulsarNavCategorias() {
-		console.log('categorias')
         this.vistaListado.mostrar(false)
 		this.vistaPreguntas.mostrar(false)
 		
@@ -92,7 +97,6 @@ class ControladorAdmin {
 	 * Atención a la pulsación sobre el enlace de preguntas
 	 */
 	pulsarNavPreguntas() {
-		console.log('preguntas')
         this.vistaListado.mostrar(false)
         this.vistaPreguntas.mostrar(true)
 		this.vistaSubcategorias.mostrar(false)
@@ -103,7 +107,7 @@ class ControladorAdmin {
 	 * Atención a la pulsación sobre el enlace de cerrar sesión
 	 */
 	pulsarNavCerrarSesion() {
-		console.log('Cerrar sesión')
+		window.location.href = '../../../index.php/html/logout.php'
 	}
 
 	/**
