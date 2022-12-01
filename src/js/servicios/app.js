@@ -33,8 +33,24 @@ class Controlador{
 		
 		this.vistaInicio.mostrar(true)
 		this.vistaJuego.mostrar(false)
+		
 	}
-
+	/**
+	 * Método para la obtencion de las preguntas y respuestas
+	 */
+	getPreguntasRespuestas(){
+		console.log("PULSA COMENZAR")
+		this.modelo.obtenerPreguntasRespuestas()
+	 	
+	}
+	/**
+	 * Método para el envio a la vista juego de las preguntas y respuestas del juego
+	 * @param {Object} objetoPreguntas 
+	 */
+	setearPreguntas(objetoPreguntas){
+		console.log("AQUÍ HAY COSAAAA",objetoPreguntas)
+		this.vistaJuego.setPreguntas(objetoPreguntas)
+	}
 	/**
 	 * Método que oculta todas las vistas
 	 */
@@ -56,6 +72,7 @@ class Controlador{
 	 */
 	pulsarComenzarInicio(){
 		this.ocultarVistas()
+		this.getPreguntasRespuestas();
 		this.vistaJuego.mostrar(true)
 	}
 

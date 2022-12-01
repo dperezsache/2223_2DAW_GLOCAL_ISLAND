@@ -42,7 +42,7 @@
                         <label>Nueva categoria</label>
                         <input id="nuevaCategoria" type="text" name="nombreCat" required><br>
                         <label>Icono</label>
-                        <input id="icono" type="text"  name="iconoCat" required><br><br>
+                        <input id="icono" type="file"  name="iconoCat" required><br><br>
                         <label>Nuevas subcategoría</label><br>
                         <input id="subcategoria1" type="text"  name="nombreSubCat[]" required><br>
                         <input id="subcategoria2" type="text"  name="nombreSubCat[]" required><br>

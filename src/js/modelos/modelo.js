@@ -14,6 +14,17 @@ export class Modelo{
 		this.callbacks = [] //Array de callbacks para implementar el observador
 		callback()
 	}
+	/**
+	 * Método para la obtención por AJAX de las preguntas y respuestas del juego
+	 * @return {object}
+	 */
+	obtenerPreguntasRespuestas(){
+		console.log('OBTENIENDO PREGUNTAS Y RESPUESTAS')
+		fetch("../../php/sacar_preguntas_aleatorias/index.php")
+				.then(respuesta => respuesta.json())
+				.then(datos =>this.controlador.setearPreguntas(datos))/*this.controlador.setearPreguntas(datos))*/
+
+	}
 	
 	/**
 	* Método registrar que registra un objeto para informarle de los cambios en el Modelo

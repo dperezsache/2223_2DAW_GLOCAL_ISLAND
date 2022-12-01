@@ -17,6 +17,9 @@ export class VistaCrudCategorias extends Vista{
         this.botonEnviar=document.getElementById("botonEnviarCategoria");
         this.botonEnviar.onclick=this.enviarCategoria.bind(this)
     }
+    /**
+     * Método para el envio y validación del formulario de la vista
+     */
     enviarCategoria(){
        event.preventDefault();
         console.log("EEEL EVEEEENTO CARIIIIÑO",event)
@@ -29,6 +32,9 @@ export class VistaCrudCategorias extends Vista{
             window.alert('Error al introducir datos: '+excepcion)
         }
     }
+    /**
+     * Método para la validacion de los campos del formulario
+     */
     validarCategoria(){
         const expresion=new RegExp('^[A-Z][a-z]{1,48}[^0-9]');
 

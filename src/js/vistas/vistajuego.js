@@ -31,17 +31,20 @@ export class VistaJuego extends Vista{
 
         this.tiempoRespuesta=setInterval(this.tiempoRestante.bind(this),1000);
 
+        
+
         //CONTADOR ERRORES Y ACIERTOS
         this.contadorErrores={
-            "agua":0,
-            "tierra":0,
-            "aire":0
+            "Agua":0,
+            "Tierra":0,
+            "Aire":0
         }
         this.contadorAciertos={
-            "agua":0,
-            "tierra":0,
-            "aire":0
+            "Agua":0,
+            "Tierra":0,
+            "Aire":0
         }
+        this.contadorPreguntas=0;
         //CONTADOR PARA HACER APARECER UN NUMERO POR RESPUESTA, BORRAR AQUI Y EN LA CREACIÓN DINÁMICA DE LAS CARTAS (THIS.NUEVAPREGUNTA())
         this.contadorProvisional=0;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,10 +128,10 @@ export class VistaJuego extends Vista{
      * Método draw que pinta los objetos de la isla
      */
     draw(){
-        if(this.contadorErrores["aire"]>=9){
+        if(this.contadorErrores["Aire"]>=2){
             this.ctx.drawImage(this.sprtTornado,this.indiceFrameTornado*191,0,191,173,this.tornadoIzq,-100,191,830)
         }
-        if(this.contadorErrores["aire"]>=6){
+        if(this.contadorErrores["Aire"]>=1){
             this.ctx.drawImage(this.sprtTormenta1,this.indiceFrameTormenta*66,0,66,224,this.tormentaIzq+50,90,91,830)
             this.ctx.drawImage(this.sprtTormenta2,this.indiceFrameTormenta*66,0,66,224,this.tormentaGr+50,120,111,830)
         }
@@ -165,6 +168,9 @@ export class VistaJuego extends Vista{
         this.ctx.stroke();
         
     }
+    /**
+     * Método para la gestión del sprite tormenta
+     */
     aparicionTormenta(){
         this.ctx.clearRect(0,0,this.canva.width, this.canva.height)
         this.indiceFrameTormenta++
@@ -173,7 +179,6 @@ export class VistaJuego extends Vista{
             this.indiceFrameTormenta=0;
             this.tormentaIzq=this.xnube1
             this.tormentaGr=this.xnube2
-            console.log("direccion de la tormenta",this.tormentaIzq)
         }
         
     }
@@ -294,12 +299,10 @@ export class VistaJuego extends Vista{
                 pregunta.classList.add('drop-pregunta')
             }
             let div=e.path[0]
-            console.log(e);
-            if(div.getAttribute('value')=="Correcto"){
+            if(div.getAttribute('value')=="1"){
                 
                 this.rachaAciertos++
                 this.contadorAciertos[draggable.getAttribute('value')]++;
-                console.log("CONTADOR DE ACIERTOS: ",this.contadorAciertos)
                 clearInterval(this.tiempoRespuesta);
                 this.sumarPuntuacion(this.tiempoRespuesta*this.rachaAciertos);
                 
@@ -315,6 +318,9 @@ export class VistaJuego extends Vista{
 
         
     }
+    /**
+     * Método para la generación automática de preguntas del juego
+     */
     nuevaPregunta(){
         this.borrarPregunta();
         this.pregunta.remove();
@@ -322,42 +328,93 @@ export class VistaJuego extends Vista{
         this.respuesta2.remove();
         this.divJuegoCartas=document.getElementById('divCanvas')
 
-        this.pregunta=document.createElement('div')
-        this.pregunta.id="divPregunta";
-        this.pregunta.draggable=true;
-        this.pregunta.setAttribute("value","aire")
-        this.divJuegoCartas.appendChild(this.pregunta)
-
-        let p=document.createElement('p')
-        this.pregunta.appendChild(p)
-        p.appendChild(document.createTextNode('Nueva pregunta'))
-       
-        this.respuesta1=document.createElement('div');
-        this.respuesta1.setAttribute("value","Correcto");
-        this.respuesta1.className="respuestas";
-        
-
-        let respuestaBuena=document.createElement('p');
-        respuestaBuena.id="textoRespuesta";
-        this.respuesta1.appendChild(respuestaBuena)
-        respuestaBuena.appendChild(document.createTextNode('respuesta '+this.contadorProvisional))
-        this.divJuegoCartas.appendChild(this.respuesta1)
-
-        this.respuesta2=document.createElement('div');
-        this.respuesta2.className="respuestas";
-        this.respuesta2.setAttribute("value","Error");
-        let respuestaMala=document.createElement('p');
-        this.respuesta2.appendChild(respuestaMala)
-        respuestaMala.appendChild(document.createTextNode('respuesta '+this.contadorProvisional))
-        this.divJuegoCartas.appendChild(this.respuesta2);
-
-        this.divJuegoCartas.appendChild(this.divPuntuacion);
-        this.divJuegoCartas.appendChild(this.divCronometro);
-
-        this.contadorProvisional++;
-        this.tiempoRespuesta=20;
-        this.arrastrar();
+        //if(this.contadorPreguntas<this.preguntasYrespuestas.length){
+            //console.log("Las preguntas y respuestas para el juego",this.preguntasYrespuestas.Pregunta0[0].pregunta)
+            //ESTAS VARIABLES SON LAS QUE ALMACENAS LAS CLAVES DEL OBJETO RECIBIDO POR PARTE DEL SERVIDOR, ES LA FORMA DE ITERAR SOBRE EL OBJETO
+            //EL PRIMERO RECOGE LOS INDICES DEL ONJETO, Y EL SEGUNDO LOS INDICES DEL INDICE ANTERIOR,
+           console.log("ESTAS SON LAS PREGUNTAS",this.preguntasYrespuestas)
+           this.indicesPreguntas=Object.keys(this.preguntasYrespuestas)
+            
+            if(this.contadorPreguntas<this.indicesPreguntas.length){
+                for(let i=this.contadorPreguntas;i<this.contadorPreguntas+1;i++){
+                    this.pregunta=document.createElement('div')
+                    this.pregunta.id="divPregunta";
+                    this.pregunta.draggable=true;
+                    this.pregunta.setAttribute("value",this.preguntasYrespuestas[i].Cat)
+                    this.divJuegoCartas.appendChild(this.pregunta)
+            
+                    let p=document.createElement('p')
+                    p.id="textoPregunta";
+                    this.pregunta.appendChild(p)
+                    p.appendChild(document.createTextNode(this.preguntasYrespuestas[i].pregunta))
+                
+                    this.respuesta1=document.createElement('div');
+                    this.respuesta1.setAttribute("value",this.preguntasYrespuestas[i].correcta);
+                    this.respuesta1.className="respuestas";
+                    
+            
+                    let respuestaBuena=document.createElement('p');
+                    respuestaBuena.id="textoRespuesta";
+                    this.respuesta1.appendChild(respuestaBuena)
+                    respuestaBuena.appendChild(document.createTextNode(this.preguntasYrespuestas[i].respuesta))
+                    this.divJuegoCartas.appendChild(this.respuesta1)
+            
+                    this.respuesta2=document.createElement('div');
+                    this.respuesta2.className="respuestas";
+                    this.respuesta2.setAttribute("value",this.preguntasYrespuestas[i+1].correcta);
+                    let respuestaMala=document.createElement('p');
+                    this.respuesta2.appendChild(respuestaMala)
+                    respuestaMala.id='textoRespuesta'
+                    respuestaMala.appendChild(document.createTextNode(this.preguntasYrespuestas[i+1].respuesta))
+                    this.divJuegoCartas.appendChild(this.respuesta2);
+            
+                    this.divJuegoCartas.appendChild(this.divPuntuacion);
+                    this.divJuegoCartas.appendChild(this.divCronometro);
+            
+                    this.contadorProvisional++;
+                    this.tiempoRespuesta=20;
+                    
+                    this.arrastrar();
+                }
+                this.contadorPreguntas+=2;
+                console.log("CONTADOR DE PREGUNTAS",this.contadorPreguntas)
+            }else{
+                console.log("JUEGO FINALIZADO")
+                this.pregunta=document.createElement('div')
+                    this.pregunta.id="divPregunta";
+                    this.divJuegoCartas.appendChild(this.pregunta)
+            
+                    let p=document.createElement('p')
+                    p.id="textoPregunta"
+                    this.pregunta.appendChild(p)
+                    p.appendChild(document.createTextNode("FIN DEL JUEGO"))
+                
+                    this.respuesta1=document.createElement('div');
+                    this.respuesta1.className="respuestas";
+                    
+            
+                    let respuestaBuena=document.createElement('p');
+                    respuestaBuena.id="textoRespuesta";
+                    this.respuesta1.appendChild(respuestaBuena)
+                    respuestaBuena.appendChild(document.createTextNode("GRACIAS"))
+                    this.divJuegoCartas.appendChild(this.respuesta1)
+            
+                    this.respuesta2=document.createElement('div');
+                    this.respuesta2.className="respuestas";
+                    let respuestaMala=document.createElement('p');
+                    this.respuesta2.appendChild(respuestaMala)
+                    respuestaMala.id="textoRespuesta";
+                    respuestaMala.appendChild(document.createTextNode("GRACIAS"))
+                    this.divJuegoCartas.appendChild(this.respuesta2);
+            
+                    this.divJuegoCartas.appendChild(this.divPuntuacion);
+                    this.divJuegoCartas.appendChild(this.divCronometro);
+                    
+            }
     }
+    /**
+     * Método para ir descontanto el tiempo del cronómetro para la cuenta atrás
+     */
     tiempoRestante(){
         if(this.tiempoRespuesta>0){
             this.tiempoRespuesta--;
@@ -368,6 +425,10 @@ export class VistaJuego extends Vista{
          this.divCronometro.appendChild(p)
 
     }
+    /**
+     * Método para la suma de las puntuacion global del juego
+     * @param {Int} puntuacion 
+     */
     sumarPuntuacion(puntuacion){
         this.puntuacionGlobal+=puntuacion
         this.borrarPuntuacion();
@@ -376,41 +437,59 @@ export class VistaJuego extends Vista{
         this.divPuntuacion.appendChild(p);
         p.appendChild(document.createTextNode(this.puntuacionGlobal));
     }
+    /**
+     * Método para la gestión de los eventos de errores del juego
+     * @param {String} categoria 
+     */
     eventosErrores(categoria){
         let coloresCielo={
-            3:'#D1D4D7',
+            1:'#D1D4D7',
             6:'#D1B487',
-            9:'#F3B960'
+            2:'#F3B960'
         }
         this.contadorErrores[categoria]++
-        console.log("La categoria es: ",categoria)
-        console.log("CONTADOR DE ERRORES: ",this.contadorErrores)
-
-        
-        if(this.contadorErrores["agua"]%3==0 && this.contadorErrores["agua"]!=0){
+        console.log("CONTADOR ERRORES", this.contadorErrores)
+        if(this.contadorErrores["Agua"]==1/*this.contadorErrores["Agua"]%3==0 && this.contadorErrores["Agua"]!=0*/){
             if(this.alturaAgua<320)
-                this.alturaAgua+=10;
+                this.alturaAgua+=120;
         }
-        if(this.contadorErrores["tierra"]%3==0 && this.contadorErrores["tierra"]!=0){
+        if(this.contadorErrores["Tierra"]%3==0 && this.contadorErrores["Tierra"]!=0){
             //this.contadorErrores["tierra"]=0;
             console.log("ERROR DE TIERRA")
         }
-        if(this.contadorErrores["aire"]%3==0 && this.contadorErrores["aire"]!=0){
+        if(this.contadorErrores["Aire"]>=1/*this.contadorErrores["Aire"]%3==0 && this.contadorErrores["Aire"]!=0*/){
             //this.contadorErrores["aire"]=0
             console.log("ERROR DE AIRE")
-            this.juego.style.backgroundColor=coloresCielo[this.contadorErrores["aire"]];
+            this.juego.style.backgroundColor=coloresCielo[this.contadorErrores["Aire"]];
         }
         
         
     }
+    /**
+     * Método para el instanciamiento de las preguntas recibidas por el modelo
+     * @param {Object} preguntasYrespuestas 
+     */
+    setPreguntas(preguntasYrespuestas){
+        this.preguntasYrespuestas=preguntasYrespuestas;
+        console.log("ESTAS SON LAS PREGUNTAS Y RESPUESTAS",this.preguntasYrespuestas)
+    }
+    /**
+     * Método para la eliminacion de un div que visualiza el cronómetro a través del dom
+     */
     borrarCrono(){
         while(this.divCronometro.firstElementChild)
             this.divCronometro.firstElementChild.remove()
     }
+    /**
+     * Método para la eliminacion de un div que visualiza la puntuacion global a través del dom
+     */
     borrarPuntuacion(){
         while(this.divPuntuacion.firstElementChild)
             this.divPuntuacion.firstElementChild.remove()
     }
+    /**
+     * Método para la eliminacion de un div que visualiza las preguntas y las respuestas a través del dom
+     */
     borrarPregunta(){
         while (this.pregunta.firstElementChild)
 	        this.pregunta.firstElementChild.remove()
