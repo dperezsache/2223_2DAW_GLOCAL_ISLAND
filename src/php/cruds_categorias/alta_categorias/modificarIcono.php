@@ -72,39 +72,39 @@
                 <button type="submit" name="enviarModIcon">Enviar</button>
             </form>
         </div>
+        <?php
+            //If para hacer la inserción si se pulsa el botón de crear las subcategorías
+            if(isset ($_POST["enviarModIcon"])){
+                $idCategoria = $_POST["IconoCategoria"];
+                //Conexión con la base de datos
+                $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+                
+                $consultaAntique = 'SELECT icono
+                FROM Categorias
+                WHERE id="'.$idCategoria.'"';
+
+                $nombres=mysqli_query($conexion2,$consultaAntique);
+                while($fila = $nombres->fetch_array()){
+                    $iconoCatAntique = $fila['icono'];
+                }
+
+                $nom_archivo = $_FILES['iconoCat']['name'];
+                $ruta = "../../../img/subidas_bbdd/".$nom_archivo;
+                $archivo=$_FILES['iconoCat']['tmp_name'];
+                $subir=move_uploaded_file($archivo,$ruta);
+                unlink(realpath($iconoCatAntique));
+
+                //Consulta preparada para insertar Categorias en la bbdd
+                $consulta2 = 'UPDATE Categorias SET icono="'.$ruta.'" WHERE id='.$idCategoria.';';
+                $resultado=$conexion2->query($consulta2);
+                echo'Modificado con éxito';
+                echo'<br><br><a href="index.php">Volver</a>';
+                // Cerrar conexión
+                mysqli_close($conexion2);
+            }
+        ?>
         <div id="footer">
             <p>Glocal Island</p>
         </div>
     </body>
 </html>
-<?php
-    //If para hacer la inserción si se pulsa el botón de crear las subcategorías
-    if(isset ($_POST["enviarModIcon"])){
-        $idCategoria = $_POST["IconoCategoria"];
-        //Conexión con la base de datos
-        $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-        
-        $consultaAntique = 'SELECT icono
-        FROM Categorias
-        WHERE id="'.$idCategoria.'"';
-
-        $nombres=mysqli_query($conexion2,$consultaAntique);
-        while($fila = $nombres->fetch_array()){
-            $iconoCatAntique = $fila['icono'];
-        }
-
-        $nom_archivo = $_FILES['iconoCat']['name'];
-        $ruta = "../../../img/subidas_bbdd/".$nom_archivo;
-        $archivo=$_FILES['iconoCat']['tmp_name'];
-        $subir=move_uploaded_file($archivo,$ruta);
-        unlink(realpath($iconoCatAntique));
-
-        //Consulta preparada para insertar Categorias en la bbdd
-        $consulta2 = 'UPDATE Categorias SET icono="'.$ruta.'" WHERE id='.$idCategoria.';';
-        $resultado=$conexion2->query($consulta2);
-        echo'Modificado con éxito';
-        echo'<br><br><a href="index.php">Volver</a>';
-        // Cerrar conexión
-        mysqli_close($conexion2);
-    }
-?>

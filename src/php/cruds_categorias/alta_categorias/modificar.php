@@ -89,27 +89,27 @@
                 <button type="submit" name="enviarModSubCat">Enviar</button>
             </form>
         </div>
+        <?php
+            //If para hacer la inserción si se pulsa el botón de crear las subcategorías
+            if(isset ($_POST["enviarModSubCat"])){
+                $idSubcategoria = $_GET["id"];
+                //Conexión con la base de datos
+                $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+                //Valores introducidos en el formulario, los recogemos en variables
+                $nombre = $_POST['nombreSubCat'];
+                $categoria = $_POST['categoria'];
+                
+                //Consulta preparada para insertar Subcategotias en la bbdd
+                $sql = 'UPDATE Subcategorias SET nombre="'.$nombre.'",idCategoria="'.$categoria.'" WHERE id='.$idSubcategoria.';';
+                $resultado=$conexion2->query($sql);
+                echo'Modificado con éxito';
+                echo'<a href="index.php">Volver</a>';
+                // Cerrar conexión
+                mysqli_close($conexion2);
+            }
+        ?>
         <div id="footer">
             <p>Glocal Island</p>
         </div>
     </body>
 </html>
-<?php
-    //If para hacer la inserción si se pulsa el botón de crear las subcategorías
-    if(isset ($_POST["enviarModSubCat"])){
-        $idSubcategoria = $_GET["id"];
-        //Conexión con la base de datos
-        $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-        //Valores introducidos en el formulario, los recogemos en variables
-        $nombre = $_POST['nombreSubCat'];
-        $categoria = $_POST['categoria'];
-        
-        //Consulta preparada para insertar Subcategotias en la bbdd
-        $sql = 'UPDATE Subcategorias SET nombre="'.$nombre.'",idCategoria="'.$categoria.'" WHERE id='.$idSubcategoria.';';
-        $resultado=$conexion2->query($sql);
-        echo'Modificado con éxito';
-        echo'<a href="index.php">Volver</a>';
-        // Cerrar conexión
-        mysqli_close($conexion2);
-    }
-?>
