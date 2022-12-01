@@ -27,59 +27,71 @@
 		<link rel="shotcut icon" href="../../../img/logo.png">
 	</head>
     <body>
-    <div id="divCategoria">
-            <!-- MENU -->
-            <nav>
-                <ul>
-                    <li>
-                        <img src="../../../img/logo1.png">
-                    </li>
-                    <li>
-                        <a>Listado</a>
-                    </li>
-                    <li>
-                        <a>Categorias</a>
-                    </li>
-                    <li>
-                        <a>Preguntas</a>
-                    </li>
-                    <li>
-                        <a>Cerrar sesión</a>
-                    </li>
-                <ul>
-            </nav>
-            <div id="divCrudSubcategorias">
-                <h1>MODIFICAR SUBCATEGORIA</h1>
-                <?php echo '<form action="modificar.php?id='.$idSubcategoria.'" method="post">';?>
-                    <label>Nuevo nombre</label>
-                    <?php echo'<input type="text" value='.$nombreSubCategoria.' name="nombreSubCat">';?><br>
-                    <label>Categoría</label>
-                    <select name="categoria">
-                        <?php
-                            include('../conexion.php');
-                            //Conexión con la base de datos
-                            $conexionCategoria = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-
-                            $consultaMod = 'SELECT nombre
-                            FROM Categorias
-                            ORDER BY id';
-
-                            $nombres=mysqli_query($conexionCategoria,$consultaMod);
-                            $i=1;
-                            while($fila = $nombres->fetch_array()){
-                                echo '<option value='.$i.'>'.$fila['nombre'].'</option>';
-                                $i++;
-                            }
-                            // Cerrar conexión
-                            mysqli_close($conexionCategoria);
-                        ?>
-                    </select><br>
-                    <button type="reset">Cancelar</button>
-                    <button type="submit" name="enviarModSubCat">Enviar</button>
-                </form>
+        <!-- MENU -->
+        <header>
+            <div class="logo">
+                <img src="../../../../diseño/Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
             </div>
+            <nav>
+                <input type="checkbox" id="check" />
+                <label for="check" id="btnMenu">
+                    <img src="../../../../diseño/Logo/menu.png" alt="Icono de menú" />
+                </label>
+                <ul>
+                    <li id="flex0">
+                        <img src="../../../../diseño/Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+                    </li>
+                    <li >
+                        <a class="opciones" id="liListado">Listado</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liCategorias">Categorías</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liReflexiones">Reflexiones</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liPreguntas">Preguntas</a>
+                    </li>
+                    <li id="flex1">
+                        <a class="opciones" id="liCerrarSesion">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div id="divModSubcategorias">
+            <h1>MODIFICAR SUBCATEGORIA</h1>
+            <?php echo '<form action="modificar.php?id='.$idSubcategoria.'" method="post">';?>
+                <label for="modNombre">Subactegoría</label>
+                <?php echo'<input id="modNombre" type="text" value='.$nombreSubCategoria.' name="nombreSubCat">';?><br>
+                <label for="modCat">Categoría</label>
+                <select id="modCat" name="categoria">
+                    <?php
+                        include('../conexion.php');
+                        //Conexión con la base de datos
+                        $conexionCategoria = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+                        $consultaMod = 'SELECT nombre
+                        FROM Categorias
+                        ORDER BY id';
+
+                        $nombres=mysqli_query($conexionCategoria,$consultaMod);
+                        $i=1;
+                        while($fila = $nombres->fetch_array()){
+                            echo '<option value='.$i.'>'.$fila['nombre'].'</option>';
+                            $i++;
+                        }
+                        // Cerrar conexión
+                        mysqli_close($conexionCategoria);
+                    ?>
+                </select><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit" name="enviarModSubCat">Enviar</button>
+            </form>
         </div>
-        
+        <div id="footer">
+            <p>Glocal Island</p>
+        </div>
     </body>
 </html>
 <?php
