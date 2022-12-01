@@ -91,7 +91,7 @@
         $consulta2 = 'UPDATE Categorias SET icono="'.$ruta.'" WHERE id='.$idCategoria.';';
         $resultado=$conexion2->query($consulta2);
         echo'Modificado con éxito';
-        echo'<a href="index.php">Volver</a>';
+        echo'<br><br><a href="index.php">Volver</a>';
         // Cerrar conexión
         mysqli_close($conexion2);
     }
