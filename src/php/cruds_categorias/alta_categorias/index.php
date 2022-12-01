@@ -98,6 +98,31 @@
                 ?>
             <!-- CRUD SUBCATEGORIAS -->
             <div id="divCrudSubcategorias">
+                <form method="post" action="modificarIcono.php">
+                    <label>Las Categorías ya están credas</label><br>
+                    <label>Pulsa si quieres modificar iconos de categorías</label><br>
+                    <select name="IconoCategoria">
+                        <?php
+                            include('../conexion.php');
+                            //Conexión con la base de datos
+                            $conexionSUB = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+                            $consultaSUB = 'SELECT nombre
+                            FROM Categorias
+                            ORDER BY id';
+
+                            $nombres=mysqli_query($conexionSUB,$consultaSUB);
+                            $i=1;
+                            while($fila = $nombres->fetch_array()){
+                                echo '<option value="'.$i.'">'.$fila['nombre'].'</option>';
+                                $i++;
+                            }
+                            // Cerrar conexión
+                            mysqli_close($conexionSUB);
+                        ?>
+                    </select>
+                    <button type="submit"  name="enviarSubCat">Enviar</button>
+                </form>
                 <h1>NUEVA SUBCATEGORIA</h1>
                 <form method="post">
                     <label>Nueva subcategoría</label>
@@ -126,6 +151,24 @@
                     <button type="reset">Cancelar</button>
                     <button type="submit"  name="enviarSubCat">Enviar</button>
                 </form>
+                <?php
+                    //If para hacer la inserción si se pulsa el botón de crear las subcategorías
+                    if(isset ($_POST["enviarSubCat"])){
+                        //Conexión con la base de datos
+                        $conexion4 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+                        //Valores introducidos en el formulario, los recogemos en variables
+                        $nombre = $_POST['nombreSubCat'];
+                        $categoria = $_POST['categoria'];
+                        
+                        //Consulta preparada para insertar Subcategotias en la bbdd
+                        $consultaSubCat = $conexion4->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
+                        $consultaSubCat->bind_param('si', $nombre,$categoria);
+                        $consultaSubCat->execute();
+                        
+                        // Cerrar conexión
+                        mysqli_close($conexion4);
+                    }
+                ?>
                 <h1>SUBCATEGORIAS</h1>
                 <table>
                     <thead>
@@ -140,7 +183,6 @@
                     </thead>
                     <tbody>
                         <?php
-                            
                             $conexionListado = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
                             $consultaListado = 'SELECT id,nombre
                             FROM Subcategorias
@@ -164,22 +206,3 @@
         </div>
     </body>
 </html>
-<?php
-    //If para hacer la inserción si se pulsa el botón de crear las subcategorías
-    if(isset ($_POST["enviarSubCat"])){
-        include('../conexion.php');
-        //Conexión con la base de datos
-        $conexion4 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-        //Valores introducidos en el formulario, los recogemos en variables
-        $nombre = $_POST['nombreSubCat'];
-        $categoria = $_POST['categoria'];
-        
-        //Consulta preparada para insertar Subcategotias en la bbdd
-        $consultaSubCat = $conexion4->prepare('INSERT INTO Subcategorias(nombre,idCategoria) VALUES(?,?)');
-        $consultaSubCat->bind_param('si', $nombre,$categoria);
-        $consultaSubCat->execute();
-        
-        // Cerrar conexión
-        mysqli_close($conexion4);
-    }
-?>

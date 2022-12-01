@@ -1,6 +1,20 @@
 <!-- MODIFICACIÓN -->
 <?php
     $idSubcategoria = $_GET["id"];
+    include('../conexion.php');
+    //Conexión con la base de datos
+    $conexionNombre = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+    $consultaNombre = 'SELECT nombre,idCategoria
+    FROM Subcategorias
+    WHERE id='.$idSubcategoria.'';
+
+    $nombres=mysqli_query($conexionNombre,$consultaNombre);
+    while($fila = $nombres->fetch_array()){
+        $nombreSubCategoria = $fila['nombre'];
+    }
+    // Cerrar conexión
+    mysqli_close($conexionNombre);
 ?>
 
 <html>
@@ -38,7 +52,7 @@
                 <h1>MODIFICAR SUBCATEGORIA</h1>
                 <?php echo '<form action="modificar.php?id='.$idSubcategoria.'" method="post">';?>
                     <label>Nuevo nombre</label>
-                    <input type="text" name="nombreSubCat"><br>
+                    <?php echo'<input type="text" value='.$nombreSubCategoria.' name="nombreSubCat">';?><br>
                     <label>Categoría</label>
                     <select name="categoria">
                         <?php
