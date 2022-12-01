@@ -1,22 +1,4 @@
 <!-- MODIFICACIÓN -->
-<?php
-    $idCategoria = $_POST["IconoCategoria"];
-    include('../conexion.php');
-    //Conexión con la base de datos
-    $conexionIconos = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-
-    $consultaNombre = 'SELECT nombre,icono
-    FROM Categorias
-    WHERE id="'.$idCategoria.'"';
-
-    $nombres=mysqli_query($conexionIconos,$consultaNombre);
-    while($fila = $nombres->fetch_array()){
-        $nombreCategoria = $fila['nombre'];
-        $iconoCategoria = $fila['icono'];
-    }
-    // Cerrar conexión
-    mysqli_close($conexionIconos);
-?>
 <html>
     <head>
 		<meta charset="utf-8">
@@ -59,24 +41,12 @@
                 </ul>
             </nav>
         </header>
-        <div id="divModSubcategorias">
-            <h1>MODIFICAR ICONOS</h1>
-            <?php echo '<form action="modificarIcono.php" method="post" enctype="multipart/form-data">';?>
-                <label>Nombre Categoría</label>
-                <?php echo'<input id="modNombre" type="text" value='.$nombreCategoria.' name="nombreCat" readonly>';?>
-                <?php echo'<input id="desaparecido" type="text" value='.$idCategoria.'  name="IconoCategoria" readonly>';?><br>
-                <?php echo'<img src="'.$iconoCategoria.'">'?><br>
-                <label>Icono</label>
-                <input type="file"   accept="image/png, image/jpeg" name="iconoCat" required><br><br>
-                <br>
-                <button type="submit" name="enviarModIcon">Enviar</button>
-            </form>
-        </div>
         <?php
             //If para hacer la inserción si se pulsa el botón de crear las subcategorías
             if(isset ($_POST["enviarModIcon"])){
                 $idCategoria = $_POST["IconoCategoria"];
                 //Conexión con la base de datos
+                require_once('../conexion.php');
                 $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
                 
                 $consultaAntique = 'SELECT icono
@@ -103,6 +73,37 @@
                 mysqli_close($conexion2);
             }
         ?>
+        <div id="divModSubcategorias">
+        <?php
+            $idCategoria = $_POST["IconoCategoria"];
+            require_once('../conexion.php');
+            //Conexión con la base de datos
+            $conexionIconos = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+            $consultaNombre = 'SELECT nombre,icono
+            FROM Categorias
+            WHERE id="'.$idCategoria.'"';
+
+            $nombres=mysqli_query($conexionIconos,$consultaNombre);
+            while($fila = $nombres->fetch_array()){
+                $nombreCategoria = $fila['nombre'];
+                $iconoCategoria = $fila['icono'];
+            }
+            // Cerrar conexión
+            mysqli_close($conexionIconos);
+        ?>
+            <h1>MODIFICAR ICONOS</h1>
+            <?php echo '<form action="modificarIcono.php" method="post" enctype="multipart/form-data">';?>
+                <label>Nombre Categoría</label>
+                <?php echo'<input id="modNombre" type="text" value='.$nombreCategoria.' name="nombreCat" readonly>';?>
+                <?php echo'<input id="desaparecido" type="text" value='.$idCategoria.'  name="IconoCategoria" readonly>';?><br>
+                <?php echo'<img src="'.$iconoCategoria.'">'?><br>
+                <label>Icono</label>
+                <input type="file"   accept="image/png, image/jpeg" name="iconoCat" required><br><br>
+                <br>
+                <button type="submit" name="enviarModIcon">Enviar</button>
+            </form>
+        </div>
         <div id="footer">
             <p>Glocal Island</p>
         </div>

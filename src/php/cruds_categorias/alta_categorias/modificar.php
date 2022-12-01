@@ -1,21 +1,5 @@
 <!-- MODIFICACIÓN -->
-<?php
-    $idSubcategoria = $_GET["id"];
-    include('../conexion.php');
-    //Conexión con la base de datos
-    $conexionNombre = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
 
-    $consultaNombre = 'SELECT nombre,idCategoria
-    FROM Subcategorias
-    WHERE id='.$idSubcategoria.'';
-
-    $nombres=mysqli_query($conexionNombre,$consultaNombre);
-    while($fila = $nombres->fetch_array()){
-        $nombreSubCategoria = $fila['nombre'];
-    }
-    // Cerrar conexión
-    mysqli_close($conexionNombre);
-?>
 
 <html>
     <head>
@@ -59,7 +43,44 @@
                 </ul>
             </nav>
         </header>
+        <?php
+            //If para hacer la inserción si se pulsa el botón de crear las subcategorías
+            if(isset ($_POST["enviarModSubCat"])){
+                require_once('../conexion.php');
+                $idSubcategoria = $_GET["id"];
+                //Conexión con la base de datos
+                $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+                //Valores introducidos en el formulario, los recogemos en variables
+                $nombre = $_POST['nombreSubCat'];
+                $categoria = $_POST['categoria'];
+                
+                //Consulta preparada para insertar Subcategotias en la bbdd
+                $sql = 'UPDATE Subcategorias SET nombre="'.$nombre.'",idCategoria="'.$categoria.'" WHERE id='.$idSubcategoria.';';
+                $resultado=$conexion2->query($sql);
+                echo'Modificado con éxito';
+                echo'<a href="index.php">Volver</a>';
+                // Cerrar conexión
+                mysqli_close($conexion2);
+            }
+        ?>
         <div id="divModSubcategorias">
+            <?php
+                require_once('../conexion.php');
+                $idSubcategoria = $_GET["id"];
+                //Conexión con la base de datos
+                $conexionNombre = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+                $consultaNombre = 'SELECT nombre
+                FROM Subcategorias
+                WHERE id='.$idSubcategoria.'';
+
+                $nombres=mysqli_query($conexionNombre,$consultaNombre);
+                while($fila = $nombres->fetch_array()){
+                    $nombreSubCategoria = $fila['nombre'];
+                }
+                // Cerrar conexión
+                mysqli_close($conexionNombre);
+            ?>
             <h1>MODIFICAR SUBCATEGORIA</h1>
             <?php echo '<form action="modificar.php?id='.$idSubcategoria.'" method="post">';?>
                 <label for="modNombre">Subactegoría</label>
@@ -89,25 +110,6 @@
                 <button type="submit" name="enviarModSubCat">Enviar</button>
             </form>
         </div>
-        <?php
-            //If para hacer la inserción si se pulsa el botón de crear las subcategorías
-            if(isset ($_POST["enviarModSubCat"])){
-                $idSubcategoria = $_GET["id"];
-                //Conexión con la base de datos
-                $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-                //Valores introducidos en el formulario, los recogemos en variables
-                $nombre = $_POST['nombreSubCat'];
-                $categoria = $_POST['categoria'];
-                
-                //Consulta preparada para insertar Subcategotias en la bbdd
-                $sql = 'UPDATE Subcategorias SET nombre="'.$nombre.'",idCategoria="'.$categoria.'" WHERE id='.$idSubcategoria.';';
-                $resultado=$conexion2->query($sql);
-                echo'Modificado con éxito';
-                echo'<a href="index.php">Volver</a>';
-                // Cerrar conexión
-                mysqli_close($conexion2);
-            }
-        ?>
         <div id="footer">
             <p>Glocal Island</p>
         </div>
