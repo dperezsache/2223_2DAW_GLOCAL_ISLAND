@@ -1,4 +1,11 @@
 <?php
+    // Comprobar sesión
+    session_start();
+    
+    if(!isset($_SESSION['nombre'])) {
+        header('Location: ../../../index.php/html/index.html');
+    }
+
     include('../conexion.php');
     //Conexión con la base de datos
     $conexion = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);

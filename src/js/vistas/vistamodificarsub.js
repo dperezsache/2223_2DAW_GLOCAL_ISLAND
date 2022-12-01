@@ -1,10 +1,10 @@
 "use strict"
 import {Vista} from './vista.js'
 /**
- * Clase VistaModificar que muestra la pantalla de modificación de subcategorías
+ * Clase VistaModificarSub que muestra la pantalla de modificación de subcategorías
  * Gestiona los elementos y métodos de esta Vista
  */
-export class VistaModificar extends Vista {
+export class VistaModificarSub extends Vista {
 
 	/**
      * Contructor de la clase VistaModificar
@@ -35,21 +35,24 @@ export class VistaModificar extends Vista {
      * @param {Event} e Evento del formulario.
      */
     comprobarModificacion(e) {
-        let correcto = true
-        e.preventDefault()  // Detener el submit
+        let valor = this.campoTexto.value
+        let correcto = false
+        let errorTexto = ''
+        console.log(e)
 
         // Comprobaciones
-        if (this.campoTexto.value == '' || this.campoTexto.value.length > 50) {
-            correcto = false
-        }
+        if (valor == '') errorTexto = 'El campo está vacío.'
+        else if (valor.length > 50) errorTexto = 'Superado límite de caracteres permitidos (50).'
+        else if (!valor.match(/^[A-Z]+$/i)) errorTexto = 'El formato introducido no es el correcto.'
+        else correcto = true
 
-        if (!correcto) {
-            alert('Los datos introducidos en el formulario no son válidos.')
-            this.cancelar()
+        if (correcto) {
+            window.location.href = 'index.php'  // Volver a la página principal
         }
         else {
-            e.currentTarget.submit()            // Continuar con el submit
-            window.location.href = 'index.php'  // Volver a la página principal
+            alert(errorTexto)
+            e.preventDefault()  // Detener el submit
+            this.cancelar()
         }
     }
 }

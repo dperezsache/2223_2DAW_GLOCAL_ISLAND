@@ -1,5 +1,6 @@
 /* -----CSS DE LA GESTIÓN DEL ADMIN----- */
 
+/*TIPOGRAFIAS*/
 @font-face{
 	font-family:"Mabook";
 	src:
@@ -13,99 +14,240 @@
 
 }
 
+/*ELEMENTOS GENERALES*/
 body{
     margin:0;
     padding:0;
     text-align: center;
     font-family: "Comfortaa";
+    position: relative;
 }
 
 h1{
-    font-family: "Mabook";
+    font-family: "Mabook", "Comfortaa" ;
     margin-top: 60px;
+    font-size: 50px;
 }
 
-#divCategoria{
-    height: 1000px;
-    width: 100%;
+table{
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
+    min-width: 300px;
 }
+
+td, th{
+    border: 1px black solid;
+    height: 30px;
+    padding: 10px;
+}
+
+td a{
+    cursor: pointer;
+    margin: 0 10px;
+}
+td a:hover{
+    color:#13bbbb;
+}
+
+button{
+    width: 100px;
+    height: 50px;
+    background-color: #FFA90D;
+    cursor: pointer;
+    border:0;
+}
+
+button:hover{
+    background-color: #FF8400;
+}
+
+
 
 /*-----MENU-----*/
-nav{
-    background-color: #FFA90D;
+
+header {
+    background-color: #FEA832;
+    justify-content: space-between;
+    align-items: center;
     height: 100px;
-    width: 100%;
-    font-family: "Comfortaa";
-    font-weight: bold;
+    font-size: 20px;
 }
 
-nav ul{
+.logo{display: none;}
+
+/*-------Ajustes nav-----------*/
+nav input#check {
+    display: none;
+}
+
+header ul {
+    list-style: none;
     display: flex;
+    margin: 0;
+    padding: 0;
 }
-
-nav li{
-	display: inline-block;
+/*Flex 0 al logo porque no necesita más espacio*/
+#flex0{
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+/*Flex 1 al cerrar sesión para que aparezca más pequeño*/
+#flex1{
     flex-grow: 1;
     flex-shrink: 1;
+}
+
+/*Flex-grow y flex-shrink 2 para las opciones para darle más importancia*/
+nav li{
+	display: inline-block;
+    flex-grow: 2;
+    flex-shrink: 2;
     margin: auto;
     height: 100px;
+    text-align: center;
 }
 
-li img{
+header li img{
     height: 100px;
 }
 
-li  a{
+header ul a {
     cursor: pointer;
     display: block;
     height: 60px;
     width: 100%;
     padding-top: 40px;
+    font-family: 'Comfortaa';
+    font-weight: bold;
+    color: #000;
 }
 
-li:hover{
-    background-color: #3AE8A5 ;
+.opciones:hover{
+    background-color: #13bbbb ;
 }
 
-@media screen and (max-width: 800px){
+nav #btnMenu {
+    float: right;
+    margin-top: 30px;
+    margin-right: 40px;
+    display: none;
+    cursor: pointer;
+    height: 7vh;
+}
+
+#btnMenu img{
+    width: 40px;
+}
+/*-------------Media Query Ajustes-------------*/
+@media (max-width:800px){
     nav{
         font-size: 0.8em;
     }
 }
 
-@media (max-width: 600px){
-    ul{
-      position: fixed;
-      width: 45%;
-      height: 100vh;
-      background: #13bbbb;
-      text-align: center;
-      transition: all .5s;
-      display: block !important;
-    }
-    nav ul li{
-      display: block;
-      margin: 50px 0;
-      line-height: 30px;
-    }
-    nav ul li a{
-      font-size: 20px;
-    }
-    a:hover,a.active{
-      background: none;
-      color: #0082e6;
-    }
-  }
+/*-------------Media Query Ajustes iPad-------------*/
+@media (max-width: 730px) {
 
-/*-----CATEGORIAS-----*/
+    nav #btnMenu {
+        display: block;
+    }
+	
+    .logo{
+        float: left;
+        display: block;
+    }
 
-#divCrudCategorias, #divCrudSubcategorias{
-    margin-top: 30px;
+    #flex0{
+        display: none;
+    }
+    /*NAV*/
+    header .logo img {
+        height: 95px;
+    }
+
+    ul {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        background: #13bbbb;
+        top: 100px;
+        left: -1000px;
+        text-align: center;
+        transition: all 1s;
+        display: block !important;
+    }
+
+    ul li {
+        width: 100%;
+        line-height: 4.2vh;
+    }
+
+    ul li a
+    {
+        font-size: 30px;
+        font-size: 20px;
+    }
+
+    .opciones:hover{
+        background: #FEA832;
+    }
+
+    nav input#check:checked~ul {
+        left: 0;
+        display: block;
+    }
+	
+    label{
+        font-size: 1em;
+    }
+
+    label, td, th{
+        font-size: 0.6em;
+    }
+
+    h1{
+        font-size: 25px;
+    }
+    td a{
+        
+        font-size: 1.5em;
+    }
+
+    #divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones{
+        margin: 50px 0 !important;
+    }
+}
+/*---------Media Query Movil---------*/
+@media (max-width:540px){
+    td,th{
+        padding:5px;
+    }
+    form,input{
+        padding: 1px 0;
+    }
+    tr a{
+        margin:0 5px;
+    }
+    nav li{
+        height: 70px;
+    }
+    ul li a{
+        height: 45px;
+        padding-top: 25px;
+    }
+
+}
+
+/*-----CATEGORIAS Y SUBCATEGORIAS-----*/
+
+#divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones{
+    margin: 150px 0;
     font-size: 1.5em;
 }
 
 #divCrudCategorias input,button{
-    margin-top: 40px;
+    margin: 20px 0;
     font-family: "Comfortaa";
 }
 
@@ -114,32 +256,33 @@ li:hover{
     font-family: "Comfortaa";
 }
 
-#divCrudCategorias button,#divCrudSubcategorias button{
-    width: 100px;
-    height: 50px;
-    background-color: #FFA90D;
-    cursor: pointer;
-}
-
-#divCrudCategorias button:hover, #divCrudSubcategorias button:hover{
-    background-color: #FF8400;
-}
-
-#divCrudSubcategorias select{
+#divCrudSubcategorias select, #divModSubcategorias select{
     width: 167px;
     font-family: 'Comfortaa';
 }
 
+#divModSubcategorias input,button,select{
+    margin-top: 40px;
+    font-family: "Comfortaa";
+}
+/* -----REFLEXIONES----- */
 
-/* TABLA SUBCATEGORIAS */
-table{
-    text-align: center;
-    border-collapse: collapse;
-    margin: auto;
-    width: 300px;
+#divReflexiones textarea{
+    vertical-align: middle;
+    min-width: 300px;
+    min-height: 80px;
 }
 
-td, th{
-    border: 1px black solid;
-    height: 30px;
+#desaparecido{
+    visibility:hidden;
+}
+/*-----FOOTER-----*/
+#footer{
+    width: 100%;
+    background-color: #FF8400;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 50px;
+    position: relative;
+    bottom: 0;
 }

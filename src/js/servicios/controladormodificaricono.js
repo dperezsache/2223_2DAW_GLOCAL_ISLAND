@@ -1,11 +1,11 @@
 "use strict" //activo modo estricto
-import {VistaModificar} from '../vistas/vistamodificar.js'
+import {VistaModificarIcono} from '../vistas/vistamodificaricono.js'
 import {VistaNavAdmin} from '../vistas/vistanavadmin.js'
 
 /**
  * Clase Controlador que administra las vistas de modificación de subcategorías del administrador
  */
-class ControladorAdminMod {
+class ControladorModificarIcono {
 	/**
 	 * Constructor de la clase Controlador de modificación de subcategorías
 	 */
@@ -20,8 +20,8 @@ class ControladorAdminMod {
 		this.nav = document.getElementsByTagName('nav')[0]
 		this.vistaNav = new VistaNavAdmin(this.nav, this)
 
-		this.divSubcategorias = document.getElementById('divCrudSubcategorias')
-		this.vistaSubcategorias = new VistaModificar(this.divSubcategorias, this)
+		this.divModificarIcono = document.getElementById('divModSubcategorias')
+		this.vistaModificarIcono = new VistaModificarIcono(this.divModificarIcono, this)
 	}
 
 	/**
@@ -45,6 +45,12 @@ class ControladorAdminMod {
 		window.location.href = 'index.php'
 	}
 
+	/*
+	pulsarNavReflexiones() {
+		window.location.href = 'index.php'
+	}
+	*/
+
 	/**
 	 * Atención a la pulsación sobre el enlace de preguntas
 	 */
@@ -58,14 +64,6 @@ class ControladorAdminMod {
 	pulsarNavCerrarSesion() {
 		window.location.href = '../../../index.php/html/logout.php'
 	}
-
-	/**
-	 * Método getModelo, devuelve el modelo de la aplicación del administrador.
-	 * @return {ModeloAdmin} El modelo de la aplicación.
-	 */
-	getModelo() {
-		return this.modelo
-	}
 }
-const app = new ControladorAdminMod()
+const app = new ControladorModificarIcono()
 

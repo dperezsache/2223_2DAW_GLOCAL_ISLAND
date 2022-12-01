@@ -39,6 +39,9 @@ class ControladorAdmin {
         this.divCategorias = document.getElementById('divCrudCategorias')
         this.vistaCategorias = new VistaCategorias(this.divCategorias, this)
 
+		//this.divReflexiones = document.getElementById('divCrudReflexiones')
+        //this.vistaReflexiones = new VistaReflexiones(this.divReflexiones, this)
+
 		this.divSubcategorias = document.getElementById('divCrudSubcategorias')
 		this.vistaSubcategorias = new VistaSubcategorias(this.divSubcategorias, this)
 
@@ -92,6 +95,12 @@ class ControladorAdmin {
 			this.vistaCategorias.mostrar(true)
 		}
 	}
+
+	/*
+	pulsarNavReflexiones() {
+		
+	}
+	*/
 
 	/**
 	 * Atención a la pulsación sobre el enlace de preguntas
