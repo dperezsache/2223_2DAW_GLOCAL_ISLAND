@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+		<meta charset="utf-8">
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
+		<title>Glocal Island</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="./css.css">
+		<link rel="shotcut icon" href="../Logo/logo2.png">
+	</head>
+    <body>
+        <!-- MENU -->
+        <header>
+            <div class="logo">
+                <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+            </div>
+            <nav>
+                <input type="checkbox" id="check" />
+                <label for="check" id="btnMenu">
+                    <img src="../Logo/menu.png" alt="Icono de menú" />
+                </label>
+                <ul>
+                    <li id="flex0">
+                        <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+                    </li>
+                    <li >
+                        <a class="opciones" id="liListado">Listado</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liCategorias">Categorías</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liReflexiones">Reflexiones</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liPreguntas">Preguntas</a>
+                    </li>
+                    <li id="flex1">
+                        <a class="opciones" id="liCerrarSesion">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+<!--         
+        <div id="divListado">
+            <h1>LISTADO DE PREGUNTAS</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Pregunta
+                        </th>
+                        <th>
+                            Respuesta 1
+                        </th>
+                        <th>
+                            Respuesta 2
+                        </th>
+                        <th>
+                            Categoría
+                        </th>
+                        <th>
+                            Opciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>¿Dejas el grifo abierto?</td>
+                        <td>Si</td>
+                        <td>No</td>
+                        <td>Agua</td>
+                        <td><a>✎</a><a>🗑</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+        <!-- CRUD CATEGORIAS -->
+        <div id="divCrudCategorias">
+            <h1>CREAR CATEGORIA</h1>
+            <form id="formNuevaCategoria">
+                <label for="nuevaCategoria">Nueva categoría</label>
+                <input id="nuevaCategoria" type="text"><br>
+                <label for="icono">Icono</label>
+                <input id="icono" type="file"><br>
+                <label for="nuevasSubcategorias">Nuevas subcategoría</label><br>
+                <input title="nuevasSubcategorias" type="text" placeholder="Categoria 1"><br>
+                <input title="nuevasSubcategorias" type="text" placeholder="Categoria 2"><br>
+                <input title="nuevasSubcategorias" type="text"placeholder="Categoria 3"><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <!-- CRUD SUBCATEGORIAS -->
+        <div id="divCrudSubcategorias">
+            <h1>CREAR SUBCATEGORIA</h1>
+            <form>
+                <label for="nuevaSubcategoria">Nueva subcategoría</label>
+                <input id="nuevaSubcategoria" type="text" ><br>
+                <label for="categoria">Categoría</label>
+                <select id="categoria">
+                    <option>Agua</option>
+                    <option>Tierra</option>
+                    <option>Aire</option>
+                </select><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
+            <h1>SUBCATEGORIAS</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Opciones
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Categoria1</td>
+                        <td><a>✎</a><a>🗑</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MODIFICACIÓN -->
+        <div id="divModSubcategorias">
+            <h1>MODIFICAR SUBCATEGORIA</h1>
+            <form>
+                <label for="modNombre">Subcategoría</label>
+                <input type="text" id="modNombre" value="Ahorro de agua"><br>
+                <label for="modCat">Categoría</label>
+                <select id="modCat">
+                    <option>Agua</option>
+                    <option>Tierra</option>
+                    <option>Aire</option>
+                </select><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <!-- CRUD PREGUNTAS -->
+        <div id="divPreguntas"></div>
+        </div>
+        <div id="footer">
+            <p>Glocal Island</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+		<meta charset="utf-8">
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
+		<title>Glocal Island</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css_crear_admin.css">
+	</head>
+	<body>
+        <div id="divInicioSesion">
+			<img id="logoCorporativo" src="img/logo1.png">
+            <form id="formulario_inicio">
+                <label for="usuario">Usuario a Crear</label><br>
+                <input type="text" maxlength="150" pattern="[a-zA-Z0-9]+" required/><br><br>
+                <label for="password">Clave</label><br>
+                <input type="password" name="password" required/><br><br>
+                <select id="selectorAdmin">
+                    <option class="optionsAdmin">SuperAdmin</option>
+                    <option class="optionsAdmin">Admin</option>
+                    <option class="optionsAdmin">Editor</option>
+                </select><br><br>
+                <button id="btnEnviar" type="submit"></button>
+            </form>
+        </div>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+		<meta charset="utf-8">
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
+		<title>Glocal Island</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="./css.css">
+		<link rel="shotcut icon" href="../Logo/logo2.png">
+	</head>
+    <body>
+        <!-- MENU -->
+        <header>
+            <div class="logo">
+                <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+            </div>
+            <nav>
+                <input type="checkbox" id="check" />
+                <label for="check" id="btnMenu">
+                    <img src="../Logo/menu.png" alt="Icono de menú" />
+                </label>
+                <ul>
+                    <li id="flex0">
+                        <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+                    </li>
+                    <li >
+                        <a class="opciones" id="liListado">Listado</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liCategorias">Categorías</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liReflexiones">Reflexiones</a>
+                    </li>
+                    <li >
+                        <a class="opciones" id="liPreguntas">Preguntas</a>
+                    </li>
+                    <li id="flex1">
+                        <a class="opciones" id="liCerrarSesion">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- REFLEXIONES -->
+        <div id="divReflexiones">
+            <h1>CREAR REFLEXION</h1>
+            <form>
+                <label for="reflexion">Reflexión</label>
+                <textarea name="reflexion" id="reflexion"></textarea><br>
+                <label for="numPreguntas">Número de preguntas</label>
+                <select id="numPreguntas">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div id="footer">
+            <p>Glocal Island</p>
+        </div>
+    </body>
+</html>

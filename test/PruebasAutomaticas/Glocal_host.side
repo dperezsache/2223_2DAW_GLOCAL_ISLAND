@@ -1,0 +1,185 @@
+{
+  "id": "b07906ab-6889-40de-8f1d-c72ed0157866",
+  "version": "2.0",
+  "name": "Glocal_host",
+  "url": "https://07.2daw.esvirgua.com/Glocal/Inicio_Sesion/login/index.php",
+  "tests": [{
+    "id": "187a636c-5239-42ed-951b-826c81d88e2e",
+    "name": "Test_adminvacio",
+    "commands": [{
+      "id": "cba92e57-7d5f-427f-8da7-af110cd8fb71",
+      "comment": "",
+      "command": "open",
+      "target": "https://07.2daw.esvirgua.com/Glocal/Inicio_Sesion/login/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "692bda73-b020-46e6-94ff-231df43892f1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "728x860",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e815d435-7a8a-4211-9b60-0fb4e5b83d3c",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56a00d85-3bb7-425c-9f78-55ba0ce39d02",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "ppppp"
+    }, {
+      "id": "76452cba-8c51-4f00-af05-1745f2a3588a",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnEnviar",
+      "targets": [
+        ["id=btnEnviar", "id"],
+        ["css=#btnEnviar", "css:finder"],
+        ["xpath=//button[@id='btnEnviar']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cdffc48d-8a03-4051-a839-62f8975f8c5f",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Inserta todos los datos.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "953b6e37-eeb4-4835-848c-941d45443a98",
+      "comment": "",
+      "command": "click",
+      "target": "id=formulario_inicio",
+      "targets": [
+        ["id=formulario_inicio", "id"],
+        ["css=#formulario_inicio", "css:finder"],
+        ["xpath=//form[@id='formulario_inicio']", "xpath:attributes"],
+        ["xpath=//div[@id='divInicioSesion']/form", "xpath:idRelative"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a10a30fa-7d04-4af0-a43c-b3c6b19fca36",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "3d59aa5e-28e9-4c07-920e-94c88ac9e964",
+    "name": "Test_contravacio",
+    "commands": [{
+      "id": "cc4ae1c5-cd9e-426d-b0a4-a8c213de3494",
+      "comment": "",
+      "command": "open",
+      "target": "https://07.2daw.esvirgua.com/Glocal/Inicio_Sesion/login/index.php",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "56d8029f-79f9-42c7-839d-d7e16bf26f9c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "728x860",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6eea3337-504f-4ee2-b185-85193bdf1da6",
+      "comment": "",
+      "command": "click",
+      "target": "name=nombre",
+      "targets": [
+        ["name=nombre", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec0ac030-d4d2-40f2-ba18-fdd994af37eb",
+      "comment": "",
+      "command": "type",
+      "target": "name=nombre",
+      "targets": [
+        ["name=nombre", "name"],
+        ["css=input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='nombre']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Prueba"
+    }, {
+      "id": "c8ba48a8-0f8f-434e-b85c-c3a6240b6939",
+      "comment": "",
+      "command": "click",
+      "target": "id=btnEnviar",
+      "targets": [
+        ["id=btnEnviar", "id"],
+        ["css=#btnEnviar", "css:finder"],
+        ["xpath=//button[@id='btnEnviar']", "xpath:attributes"],
+        ["xpath=//form[@id='formulario_inicio']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d336ddf0-8afd-45b8-9ae5-921dbf527b0f",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Inserta todos los datos.",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "38d55f54-a9dd-4638-bc3a-c918fe538223",
+      "comment": "",
+      "command": "click",
+      "target": "id=formulario_inicio",
+      "targets": [
+        ["id=formulario_inicio", "id"],
+        ["css=#formulario_inicio", "css:finder"],
+        ["xpath=//form[@id='formulario_inicio']", "xpath:attributes"],
+        ["xpath=//div[@id='divInicioSesion']/form", "xpath:idRelative"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a868a232-9bc6-4898-acee-5145c5a1fc99",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5f4ae8d5-4c06-4f04-9dbc-0c7ce771468d",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["187a636c-5239-42ed-951b-826c81d88e2e"]
+  }],
+  "urls": ["https://07.2daw.esvirgua.com/Glocal/Inicio_Sesion/login/index.php"],
+  "plugins": []
+}
