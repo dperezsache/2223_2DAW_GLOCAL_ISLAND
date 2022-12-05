@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+		<meta charset="utf-8">
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
+		<title>Glocal Island</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="./css_preguntas_respuestas.css">
+		<link rel="shotcut icon" href="../Logo/logo2.png">
+	</head>
+    <body>
+        <!-- MENU -->
+        <header>
+            <div class="logo">
+                <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+            </div>
+            <nav>
+                <input type="checkbox" id="check" />
+                <label for="check" id="btnMenu">
+                    <img src="../Logo/menu.png" alt="Icono de menú" />
+                </label>
+                <ul>
+                    <li id="flex0"><img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo"/></li>
+                    <li><a class="opciones" id="liListado">Listado</a></li>
+                    <li><a class="opciones" id="liCategorias">Categorías</a></li>
+                    <li><a class="opciones" id="liReflexiones">Reflexiones</a></li>
+                    <li><a class="opciones" id="liPreguntas">Preguntas</a></li>
+                    <li id="flex1"><a class="opciones" id="liCerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- PREGUNTAS Y RESPUESTAS -->
+        <div id="divCrudPreguntasRespuestas">
+            <h1>CREAR PREGUNTA & RESPUESTAS</h1>
+            <form method="post">
+                <table class="tablaCrudPreguntasRespuestas">
+                    <tbody>
+                        <tr>
+                            <td>Pregunta</td>
+                            <td>Categoría pregunta</td>
+                            <td>Imagen</td>
+                        </tr>
+                        <tr>
+                            <td><textarea id="nuevaPregunta" rows="3" cols="40" required></textarea></td>
+                            <td>
+                                <select id="categoriaPregunta">
+                                    <option>Agua</option>
+                                    <option>Tierra</option>
+                                    <option>Aire</option>
+                                </select>
+                            </td>
+                            <td><input type="file" id="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg" required/></td>
+                        </tr>
+                    </tbody>
+                </table>
+     
+                <table class="tablaCrudPreguntasRespuestas">
+                    <tbody>
+                        <tr>
+                            <td>Primera respuesta</td>
+                            <td>Segunda respuesta</td>
+                        </tr>
+                        <tr>
+                            <td><input id="primeraRespuesta" type="text" maxlength="300" required/></td>
+                            <td><input id="segundaRespuesta" type="text" maxlength="300" required/></td>
+                        </tr>
+                        <tr id="textoCorrectas">
+                            <td>¿Es la respuesta correcta? <input type="radio" name="respuestaCorrecta" required/></td>
+                            <td>¿Es la respuesta correcta? <input type="radio" name="respuestaCorrecta" required/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
+            <h1>LISTADO PREGUNTAS & RESPUESTAS</h1>
+            <table id="listadoPreguntasRespuestas">
+                <thead>
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Pregunta</th>
+                        <th>Respuesta 1</th>
+                        <th>Respuesta 2</th>
+                        <th>Resp. correcta</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Agua</td>
+                        <td>¿Se ahorra agua si cierras el grifo al lavarte los dientes?</td>
+                        <td>Sí</td>
+                        <td>No</td>
+                        <td>Respuesta 1</td>
+                        <td><a>✎</a><a>🗑</a></td>
+                    </tr>
+                    <tr>
+                        <td>Tierra</td>
+                        <td>La falta de lluvia, ¿es buena para el medio ambiente?</td>
+                        <td>Sí</td>
+                        <td>No</td>
+                        <td>Respuesta 2</td>
+                        <td><a>✎</a><a>🗑</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="footer">
+            <p>Glocal Island</p>
+        </div>
+    </body>
+</html>
