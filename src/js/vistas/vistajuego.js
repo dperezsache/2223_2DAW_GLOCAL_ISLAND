@@ -433,7 +433,7 @@ export class VistaJuego extends Vista {
                 let pregunta=document.getElementById('divPregunta')
                 pregunta.classList.add('drop-pregunta')
             }
-            let div=e.path[0]
+            let div=e.target
             if(div.getAttribute('value')=="1"){
                 
                 this.rachaAciertos++
@@ -445,8 +445,6 @@ export class VistaJuego extends Vista {
                 this.eventosErrores(draggable.getAttribute('value'))
                 this.rachaAciertos=0;
             }
-               
-            
         }
         
         this.nuevaPregunta()
