@@ -220,8 +220,11 @@
                     ?>
                 </tbody>
             </table>
-            <!-- CRUD PREGUNTAS -->
-            <div id="divPreguntas"></div>
+        </div>
+        <!-- CRUD PREGUNTAS -->
+        <div id="divPreguntas"></div>
+        <!-- REFLEXIONES -->
+        <div id="divReflexiones">
         </div>
         <script type="module" src="../../js/servicios/controladoradmin.js"></script>
     </body>
