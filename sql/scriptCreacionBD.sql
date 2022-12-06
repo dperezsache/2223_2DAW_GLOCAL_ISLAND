@@ -60,5 +60,7 @@ CREATE TABLE Reflexiones(
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     texto VARCHAR(1000) NOT NULL,
     numPreguntas TINYINT UNSIGNED NOT NULL,
-    CONSTRAINT PK_idReflexiones PRIMARY KEY(id)
+    idCategoria TINYINT not null,
+    CONSTRAINT PK_idReflexiones PRIMARY KEY(id),
+    CONSTRAINT FK_idCategoria_Categorias FOREIGN KEY(idCategoria) REFERENCES Categorias(id)
 );

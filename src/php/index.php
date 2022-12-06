@@ -27,6 +27,10 @@
                 require_once($config['path_controladores'].'controladorPreguntas.php');
                 $controlador=new ControladorPreguntas();
                 break;
+            case 'controladorreflexiones':
+                require_once($config['path_controladores'].'controladorreflexiones.php');
+                $controlador=new ControladorReflexiones();
+                break;
        }
        switch($metodo){
         case 'POST':

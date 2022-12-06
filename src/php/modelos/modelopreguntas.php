@@ -17,7 +17,6 @@
          * Método para la insercción en la BBDD de una nueva pregunta y sus categorias
          */
         public function insertarPreguntayRespuesta($preguntaYrespuesta){
-            print_r($preguntaYrespuesta);
             $this->conectar();
 
             $consulta=$this->conexion->prepare('INSERT INTO Preguntas(idSubcategoria,pregunta,imagen) VALUES(?,?,?)');
@@ -42,6 +41,7 @@
             $correcta=0;
             $consulta->bind_Param('sssi',$idSubCat,$ultimoID,$respuesta2,$correcta);
             $consulta->execute();
+            $this->conexion->close();
         }
         /**
          * Método para la conexión con la BBDD del juego
