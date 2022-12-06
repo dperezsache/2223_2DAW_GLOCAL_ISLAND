@@ -6,7 +6,7 @@
 		<title>Glocal Island</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="./css_preguntas_respuestas.css">
-		<link rel="shotcut icon" href="../Logo/logo2.png">
+		<link rel="shortcut icon" href="../Logo/logo2.png">
 	</head>
     <body>
         <!-- MENU -->
@@ -15,7 +15,7 @@
                 <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
             </div>
             <nav>
-                <input type="checkbox" id="check" />
+                <input type="checkbox" id="check"/>
                 <label for="check" id="btnMenu">
                     <img src="../Logo/menu.png" alt="Icono de menú" />
                 </label>
@@ -32,76 +32,80 @@
         <!-- PREGUNTAS Y RESPUESTAS -->
         <div id="divCrudPreguntasRespuestas">
             <h1>CREAR PREGUNTA & RESPUESTAS</h1>
-            <form method="post">
-                <table class="tablaCrudPreguntasRespuestas">
-                    <tbody>
-                        <tr>
-                            <td>Pregunta</td>
-                            <td>Categoría pregunta</td>
-                            <td>Imagen</td>
-                        </tr>
-                        <tr>
-                            <td><textarea id="nuevaPregunta" rows="3" cols="40" required></textarea></td>
-                            <td>
-                                <select id="categoriaPregunta">
-                                    <option>Agua</option>
-                                    <option>Tierra</option>
-                                    <option>Aire</option>
-                                </select>
-                            </td>
-                            <td><input type="file" id="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg" required/></td>
-                        </tr>
-                    </tbody>
-                </table>
-     
-                <table class="tablaCrudPreguntasRespuestas">
-                    <tbody>
-                        <tr>
-                            <td>Primera respuesta</td>
-                            <td>Segunda respuesta</td>
-                        </tr>
-                        <tr>
-                            <td><input id="primeraRespuesta" type="text" maxlength="300" required/></td>
-                            <td><input id="segundaRespuesta" type="text" maxlength="300" required/></td>
-                        </tr>
-                        <tr id="textoCorrectas">
-                            <td>¿Es la respuesta correcta? <input type="radio" name="respuestaCorrecta" required/></td>
-                            <td>¿Es la respuesta correcta? <input type="radio" name="respuestaCorrecta" required/></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <form id="formPreguntasRespuestas" method="post">
+                <!-- PREGUNTAS -->
+                <div>
+                    <label for="nuevaPregunta">
+                        Pregunta<br/>
+                        <textarea id="nuevaPregunta" rows="3" cols="60" required></textarea>
+                    </label>
+                </div>
+                <div>
+                    <label for="categoriaPregunta">
+                        Categoría de la pregunta
+                        <select id="categoriaPregunta">
+                            <option>Agua</option>
+                            <option>Tierra</option>
+                            <option>Aire</option>
+                        </select>
+                    </label>
+                </div>
+                <div>            
+                    <label for="imagenPregunta">Imagen</label>
+                    <input type="file" id="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg" required/><br/>
+                </div>
+                <hr/>
+                <!-- RESPUESTAS -->
+                <div>
+                    <label for="primeraRespuesta">
+                        Respuesta uno <input id="primeraRespuesta" type="text" maxlength="300" required/>
+                    </label>
+                    <label class="textoCorrectas" for="respuestaCorrecta">
+                        ¿Es la correcta? <input type="radio" name="respuestaCorrecta" required/>
+                    </label>
+                </div>
+                <div>
+                    <label for="segundaRespuesta">
+                        Respuesta dos <input id="segundaRespuesta" type="text" maxlength="300" required/>
+                    </label>
+                    <label class="textoCorrectas" for="respuestaCorrecta">
+                        ¿Es la correcta? <input type="radio" name="respuestaCorrecta" required/>
+                    </label>
+                </div>
 
+                <!-- BOTONES FORMULARIO -->
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
             </form>
+
             <h1>LISTADO PREGUNTAS & RESPUESTAS</h1>
             <table id="listadoPreguntasRespuestas">
                 <thead>
                     <tr>
-                        <th>Categoría</th>
-                        <th>Pregunta</th>
-                        <th>Respuesta 1</th>
-                        <th>Respuesta 2</th>
-                        <th>Resp. correcta</th>
-                        <th>Opciones</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Pregunta</th>
+                        <th scope="col">Respuesta 1</th>
+                        <th scope="col">Respuesta 2</th>
+                        <th scope="col">Resp. correcta</th>
+                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Agua</td>
-                        <td>¿Se ahorra agua si cierras el grifo al lavarte los dientes?</td>
-                        <td>Sí</td>
-                        <td>No</td>
-                        <td>Respuesta 1</td>
-                        <td><a>✎</a><a>🗑</a></td>
+                        <td scope="row" data-titulo="Categoría">Agua</td>
+                        <td data-titulo="Pregunta">¿Se ahorra agua si cierras el grifo al lavarte los dientes?</td>
+                        <td data-titulo="Respuesta 1">Sí</td>
+                        <td data-titulo="Respuesta 2">No</td>
+                        <td data-titulo="Resp. correcta">Respuesta 1</td>
+                        <td data-titulo="Opciones"><a>✎</a><a>🗑</a></td>
                     </tr>
                     <tr>
-                        <td>Tierra</td>
-                        <td>La falta de lluvia, ¿es buena para el medio ambiente?</td>
-                        <td>Sí</td>
-                        <td>No</td>
-                        <td>Respuesta 2</td>
-                        <td><a>✎</a><a>🗑</a></td>
+                        <td scope="row" data-titulo="Categoría">Tierra</td>
+                        <td data-titulo="Pregunta">Los desechos diarios como servilletas de cocina o los papeles sucios. ¿Deben ir al contenedor azul?</td>
+                        <td data-titulo="Respuesta 1">Sí</td>
+                        <td data-titulo="Respuesta 2">No</td>
+                        <td data-titulo="Resp. correcta">Respuesta 2</td>
+                        <td data-titulo="Opciones"><a>✎</a><a>🗑</a></td>
                     </tr>
                 </tbody>
             </table>

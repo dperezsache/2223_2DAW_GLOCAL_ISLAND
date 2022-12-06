@@ -45,6 +45,7 @@ table {
     border-collapse: collapse;
     margin: auto;
     min-width: 300px;
+    width: 90%;
 }
 
 /* -----MENU----- */
@@ -109,7 +110,7 @@ header ul a {
     color: #000;
 }
 
-.opciones:hover{
+.opciones:hover {
     background-color: #13bbbb ;
 }
 
@@ -170,9 +171,7 @@ nav #btnMenu {
         line-height: 4.2vh;
     }
 
-    ul li a
-    {
-        font-size: 30px;
+    ul li a {
         font-size: 20px;
     }
 
@@ -184,35 +183,77 @@ nav #btnMenu {
         left: 0;
         display: block;
     }
-	
-    label {
-        font-size: 1em;
-    }
 
     label, td, th {
-        font-size: 0.6em;
+        font-size: 0.5em;
+    }
+
+    textarea {
+        width: 300px;
     }
 
     h1 {
         font-size: 25px;
     }
 
-    td a {
-        font-size: 1.5em;
+    /* ----------AJUSTES DE TABLA---------- */
+    .textoCorrectas {
+        font-size: 0.4em !important;
+    }
+
+    table {
+        overflow: hidden;
+        table-layout: fixed;
+        padding: 0;
+        width: auto;    /* Calcular el ancho automáticamente (ya no es 90%) */
+    }
+
+    /* Hacer que cada tr esté separado del siguiente */
+    tr {
+        display: block;
+        margin: 10px;
+    }
+
+    /* Hacer que el título de los campos de la tabla salgan dentro de los td */
+    td::before {
+        content: attr(data-titulo); /* Se coge el valor del atributo personalizado creado en HTML */
+        font-weight: bold;
+        padding-right: 15px;
+    }
+    
+    /* Ocultar cabecera de la tabla */
+    thead {
+        display: none;
+    }
+
+    td {
+        font-size: 0.5em !important;
+        display: block;
+        text-align: left;
+        width: 435px;
     }
 }
 /*---------Media Query Movil---------*/
 @media (max-width:540px) {
-    td,th {
-        padding:5px;
+    /* Para que cada campo de radio button aparezca debajo de los campos de respuesta */
+    .textoCorrectas {
+        display: block;
     }
 
-    form,input {
+    td, th {
+        width: 270px;
+    }
+
+    form, input {
         padding: 1px 0;
     }
 
+    textarea {
+        width: 250px;
+    }
+
     tr a {
-        margin:0 5px;
+        margin: 0 5px;
     }
 
     nav li {
@@ -228,42 +269,30 @@ nav #btnMenu {
 /* -----PREGUNTAS Y RESPUESTAS----- */
 
 #divCrudPreguntasRespuestas {
-    margin: 150px 0;
+    margin: 50px 0;
     font-size: 1.5em;
 }
 
-.tablaCrudPreguntasRespuestas {
-	margin-top: 30px;
+#formPreguntasRespuestas input, textarea, select {
+    margin-bottom: 20px;
 }
 
-.tablaCrudPreguntasRespuestas input, select {
-	margin-bottom: 20px;
-	margin-top: 0;
+#formPreguntasRespuestas textarea {
+    resize: none;
 }
 
-.tablaCrudPreguntasRespuestas input[type="text"] {
-	width: 250px;
+#formPreguntasRespuestas div {
+    display: block;
 }
 
-.tablaCrudPreguntasRespuestas select {
-	width: 150px;
+#formPreguntasRespuestas hr {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(210,210,210,1) 25%, rgba(210,210,210,1) 75%, rgba(255,255,255,1) 100%);
 }
 
-.tablaCrudPreguntasRespuestas textarea {
-	resize: none;
-}
-
-.tablaCrudPreguntasRespuestas td {
-	padding: 10px 15px;
-	border: 0;
-}
-
-#textoCorrectas {
+.textoCorrectas {
 	font-size: 0.6em;
-}
-
-#listadoPreguntasRespuestas {
-	min-width: 500px;
 }
 
 #listadoPreguntasRespuestas td, th {
