@@ -424,6 +424,7 @@ export class VistaJuego extends Vista {
     drop(e) {
         e.target.classList.remove('drag-over')
         // Coger elelemento draggable
+        console.log("EVENTOOO DROOOP",e);
         const id = e.dataTransfer.getData('text/plain')
         const draggable = document.getElementById(id)
         if(e.target.tagName=='DIV'){        //Solo dejamos que entren div
@@ -433,7 +434,7 @@ export class VistaJuego extends Vista {
                 let pregunta=document.getElementById('divPregunta')
                 pregunta.classList.add('drop-pregunta')
             }
-            let div=e.path[0]
+            let div=e.target
             if(div.getAttribute('value')=="1"){
                 
                 this.rachaAciertos++
