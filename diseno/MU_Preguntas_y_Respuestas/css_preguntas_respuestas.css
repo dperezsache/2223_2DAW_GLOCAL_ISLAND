@@ -48,6 +48,11 @@ table {
     width: 90%;
 }
 
+fieldset {
+    border: 0;
+    display: inline-block;
+}
+
 /* -----MENU----- */
 header {
     background-color: #FEA832;
@@ -194,6 +199,10 @@ nav #btnMenu {
 
     h1 {
         font-size: 25px;
+    }
+
+    fieldset {
+        display: block;
     }
 
     /* ----------AJUSTES DE TABLA---------- */

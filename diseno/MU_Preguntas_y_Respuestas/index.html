@@ -12,7 +12,7 @@
         <!-- MENU -->
         <header>
             <div class="logo">
-                <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+                <img src="../Logo/logo1.png" alt="Logo Glocal Island"/>
             </div>
             <nav>
                 <input type="checkbox" id="check"/>
@@ -20,7 +20,7 @@
                     <img src="../Logo/menu.png" alt="Icono de menú" />
                 </label>
                 <ul>
-                    <li id="flex0"><img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo"/></li>
+                    <li id="flex0"><img src="../Logo/logo1.png" alt="Logo Glocal Island"/></li>
                     <li><a class="opciones" id="liListado">Listado</a></li>
                     <li><a class="opciones" id="liCategorias">Categorías</a></li>
                     <li><a class="opciones" id="liReflexiones">Reflexiones</a></li>
@@ -56,26 +56,35 @@
                 </div>
                 <hr/>
                 <!-- RESPUESTAS -->
-                <div>
-                    <label for="primeraRespuesta">
-                        Respuesta uno <input id="primeraRespuesta" type="text" maxlength="300" required/>
-                    </label>
-                    <label class="textoCorrectas" for="respuestaCorrecta">
-                        ¿Es la correcta? <input type="radio" name="respuestaCorrecta" required/>
-                    </label>
-                </div>
-                <div>
-                    <label for="segundaRespuesta">
-                        Respuesta dos <input id="segundaRespuesta" type="text" maxlength="300" required/>
-                    </label>
-                    <label class="textoCorrectas" for="respuestaCorrecta">
-                        ¿Es la correcta? <input type="radio" name="respuestaCorrecta" required/>
-                    </label>
-                </div>
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="primeraRespuesta">
+                            Respuesta uno <input id="primeraRespuesta" type="text" maxlength="300" required/>
+                        </label>
+                        <label class="textoCorrectas" for="btnCorrecta1">
+                            ¿Es la correcta? <input type="radio" id="btnCorrecta1" name="btnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="segundaRespuesta">
+                            Respuesta dos <input id="segundaRespuesta" type="text" maxlength="300" required/>
+                        </label>
+                        <label class="textoCorrectas" for="btnCorrecta2">
+                            ¿Es la correcta? <input type="radio" id="btnCorrecta2" name="btnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
 
                 <!-- BOTONES FORMULARIO -->
-                <button type="reset">Cancelar</button>
-                <button type="submit">Enviar</button>
+                <div>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </div>
             </form>
 
             <h1>LISTADO PREGUNTAS & RESPUESTAS</h1>
@@ -112,6 +121,7 @@
         </div>
         <div id="footer">
             <p>Glocal Island</p>
+            <img src="img/WCAG2AA-v.svg" alt="WCAG 2.0 AA logo"/>
         </div>
     </body>
 </html>
