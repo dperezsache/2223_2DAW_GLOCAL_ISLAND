@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="es">
     <head>
 		<meta charset="utf-8">
 		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
 		<title>Glocal Island</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="./css_preguntas_respuestas.css">
+		<link rel="stylesheet" type="text/css" href="../MU_Admin/css.css">
 		<link rel="shortcut icon" href="../Logo/logo2.png">
 	</head>
     <body>
@@ -52,7 +52,7 @@
                 </div>
                 <div>            
                     <label for="imagenPregunta">Imagen</label>
-                    <input type="file" id="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg" required/><br/>
+                    <input type="file" id="imagenPregunta" accept="image/png, image/jpeg" required/><br/>
                 </div>
                 <hr/>
                 <!-- RESPUESTAS -->
@@ -86,7 +86,6 @@
                     <button type="submit">Enviar</button>
                 </div>
             </form>
-
             <h1>LISTADO PREGUNTAS & RESPUESTAS</h1>
             <table id="listadoPreguntasRespuestas">
                 <thead>
@@ -118,6 +117,62 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <!-- MODIFICACIÓN PREGUNTAS RESPUESTAS -->
+        <div id="divModPreguntasRespuestas">
+            <h1>EDITAR PREGUNTA & RESPUESTAS</h1>
+            <form id="formModPreguntasRespuestas" method="post">
+                <!-- MODIFICAR PREGUNTAS -->
+                <div>
+                    <label for="modPregunta">
+                        Nueva pregunta<br/>
+                        <textarea id="modPregunta" rows="3" cols="60" required>¿Es bueno tirar pilas al río?</textarea>
+                    </label>
+                </div>
+                <div>
+                    <label for="modCategoriaPregunta">
+                        Nueva categoría de la pregunta
+                        <select id="modCategoriaPregunta">
+                            <option>Agua</option>
+                            <option>Tierra</option>
+                            <option>Aire</option>
+                        </select>
+                    </label>
+                </div>
+                <div>            
+                    <label for="modImagenPregunta">Nueva imagen</label>
+                    <input type="file" id="modImagenPregunta" accept="image/png, image/jpeg" required/><br/>
+                </div>
+                <hr/>
+                <!-- MODIFICAR RESPUESTAS -->
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="modPrimeraRespuesta">
+                            Nueva respuesta uno <input id="modPrimeraRespuesta" type="text" maxlength="300" value="Sí" required/>
+                        </label>
+                        <label class="textoCorrectas" for="modBtnCorrecta1">
+                            ¿Es la correcta? <input type="radio" id="modBtnCorrecta1" name="modBtnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="modSegundaRespuesta">
+                            Nueva respuesta dos <input id="modSegundaRespuesta" type="text" maxlength="300" value="No" required/>
+                        </label>
+                        <label class="textoCorrectas" for="modBtnCorrecta2">
+                            ¿Es la correcta? <input type="radio" id="modBtnCorrecta2" name="modBtnCorrecta" checked required/>
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- BOTONES FORMULARIO MODIFICAR -->
+                <div>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
         </div>
         <div id="footer">
             <p>Glocal Island</p>
