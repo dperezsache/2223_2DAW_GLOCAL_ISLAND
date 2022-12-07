@@ -61,7 +61,7 @@
                 FROM Categorias
                 WHERE id="'.$idCategoria.'"';
 
-                $nombres=mysqli_query($conexion2,$consultaAntique);
+                $nombres=$conexion2->query($consultaAntique);
                 while($fila = $nombres->fetch_array()){
                     $iconoCatAntique = $fila['icono'];
                 }
@@ -92,7 +92,7 @@
             FROM Categorias
             WHERE id="'.$idCategoria.'"';
 
-            $nombres=mysqli_query($conexionIconos,$consultaNombre);
+            $nombres=$conexionIconos->query($consultaNombre);
             while($fila = $nombres->fetch_array()){
                 $nombreCategoria = $fila['nombre'];
                 $iconoCategoria = $fila['icono'];

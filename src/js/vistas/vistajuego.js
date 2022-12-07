@@ -545,7 +545,7 @@ export class VistaJuego extends Vista {
             
                     this.divJuegoCartas.appendChild(this.divPuntuacion);
                     this.divJuegoCartas.appendChild(this.divCronometro);
-                    
+
             }
     }
 
