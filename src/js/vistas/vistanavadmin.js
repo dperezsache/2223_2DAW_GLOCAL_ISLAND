@@ -16,14 +16,14 @@ export class VistaNavAdmin
 		this.liLogo = this.nav.getElementsByTagName('li')[0]
 		this.liListado = this.nav.getElementsByTagName('li')[1]
 		this.liCategorias = this.nav.getElementsByTagName('li')[2]
-		//this.liReflexiones = this.nav.getElementsByTagName('li')[3]
+		this.liReflexiones = this.nav.getElementsByTagName('li')[3]
 		this.liPreguntas = this.nav.getElementsByTagName('li')[4]
 		this.liCerrarSesion = this.nav.getElementsByTagName('li')[5]
 		
 		this.liLogo.onclick = this.pulsarLogo.bind(this)
 		this.liListado.onclick = this.pulsarListado.bind(this)
 		this.liCategorias.onclick = this.pulsarCategorias.bind(this)
-		//this.liReflexiones.onclick = this.pulsarReflexiones.bind(this)
+		this.liReflexiones.onclick = this.pulsarReflexiones.bind(this)
 		this.liPreguntas.onclick = this.pulsarPreguntas.bind(this)
 		this.liCerrarSesion.onclick = this.pulsarCerrarSesion.bind(this)
 	}
@@ -49,11 +49,13 @@ export class VistaNavAdmin
 		this.controlador.pulsarNavCategorias()
 	}
 
-	/*
-	 pulsarReflexiones() {
+	/**
+	 *	Atención a la pulsación sobre el enlace de reflexiones
+	 */
+	pulsarReflexiones() {
 		this.controlador.pulsarNavReflexiones()
 	}
-	*/
+	
 	
 	/**
 	 *	Atención a la pulsación sobre el enlace de preguntas

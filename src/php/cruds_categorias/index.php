@@ -49,7 +49,65 @@
             </nav>
             </header>
         <!-- LISTADO -->
-        <div id="divListado"></div>
+        <div id="divListado">
+            <h1>LISTADO DE PREGUNTAS</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Pregunta</th>
+                        <th scope="col">Respuesta 1</th>
+                        <th scope="col">Respuesta 2</th>
+                        <th scope="col">Resp. correcta</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        require_once('../config/conexion.php');
+                        $conexionPreguntas = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+                        $consultaPreguntas = "SELECT pregunta,respuesta AS 'respuesta1',correcta, numRespuesta,Categorias.nombre AS 'Cat'
+                        FROM Preguntas 
+                        INNER JOIN Subcategorias ON(Preguntas.idSubcategoria=Subcategorias.id)
+                        INNER JOIN Categorias ON(Subcategorias.idCategoria=Categorias.id)
+                        INNER JOIN Respuestas ON(Respuestas.numPregunta=Preguntas.numPregunta AND Respuestas.idSubcategoria=Preguntas.idSubcategoria)
+                        WHERE Respuestas.numRespuesta=1";
+
+                        $preguntas=$conexionPreguntas->query($consultaPreguntas);
+                        while($fila = $preguntas->fetch_assoc()){
+                            echo '<tr>';
+                                echo '<td data-titulo="Categoria">'.$fila['Cat'].'</td>';
+                                echo '<td data-titulo="Pregunta">'.$fila['pregunta'].'</td>';
+                                echo '<td data-titulo="Resp1">'.$fila['respuesta1'].'</td>';
+
+                                $consultaRespuesta= "SELECT pregunta,respuesta, S.id, Respuestas.numPregunta, numRespuesta FROM Preguntas 
+                                INNER JOIN Subcategorias S ON(Preguntas.idSubcategoria=S.id)
+                                INNER JOIN Categorias ON(S.idCategoria=Categorias.id)
+                                INNER JOIN Respuestas ON(Respuestas.numPregunta=Preguntas.numPregunta AND Respuestas.idSubcategoria=Preguntas.idSubcategoria)
+                                WHERE Respuestas.numRespuesta=2 AND Preguntas.pregunta='".$fila['pregunta']."';";
+                                $respuesta=$conexionPreguntas->query($consultaRespuesta);
+                                while($resp = $respuesta->fetch_assoc()){
+                                    $respuesta2=$resp['numRespuesta'];
+                                    $idSubcategoria=$resp['id'];
+                                    $numpregunta=$resp['numPregunta'];
+                                    echo '<td data-titulo="Resp2">'.$resp['respuesta'].'</td>';
+                                }
+
+                                if($fila['correcta']==1){
+                                    echo '<td data-titulo="Resp. correcta">respuesta1</td>';
+                                }
+                                else{
+                                    echo '<td data-titulo="Resp. correcta">respuesta2</td>';
+                                }
+                                echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?idSubcategoria='.$idSubcategoria.'&numPregunta='.$numpregunta.'&numRespuesta1='.$fila['numRespuesta'].'&numRespuesta2='.$respuesta2.'">✎</a>/<a href="../cruds_preguntas/borrarpregunta.php?id='.$fila['pregunta'].'">🗑</a></td>';
+                            echo'</tr>';
+                        }
+                        // Cerrar conexión
+                        mysqli_close($conexionPreguntas);
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
         <!-- CRUD CATEGORIAS -->
         <div id="divCrudCategorias">
@@ -212,7 +270,7 @@
                         while($fila = $nombresSubcategorias->fetch_array()){
                             echo '<tr>';
                                 echo '<td>'.$fila['nombre'].'</td>';
-                                echo '<td><a href="modificar.php?id='.$fila['id'].'">M</a>/<a href="borrar.php?id='.$fila['id'].'">B</a></td>';
+                                echo '<td><a href="modificar.php?id='.$fila['id'].'">✎</a>/<a href="borrar.php?id='.$fila['id'].'">🗑</a></td>';
                             echo'</tr>';
                         }
                         // Cerrar conexión
@@ -220,8 +278,87 @@
                     ?>
                 </tbody>
             </table>
-            <!-- CRUD PREGUNTAS -->
-            <div id="divPreguntas"></div>
+        </div>
+        <!-- CRUD PREGUNTAS -->
+        <div id="divCrudPreguntasRespuestas">
+        <h1>CREAR PREGUNTA & RESPUESTAS</h1>
+            <form id="formPreguntasRespuestas" method="post">
+                <!-- PREGUNTAS -->
+                <div>
+                    <label for="nuevaPregunta">
+                        Pregunta<br/>
+                        <textarea id="nuevaPregunta" rows="3" cols="60" required></textarea>
+                    </label>
+                </div>
+                <div>
+                    <label for="categoriaPregunta">
+                        Categoría de la pregunta
+                        <select id="categoriaPregunta">
+                            <option>Agua</option>
+                            <option>Tierra</option>
+                            <option>Aire</option>
+                        </select>
+                    </label>
+                </div>
+                <div>            
+                    <label for="imagenPregunta">Imagen</label>
+                    <input type="file" id="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg" required/><br/>
+                </div>
+                <hr/>
+                <!-- RESPUESTAS -->
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="primeraRespuesta">
+                            Respuesta uno <input id="primeraRespuesta" type="text" maxlength="300" required/>
+                        </label>
+                        <label class="textoCorrectas" for="btnCorrecta1">
+                            ¿Es la correcta? <input type="radio" id="btnCorrecta1" name="btnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="segundaRespuesta">
+                            Respuesta dos <input id="segundaRespuesta" type="text" maxlength="300" required/>
+                        </label>
+                        <label class="textoCorrectas" for="btnCorrecta2">
+                            ¿Es la correcta? <input type="radio" id="btnCorrecta2" name="btnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- BOTONES FORMULARIO -->
+                <div>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="divReflexiones">
+        <h1>CREAR REFLEXION</h1>
+            <form>
+                <label for="reflexion">Reflexión</label>
+                <textarea name="reflexion" id="reflexion"></textarea><br>
+                <label for="numPreguntas">Número de preguntas</label>
+                <select id="numPreguntas">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
         <script type="module" src="../../js/servicios/controladoradmin.js"></script>
     </body>
