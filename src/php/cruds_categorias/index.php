@@ -225,6 +225,19 @@
         <div id="divPreguntas"></div>
         <!-- REFLEXIONES -->
         <div id="divReflexiones">
+            <form action="../../php/index.php/controladorreflexiones" method="POST">
+                <label for="reflexion">REFLEXION</label>
+                <textarea name="reflexion"></textarea><br>
+                <label for="cantPreguntas">Cantidad de preguntas fallidas</label>
+                <input name="cantPreguntas" type="number" min="1" max="5"><br>
+                <label for="respuesta1">Categoria de reflexion</label>
+                <select name="categoria" id="">
+                    <option value="1">Aire</option>
+                    <option value="2">Tierra</option>
+                    <option value="3">Agua</option>
+                </select><br><br>
+                <button type=submit>Enviar</button>
+            </form>
         </div>
         <script type="module" src="../../js/servicios/controladoradmin.js"></script>
     </body>
