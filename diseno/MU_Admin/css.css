@@ -230,10 +230,10 @@ nav #btnMenu {
 
     #divCrudPreguntasRespuestas table,
     #divModPreguntasRespuestas table {
-        overflow: hidden;
         table-layout: fixed;
         padding: 0;
         width: auto;    /* Calcular el ancho automáticamente (ya no es 90%) */
+        margin: auto;
     }
 
     /* Hacer que cada tr esté separado del siguiente */
@@ -265,6 +265,7 @@ nav #btnMenu {
         width: 435px;
         height: auto; /* Para quitar el 30px especificado por un estilo más general */
         padding: 5px;
+        margin: auto;
     }
 }
 /*---------Media Query Movil---------*/
@@ -304,7 +305,7 @@ nav #btnMenu {
 
 /*-----CATEGORIAS Y SUBCATEGORIAS-----*/
 
-#divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones{
+#divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones, #divModReflexiones {
     margin: 150px 0;
     font-size: 1.5em;
 }
@@ -369,10 +370,15 @@ nav #btnMenu {
 
 /* -----REFLEXIONES----- */
 
-#divReflexiones textarea{
+#divReflexiones textarea,
+#divModReflexiones textarea {
     vertical-align: middle;
     min-width: 300px;
     min-height: 80px;
+}
+
+#divReflexiones table {
+    width: 90%;
 }
 
 /*-----FOOTER-----*/
