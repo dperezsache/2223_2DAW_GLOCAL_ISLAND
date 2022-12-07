@@ -23,7 +23,7 @@
         //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
         parse_str($_SERVER["QUERY_STRING"],$parametroQuery);
        switch($controlador){
-            case 'controladorpreguntas':
+            case 'controladorpreguntas'://AQUI $FILE
                 require_once($config['path_controladores'].'controladorPreguntas.php');
                 $controlador=new ControladorPreguntas();
                 break;

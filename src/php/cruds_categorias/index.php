@@ -13,7 +13,6 @@
 		<title>Glocal Island</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css.css">
-		<link rel="shotcut icon" href="../../../img/logo.png">
 	</head>
     <body>
         <!-- MENU -->
@@ -49,8 +48,10 @@
             </nav>
             </header>
         <!-- LISTADO -->
-        <div id="divListado"></div>
+        <div id="divListado">
 
+        </div>
+        
         <!-- CRUD CATEGORIAS -->
         <div id="divCrudCategorias">
             <h1>NUEVA CATEGORIA</h1>
@@ -220,8 +221,83 @@
                     ?>
                 </tbody>
             </table>
-            <!-- CRUD PREGUNTAS -->
-            <div id="divPreguntas"></div>
+        </div>
+        <div id="divReflexiones">
+        <h1>CREAR REFLEXION</h1>
+            <form action="../index.php/controladorreflexiones" method="POST">
+                <label for="reflexion">Reflexión</label>
+                <textarea name="reflexion" id="reflexion"></textarea><br>
+                <label for="cantPreguntas">Número de preguntas</label>
+                <input name="cantPreguntas" type="number" min="1" max="5"><br>
+                <label for="respuesta1">Categoria de reflexion</label>
+                <select name="categoria" id="">
+                    <option value="1">Aire</option>
+                    <option value="2">Tierra</option>
+                    <option value="3">Agua</option>
+                </select>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <!-- CRUD PREGUNTAS -->
+        <div id="divPreguntas">
+            <div id="divCrudPreguntasRespuestas">
+                <h1>CREAR PREGUNTA & RESPUESTAS</h1>
+                <form id="formPreguntasRespuestas" action="../index.php/controladorpreguntas" method="POST">
+                    <!-- PREGUNTAS -->
+                    <div>
+                        <label for="nuevaPregunta">
+                            Pregunta<br/>
+                            <textarea name="pregunta" id="nuevaPregunta" rows="3" cols="60" required></textarea>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="categoriaPregunta">
+                            Categoría de la pregunta
+                            <select name="subcategoria" id="categoriaPregunta">
+                                <option value="1">Agua</option>
+                                <option value="2">Tierra</option>
+                                <option value="3">Aire</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>            
+                        <label for="imagenPregunta">Imagen</label>
+                        <input name="imagenPregunta" type="file" id="imagenPregunta" accept="image/png, image/jpeg" required/><br/>
+                    </div>
+                    <hr/>
+                    <!-- RESPUESTAS -->
+                    <fieldset>
+                        <legend></legend>
+                        <div>
+                            <label for="primeraRespuesta">
+                                Respuesta uno <input  name="respuesta1" id="primeraRespuesta" type="text" maxlength="300" required/>
+                            </label>
+                            <label class="textoCorrectas" for="btnCorrecta1">
+                                ¿Es la correcta? <input type="radio" id="btnCorrecta1" name="btnCorrecta" required/>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend></legend>
+                        <div>
+                            <label for="segundaRespuesta">
+                                Respuesta dos <input  name="respuesta2" id="segundaRespuesta" type="text" maxlength="300" required/>
+                            </label>
+                            <label class="textoCorrectas" for="btnCorrecta2">
+                                ¿Es la correcta? <input type="radio" id="btnCorrecta2" name="btnCorrecta" required/>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- BOTONES FORMULARIO -->
+                    <div>
+                        <button type="reset">Cancelar</button>
+                        <button type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <script type="module" src="../../js/servicios/controladoradmin.js"></script>
     </body>

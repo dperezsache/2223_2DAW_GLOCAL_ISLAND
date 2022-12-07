@@ -18,7 +18,7 @@
          */
         public function insertarPreguntayRespuesta($preguntaYrespuesta){
             $this->conectar();
-
+            $sw=0;
             $consulta=$this->conexion->prepare('INSERT INTO Preguntas(idSubcategoria,pregunta,imagen) VALUES(?,?,?)');
             
             $idSubCat=$preguntaYrespuesta['subcategoria'];
@@ -26,10 +26,29 @@
             $imagen=$preguntaYrespuesta['imagenPregunta'];
             $respuesta1=$preguntaYrespuesta['respuesta1'];
             $respuesta2=$preguntaYrespuesta['respuesta2'];
-            $correcta=1;
+            $correcta=0;
             
             $consulta->bind_Param('sss',$idSubCat,$pregunta,$imagen);
-            $consulta->execute();
+            print_r($preguntaYrespuesta);
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            $arrayIndices=array_keys($preguntaYrespuesta);
+           for($i=0;$i<sizeof($arrayIndices);$i++){
+                if($arrayIndices[$i]=="respuesta1"){
+                    if($arrayIndices[$i+1]=="btnCorrecta"){
+                        $correcta=1;
+                        $sw=1;
+                    }else{
+                        $correcta=0;
+                        $sw=0;
+                    }
+                }
+           }
+           $consulta->execute();
             //Con esto obtenemos el ultimo id insertado tras la consulta para poder hacer la siguiente insercción de las respuestas asociadas a pregunta
             $ultimoID=$this->conexion->insert_id;
             $this->conexion->close();
@@ -38,7 +57,11 @@
             $consulta=$this->conexion->prepare('INSERT INTO Respuestas(idSubcategoria,numPregunta,respuesta,correcta) VALUES(?,?,?,?)');
             $consulta->bind_Param('sssi',$idSubCat,$ultimoID,$respuesta1,$correcta);
             $consulta->execute();
-            $correcta=0;
+            if($sw==1){
+                $correcta=0;
+            }else{
+                $correcta=1;
+            }
             $consulta->bind_Param('sssi',$idSubCat,$ultimoID,$respuesta2,$correcta);
             $consulta->execute();
             $this->conexion->close();

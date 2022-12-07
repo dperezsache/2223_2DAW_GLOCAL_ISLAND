@@ -6,6 +6,7 @@ import {VistaPreguntas} from '../vistas/vistapreguntas.js'
 import {VistaNavAdmin} from '../vistas/vistanavadmin.js'
 import {VistaSubcategorias} from '../vistas/vistasubcategorias.js'
 import {VistaCrudCategorias} from '../vistas/vistacrudcategorias.js'
+import {VistaReflexiones} from '../vistas/vistareflexiones.js'
 
 /**
  * Clase Controlador que administra las vistas del administrador
@@ -44,15 +45,14 @@ class ControladorAdmin {
 		this.divCrudCategorias=document.getElementById("divCrudCategorias");
 		this.vistaCrudCategorias=new VistaCrudCategorias(this, this.divCrudCategorias);
 
-		//this.divReflexiones = document.getElementById('divCrudReflexiones')
-        //this.vistaReflexiones = new VistaReflexiones(this.divReflexiones, this)
+		this.divReflexiones = document.getElementById('divReflexiones')
+        this.vistaReflexiones = new VistaReflexiones(this.divReflexiones, this)
 
 		this.divSubcategorias = document.getElementById('divCrudSubcategorias')
 		this.vistaSubcategorias = new VistaSubcategorias(this.divSubcategorias, this)
 
         this.divPreguntas = document.getElementById('divPreguntas')
         this.vistaPreguntas = new VistaPreguntas(this.divPreguntas, this)
-
 		this.pulsarNavListado()		// Iniciar en vista listado
 	}
 
@@ -84,6 +84,7 @@ class ControladorAdmin {
 		this.vistaPreguntas.mostrar(false)
 		this.vistaSubcategorias.mostrar(false)
 		this.vistaCategorias.mostrar(false)
+		this.vistaReflexiones.mostrar(false);
 	}
 
 	/**
@@ -92,6 +93,7 @@ class ControladorAdmin {
 	pulsarNavCategorias() {
         this.vistaListado.mostrar(false)
 		this.vistaPreguntas.mostrar(false)
+		this.vistaReflexiones.mostrar(false);
 		
 		if(this.mostrarSubcategorias) {
 			this.vistaSubcategorias.mostrar(true)
@@ -101,11 +103,15 @@ class ControladorAdmin {
 		}
 	}
 
-	/*
+	
 	pulsarNavReflexiones() {
-		
+		this.vistaListado.mostrar(false)
+        this.vistaPreguntas.mostrar(false)
+		this.vistaSubcategorias.mostrar(false)
+		this.vistaCategorias.mostrar(false)
+		this.vistaReflexiones.mostrar(true);
 	}
-	*/
+	
 
 	/**
 	 * Atención a la pulsación sobre el enlace de preguntas
@@ -115,6 +121,7 @@ class ControladorAdmin {
         this.vistaPreguntas.mostrar(true)
 		this.vistaSubcategorias.mostrar(false)
 		this.vistaCategorias.mostrar(false)
+		this.vistaReflexiones.mostrar(false);
 	}
 
 	/**
