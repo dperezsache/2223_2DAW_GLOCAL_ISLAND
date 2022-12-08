@@ -29,13 +29,6 @@
             $correcta=0;
             
             $consulta->bind_Param('sss',$idSubCat,$pregunta,$imagen);
-            print_r($preguntaYrespuesta);
-            echo "<br>";
-            echo "<br>";
-            echo "<br>";
-            echo "<br>";
-            echo "<br>";
-            echo "<br>";
             $arrayIndices=array_keys($preguntaYrespuesta);
            for($i=0;$i<sizeof($arrayIndices);$i++){
                 if($arrayIndices[$i]=="respuesta1"){

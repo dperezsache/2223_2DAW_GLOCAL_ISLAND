@@ -24,6 +24,7 @@
 
             $consulta->execute();
             $this->conexion->close();
+            header('Location:../cruds_categorias/index.php');
         }
         /**
          * Método para la conexión con la BBDD del juego

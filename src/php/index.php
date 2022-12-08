@@ -21,10 +21,17 @@
         $controlador=$pathParams[1];
         $parametrosQuery=null;
         //Función específica para la lectura de parametros query de las peticiones, lee dichos parámetros y los inserta en $paramQuery
-        parse_str($_SERVER["QUERY_STRING"],$parametroQuery);
+        parse_str($_SERVER["QUERY_STRING"],$parametrosQuery);
        switch($controlador){
             case 'controladorpreguntas'://AQUI $FILE
-                require_once($config['path_controladores'].'controladorPreguntas.php');
+                require_once($config['path_controladores'].'controladorpreguntas.php');
+                if(isset($_FILES["imagenPregunta"])){
+                    $nom_archivo = $_FILES['imagenPregunta']['name'];
+                    $ruta = "../img/subidas_bbdd/".$nom_archivo;
+                    $archivo=$_FILES['imagenPregunta']['tmp_name'];
+                    $subir=move_uploaded_file($archivo,$ruta);
+                    $_POST['imagenPregunta']=$nom_archivo;
+                }
                 $controlador=new ControladorPreguntas();
                 break;
             case 'controladorreflexiones':
@@ -35,6 +42,10 @@
        switch($metodo){
         case 'POST':
             $controlador->post($_POST);
+            die();
+            break;
+        case "GET":
+            $controlador->dom($parametrosQuery);
             die();
             break;
    }

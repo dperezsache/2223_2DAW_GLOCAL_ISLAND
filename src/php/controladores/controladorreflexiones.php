@@ -15,6 +15,9 @@
          */
         public function post($nuevaReflexion){
             $this->modelo->insertarReflexion($nuevaReflexion);
+            header('Location:../cruds_categorias/index.php');
+        }
+        public function dom($parametrosQuery){
         }
     }
 ?>

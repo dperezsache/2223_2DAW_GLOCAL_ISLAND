@@ -223,8 +223,8 @@
             </table>
         </div>
         <div id="divReflexiones">
-        <h1>CREAR REFLEXION</h1>
-            <form action="../index.php/controladorreflexiones" method="POST">
+            <h1>CREAR REFLEXION</h1>
+            <form action="../index.php/controladorreflexiones" method="POST" id="fomularioReflexiones">
                 <label for="reflexion">Reflexión</label>
                 <textarea name="reflexion" id="reflexion"></textarea><br>
                 <label for="cantPreguntas">Número de preguntas</label>
@@ -238,12 +238,42 @@
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
             </form>
+            <table>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Reflexión</th>
+                    <th>Cantidad de preguntas fallidas</th>
+                    <th>Opciones</th>
+                </tr>
+                <?php
+                    //include('../config/conexion.php');
+                    //Conexión con la base de datos
+                    $conexion = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
+
+                    $consulta = 'SELECT Reflexiones.* ,Categorias.nombre
+                    FROM Reflexiones INNER JOIN Categorias ON (Reflexiones.idCategoria=Categorias.id)';
+
+                    $nombres=mysqli_query($conexion,$consulta);
+                    while($fila = $nombres->fetch_assoc()){
+                        echo'<tr>';
+                            echo '<td>'.$fila['nombre'].'</td>';
+                            echo '<td>'.$fila['texto'].'</td>';
+                            echo '<td>'.$fila['numPreguntas'].'</td>';
+                            echo '<td>';
+                                echo '<a href="../index.php/controladorreflexiones?id='.$fila['id'].'&texto='.$fila['texto'].'&numPreguntas='.$fila['numPreguntas'].'&nombre='.$fila['nombre'].'">✏</a>';
+                            echo '</td>';
+                        echo'</tr>';
+                    }
+                    // Cerrar conexión
+                    mysqli_close($conexion);
+                ?>
+            </table>
         </div>
         <!-- CRUD PREGUNTAS -->
         <div id="divPreguntas">
             <div id="divCrudPreguntasRespuestas">
                 <h1>CREAR PREGUNTA & RESPUESTAS</h1>
-                <form id="formPreguntasRespuestas" action="../index.php/controladorpreguntas" method="POST">
+                <form id="formPreguntasRespuestas" action="../index.php/controladorpreguntas" method="POST" enctype="multipart/form-data">
                     <!-- PREGUNTAS -->
                     <div>
                         <label for="nuevaPregunta">
@@ -263,7 +293,7 @@
                     </div>
                     <div>            
                         <label for="imagenPregunta">Imagen</label>
-                        <input name="imagenPregunta" type="file" id="imagenPregunta" accept="image/png, image/jpeg" required/><br/>
+                        <input name="imagenPregunta" type="file" id="imagenPregunta" accept="image/png, image/jpeg"/><br/>
                     </div>
                     <hr/>
                     <!-- RESPUESTAS -->

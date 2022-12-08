@@ -17,6 +17,7 @@
         public function post($nuevaPregunta)
         {
             $this->modelo->insertarPreguntayRespuesta($nuevaPregunta);
+            
         }
     }
 ?>
