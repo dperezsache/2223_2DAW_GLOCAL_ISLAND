@@ -14,7 +14,6 @@
             $this->bd = constant('BD');
         }
         public function insertarReflexion($nuevaReflexion){
-            print_r($nuevaReflexion);
             $this->conectar();
             $consulta=$this->conexion->prepare('INSERT INTO Reflexiones(texto,numPreguntas,idCategoria) VALUES(?,?,?)');
             $consulta->bind_param('sii',$texto,$cantPreguntas,$categoria);
