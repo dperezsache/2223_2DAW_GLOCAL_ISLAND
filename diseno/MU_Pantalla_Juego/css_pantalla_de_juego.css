@@ -4,6 +4,13 @@
 	src:
 		url("fuente/mabook/Mabook.ttf");
 }
+
+@font-face{
+	font-family:"Comfortaa";
+	src:
+		url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
+}
+
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
 	overflow:hidden;
@@ -99,4 +106,41 @@ img#icono{
 	top:-3%;
 	left:-3%;
 	margin: 0 auto;
+}
+
+/* -----Fin juego----- */
+div#divFinJuego {
+	margin: auto;
+	background: url(img/cartaFin.png);
+	width: 430px;
+	height: 120px;
+	background-size: cover;
+	position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	padding: 0 20px;
+	font-family: Comfortaa;
+	z-index: 1;
+}
+
+span#puntos {
+	color: red;
+	font-weight: bold;
+}
+
+form button {
+	background-color: #ffed9b;
+	border: 2px solid #e6993b;
+	border-radius: 5px;
+}
+
+form button:hover {
+	background-color: #ffe678;
+}
+
+/*-------------Media Query Ajustes iPad-------------*/
+@media (max-width: 730px) {
+	
 }

@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="es">
+    <head>
+		<meta charset="utf-8">
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
+		<title>Glocal Island</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css_pantalla_de_juego.css">
+		<link rel="shortcut icon" href="../Logo/logo2.png">
+	</head>
+    <body>
+		<div id="divFinJuego">
+			<p>
+				Has conseguido <span id="puntos">1000</span> puntos, 
+				introduce un alias para que tu puntuación se publique.
+			</p>
+			<form>
+				<input type="text" name="aliasJugador" maxlength="50" placeholder="Alias del jugador"/>
+				<button type="submit" name="botonEnviar" id="botonEnviar">Publicar</button>
+				<button type="button" name="botonSalir">Volver al menú</button>
+			</form>
+		</div>
+        <div id="divCanvas">
+			<div id="divJuego"><img src="img/logo2.png"></div>
+			<div id="divRespuesta1" class="respuestas">
+				<p id="textoRespuesta"></p>
+			</div>
+			<div id="divRespuesta2" class="respuestas">
+				<p id="textoRespuesta"></p>
+			</div>
+			<div id="divPregunta">
+				<p id="textoPregunta">FIN DEL JUEGO</p>
+			</div>
+		</div>
+    </body>
+</html>
