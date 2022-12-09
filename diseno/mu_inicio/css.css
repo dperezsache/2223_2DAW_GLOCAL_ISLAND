@@ -1,10 +1,20 @@
+@font-face{
+	font-family:"Mabook";
+	src: url("fuente/mabook/Mabook.ttf");
+    src: url("fuente/mabook/Mabook.otf");
+}
+
+@font-face{
+	font-family:"Comfortaa";
+	src: url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
+}
 
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
 	height:768px;
 	width:1366px;
 	overflow:hidden;
-	background-color: white;;
+	background-color: white;
 }
 
 *{
@@ -15,20 +25,6 @@ body{
 	height:100%;
 	width:100%;
 	margin:0;
-}
-
-@font-face{
-	font-family: 'Mabook';
-	src: url('fonts/Mabook.ttf');
-	font-style: normal;
-	font-weight: normal;
-}
-
-@font-face{
-	font-family: 'Comfortaa';
-	src: url('fonts/Comfortaa-VariableFont_wght.ttf');
-	font-style: normal;
-	font-weight: normal;
 }
 
 /* -----PANTALLA DE INICIO----- */
@@ -220,4 +216,116 @@ y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimient
     background-size:50% 70%;
     background-repeat:repeat-x;
     opacity:0.5;
+}
+
+/* -----PANTALLA RANKINGS----- */
+body#bodyClasificaciones {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+html#htmlClasificaciones {
+    width: auto;
+    height: auto;
+}
+
+div#logo {
+    width: 128px;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header#cabecera h1 {
+    font-family: Mabook;
+    text-align: center;
+}
+
+div#divClasificaciones {
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 60%;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: aliceblue;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(250, 250, 250);
+}
+
+div#logo2 {
+    width: 172px;
+    height: 128px;
+    margin: auto;
+    margin-top: 20px;
+    display: none;
+}
+
+footer#footerClasificaciones {
+    width: 100%;
+    background-color: #ffe1c2;
+    padding: 25px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width:700px){
+    header#cabecera h1 {
+        font-size: 1.5em;
+        text-align: left;
+        padding-left: 128px;
+    }
+
+    table {
+        width: 40%;
+    }
+
+    div#divClasificaciones {
+        margin-top: 80px;
+    }
+}
+
+@media (max-width:530px){
+    header#cabecera h1 {
+        font-size: 1.25em;
+        padding: 0;
+        text-align: center;
+    }
+
+    div#logo {
+        display: none;
+    }
+
+    .soloDesktop {
+        display: none;
+    }
+
+    div#divClasificaciones {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
+    table {
+        width: 90%;
+    }
+
+    div#logo2 {
+        display: block;
+    }
 }
