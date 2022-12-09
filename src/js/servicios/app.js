@@ -74,6 +74,8 @@ class Controlador {
 	pulsarComenzarInicio() {
 		this.ocultarVistas()
 		this.getPreguntasRespuestas()
+		this.divFinJuego = document.getElementById('divFinJuego')
+		this.divFinJuego.style.display='none'
 		this.vistaJuego.mostrar(true)
 	}
 

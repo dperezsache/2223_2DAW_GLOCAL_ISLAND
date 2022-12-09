@@ -516,35 +516,91 @@ export class VistaJuego extends Vista {
                 console.log("CONTADOR DE PREGUNTAS",this.contadorPreguntas)
             }else{
                 console.log("JUEGO FINALIZADO")
-                this.pregunta=document.createElement('div')
-                    this.pregunta.id="divPregunta";
-                    this.divJuegoCartas.appendChild(this.pregunta)
-            
-                    let p=document.createElement('p')
-                    p.id="textoPregunta"
-                    this.pregunta.appendChild(p)
-                    p.appendChild(document.createTextNode("FIN DEL JUEGO"))
-                
-                    this.respuesta1=document.createElement('div');
-                    this.respuesta1.className="respuestas";
+                    this.divCronometro.style.display = 'none'
+                    this.div=document.createElement('div')
+                    this.divJuegoCartas.appendChild(this.div)
+
+                    //p para poner el fin del juego
+                    let p = document.createElement('p')
+                    p.id="textoRespuesta";
+                    this.div.appendChild(p)
+                    p.appendChild(document.createTextNode('FIN DEL JUEGO'))
+                    p.style.display = 'block'
+                    p.style.position = 'absolute'
+                    p.style.top = '30%'
+                    p.style.left = '70%'
+
+                    //muestro el div con el formulario de registro de alias
+                    this.divFinJuego = document.getElementById('divFinJuego');
+                    this.divFinJuego.style.display='block'
+
+                    //poner los puntos en el span para mostrarlos en el mensaje
+                    this.spanPuntos=document.getElementById('puntos')
+                    this.spanPuntos.appendChild(document.createTextNode(this.puntuacionGlobal))
+
+                    this.puntosJugador=document.getElementsByTagName('input')[1]
+                    this.puntosJugador.value=this.puntuacionGlobal
+
+
+
+                   /* PRUEBA CON FORMULARIO DE DOM
+                   
+                    this.form=document.createElement('form')
+                    this.divJuegoCartas.appendChild(this.form)
                     
-            
-                    let respuestaBuena=document.createElement('p');
-                    respuestaBuena.id="textoRespuesta";
-                    this.respuesta1.appendChild(respuestaBuena)
-                    respuestaBuena.appendChild(document.createTextNode("GRACIAS"))
-                    this.divJuegoCartas.appendChild(this.respuesta1)
-            
-                    this.respuesta2=document.createElement('div');
-                    this.respuesta2.className="respuestas";
-                    let respuestaMala=document.createElement('p');
-                    this.respuesta2.appendChild(respuestaMala)
-                    respuestaMala.id="textoRespuesta";
-                    respuestaMala.appendChild(document.createTextNode("GRACIAS"))
-                    this.divJuegoCartas.appendChild(this.respuesta2);
-            
-                    this.divJuegoCartas.appendChild(this.divPuntuacion);
-                    this.divJuegoCartas.appendChild(this.divCronometro);
+                    //label para Alias
+                    let label = document.createElement('label')
+                    label.id="textoRespuesta";
+                    this.form.appendChild(label)
+                    label.appendChild(document.createTextNode('Alias'))
+                    label.style.display = 'block'
+                    label.style.position = 'absolute'
+                    label.style.top = '30%'
+                    label.style.left = '80%'
+
+                    //input text para introducir el nombre del alias
+                    let input=document.createElement('input')
+                    this.form.appendChild(input)
+                    input.style.type = 'text'
+                    input.style.position = 'absolute'
+                    input.style.top = '35%'
+                    input.style.left = '76%'
+
+                    //label para puntuación
+                    let label2 = document.createElement('label')
+                    label2.id="textoRespuesta";
+                    this.form.appendChild(label2)
+                    label2.appendChild(document.createTextNode('Puntuación'))
+                    label2.style.display = 'block'
+                    label2.style.position = 'absolute'
+                    label2.style.top = '40%'
+                    label2.style.left = '80%'
+
+                    //input text que muestra la puntuación
+                    let input2=document.createElement('input')
+                    this.form.appendChild(input2)
+                    input2.style.type = 'text'
+                    input2.style.position = 'absolute'
+                    input2.style.top = '45%'
+                    input2.style.left = '76%'
+                    input2.value= this.puntuacionGlobal
+                    input2.readOnly= true
+
+                    //boton enviar para el formulario de introducción de alias
+                    let button=document.createElement('button')
+                    this.form.appendChild(button)
+                    button.id='botonRanking'
+                    button.style.type = 'submit'
+                    button.style.position = 'absolute'
+                    button.style.top = '60%'
+                    button.style.left = '76%'
+                    button.style.backgroundColor='transparent'
+                    button.style.backgroundSize='150px 100px'
+                    button.style.backgroundRepeat='no-repeat'
+                    
+                    button.style.width = '10%'
+                    button.style.height = '10%'
+                    button.style.border='0px'*/
 
             }
     }

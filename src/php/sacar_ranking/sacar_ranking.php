@@ -7,7 +7,7 @@
     FROM Clasificacion
     ORDER BY puntuacion desc' ;
 
-    $puntuaciones=mysqli_query($conexion,$consulta);
+    $puntuaciones=$conexion->query($consulta);
     while($fila = $puntuaciones->fetch_array()){
         echo '<td>'.$fila['alias'].'</td>';
         echo '<td>'.$fila['puntuacion'].'</td><br><br>';

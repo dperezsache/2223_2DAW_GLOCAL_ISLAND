@@ -40,6 +40,18 @@
 			<div id="divRespuesta2" class="respuestas">
 				<p id="textoRespuesta">NO</p>
 			</div>
+			<div id="divFinJuego">
+				<p>
+					Has conseguido <span id="puntos"></span> puntos, 
+					introduce un alias para que tu puntuación se publique.
+				</p>
+				<form method='post' action="../../php/sacar_ranking/introducirRanking.php">
+					<input type="text" name="aliasJugador" maxlength="50" placeholder="Alias del jugador"/>
+					<input type="text" name="puntosJugador" id="puntosJugador" readonly>
+					<button type="submit" name="botonEnviar" id="botonEnviar">Publicar</button>
+					<a href=""><button type="button" name="botonSalir">Volver al menú</button></a>
+				</form>
+			</div>
 		</div>
 		<script type=module src="../../js/servicios/app.js"></script>
 	</body>

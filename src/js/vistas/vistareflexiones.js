@@ -34,9 +34,9 @@ export class VistaReflexiones extends Vista {
           let errorTexto = ''
   
           // Comprobaciones
-          if (valor == '') errorTexto = 'El campo está vacío.'
-            if (valor.length > 500) errorTexto = 'Superado límite de caracteres permitidos (500).'
-            else correcto = true
+        if (valor == '') errorTexto = 'El campo está vacío.'
+        else if (valor.length > 500) errorTexto = 'Superado límite de caracteres permitidos (500).'
+        else correcto = true
   
           if (correcto) {
               window.location.href = 'index.php'  // Volver a la página principal

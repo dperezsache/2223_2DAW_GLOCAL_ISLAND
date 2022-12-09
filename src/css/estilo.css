@@ -227,6 +227,43 @@ y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimient
 
 /* ----------CSS Pantalla de Juego---------- */
 
+/* -----Fin juego----- */
+div#divFinJuego {
+    display: none;
+    margin: auto;
+    background: url(../img/cartaFin.png);
+    width: 430px;
+    height: 120px;
+    background-size: cover;
+    position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
+    top: 20%;
+    bottom: 0;
+    left: 60%;
+    right: 0;
+    padding: 0 20px;
+    font-family: Comfortaa;
+    z-index: 1;
+}
+
+span#puntos {
+    color: red;
+    font-weight: bold;
+}
+
+input#puntosJugador{
+    display:none;
+}
+
+form button {
+    background-color: #ffed9b;
+    border: 2px solid #e6993b;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: #ffe678;
+}
+
 /* Clase que se añade a las tarjetas de respuesta cuando intentamos meter la pregunta en él */
 canvas{
     width:100%;
