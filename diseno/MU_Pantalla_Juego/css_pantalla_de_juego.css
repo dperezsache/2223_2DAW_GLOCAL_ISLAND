@@ -109,6 +109,13 @@ img#icono{
 }
 
 /* -----Fin juego----- */
+div#divJuegoAcabado {
+	float: left;
+	height: 100%;
+	width: 50%;
+	background-color: #CBD8FE;
+}
+
 div#divFinJuego {
 	margin: auto;
 	background: url(img/cartaFin.png);
@@ -118,7 +125,7 @@ div#divFinJuego {
 	position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
     top: 0;
     bottom: 0;
-    left: 0;
+    left: 40%;
     right: 0;
 	padding: 0 20px;
 	font-family: Comfortaa;
@@ -140,7 +147,59 @@ form button:hover {
 	background-color: #ffe678;
 }
 
-/*-------------Media Query Ajustes iPad-------------*/
-@media (max-width: 730px) {
-	
+div#divCanvas h1 {
+	font-family: Mabook;
+	position: absolute;
+	left: 65%;
+	top: 25%;
+}
+
+/* Media Queries */
+@media (max-width: 900px) {
+	div#divJuegoAcabado {
+		visibility: hidden;
+	}
+
+	div#divFinJuego {
+		left: 0;
+	}
+
+	div#divCanvas {
+		width: 100%;
+	}
+
+	div#divCanvas h1 {
+		left: 40%;
+		top: 20%;
+	}
+
+	body {
+		margin: 0;
+	}
+}
+
+@media (max-width: 500px) {
+	div#divFinJuego {
+		left: 0;
+		width: 250px;
+		height: 180px;
+	}
+
+	form button {
+		display: block;
+		margin: 5px 0;
+	}
+
+	div#divCanvas {
+		width: 100%;
+	}
+
+	div#divCanvas h1 {
+		left: 30%;
+		top: 20%;
+	}
+
+	body {
+		margin: 0;
+	}
 }
