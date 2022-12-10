@@ -12,13 +12,10 @@
 }
 
 /*La resolución nativa será 1366x768 y se hará adaptable*/
-html{
-	overflow:hidden;
-}
-
 body{
-	height:100%;
-	width:100%;
+	width: 1366px;
+	height: 768px;
+	overflow:hidden;
 }
 
 img{
@@ -125,7 +122,7 @@ div#divFinJuego {
 	position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
     top: 0;
     bottom: 0;
-    left: 40%;
+    left: 0;
     right: 0;
 	padding: 0 20px;
 	font-family: Comfortaa;
@@ -154,10 +151,10 @@ div#divCanvas h1 {
 	top: 25%;
 }
 
-/* Media Queries */
-@media (max-width: 900px) {
+/* Media Queries de Fin juego */
+@media (max-width: 1200px) {
 	div#divJuegoAcabado {
-		visibility: hidden;
+		display: none;
 	}
 
 	div#divFinJuego {
@@ -169,7 +166,7 @@ div#divCanvas h1 {
 	}
 
 	div#divCanvas h1 {
-		left: 40%;
+		left: 5%;
 		top: 20%;
 	}
 
@@ -195,7 +192,6 @@ div#divCanvas h1 {
 	}
 
 	div#divCanvas h1 {
-		left: 30%;
 		top: 20%;
 	}
 }

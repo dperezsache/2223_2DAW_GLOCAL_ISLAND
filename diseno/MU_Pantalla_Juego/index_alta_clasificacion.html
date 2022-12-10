@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="es">
     <head>
 		<meta charset="utf-8"/>
@@ -11,14 +12,16 @@
 		<div id="divFinJuego">
 			<p>Has conseguido <span id="puntos">1000</span> puntos, introduce un alias para que tu puntuación se publique.</p>
 			<form action="" method="post">
-				<input type="text" name="aliasJugador" maxlength="50" placeholder="Alias del jugador"/>
+				<label for="aliasJugador">
+					Alias: <input type="text" name="aliasJugador" maxlength="50"/>
+				</label>
 				<button type="submit" name="botonEnviar" id="botonEnviar">Publicar</button>
 				<button type="button" name="botonSalir">Volver al menú</button>
 			</form>
 		</div>
         <div id="divCanvas">
 			<div id="divJuegoAcabado">
-				<img src="img/logo2.png"/>
+				<img src="img/logo2.png" alt="Logo Glocal Island"/>
 			</div>
 			<h1>FIN DEL JUEGO</h1>
 		</div>
