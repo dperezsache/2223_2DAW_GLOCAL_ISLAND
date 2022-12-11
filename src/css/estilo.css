@@ -227,43 +227,6 @@ y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimient
 
 /* ----------CSS Pantalla de Juego---------- */
 
-/* -----Fin juego----- */
-div#divFinJuego {
-    display: none;
-    margin: auto;
-    background: url(../img/cartaFin.png);
-    width: 430px;
-    height: 120px;
-    background-size: cover;
-    position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
-    top: 20%;
-    bottom: 0;
-    left: 60%;
-    right: 0;
-    padding: 0 20px;
-    font-family: Comfortaa;
-    z-index: 1;
-}
-
-span#puntos {
-    color: red;
-    font-weight: bold;
-}
-
-input#puntosJugador{
-    display:none;
-}
-
-form button {
-    background-color: #ffed9b;
-    border: 2px solid #e6993b;
-    border-radius: 5px;
-}
-
-form button:hover {
-    background-color: #ffe678;
-}
-
 /* Clase que se añade a las tarjetas de respuesta cuando intentamos meter la pregunta en él */
 canvas{
     width:100%;
@@ -389,6 +352,45 @@ p#textoRespuesta{
     cursor:grabbing !important;
 }
 
+
+/* -----Fin juego----- */
+
+div#divFinJuego {
+    display: none;
+    margin: auto;
+    background: url(../img/cartaFin.png);
+    width: 430px;
+    height: 120px;
+    background-size: cover;
+    position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
+    top: 20%;
+    bottom: 0;
+    left: 60%;
+    right: 0;
+    padding: 0 20px;
+    font-family: Comfortaa;
+    z-index: 1;
+}
+
+span#puntos {
+    color: red;
+    font-weight: bold;
+}
+
+input#puntosJugador{
+    display:none;
+}
+
+form button {
+    background-color: #ffed9b;
+    border: 2px solid #e6993b;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: #ffe678;
+}
+
 /*Media querie ideada para smartphones*/
 @media only screen and (min-width: 360px) and (max-width: 768px) {
     /*Para el paso a porcentaje, escogímos de medida una partalla con un width de 455px y un height de 768px para los calculos*/
@@ -436,4 +438,50 @@ p#textoRespuesta{
         50%{background-size:60% 100% ;}
         100%{background-size:85% 100%;}
     }
+
+    
+/* Media Queries de Fin juego */
+@media (max-width: 1200px) {
+	div#divJuegoAcabado {
+		display: none;
+	}
+
+	div#divFinJuego {
+		left: 0;
+	}
+
+	div#divCanvas {
+		width: 100%;
+	}
+
+	div#divCanvas h1 {
+		left: 5%;
+		top: 20%;
+	}
+
+	body {
+		margin: 0;
+	}
+}
+
+@media (max-width: 500px) {
+	div#divFinJuego {
+		left: 0;
+		width: 250px;
+		height: 180px;
+	}
+
+	form button {
+		display: block;
+		margin: 5px 0;
+	}
+
+	div#divCanvas {
+		width: 100%;
+	}
+
+	div#divCanvas h1 {
+		top: 20%;
+	}
+}
 }

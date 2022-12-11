@@ -46,7 +46,9 @@
 					introduce un alias para que tu puntuación se publique.
 				</p>
 				<form method='post' action="../../php/sacar_ranking/introducirRanking.php">
-					<input type="text" name="aliasJugador" maxlength="50" placeholder="Alias del jugador"/>
+					<label for="aliasJugador">
+						Alias:	<input type="text" name="aliasJugador" maxlength="50" placeholder="Alias del jugador"/>
+					</label>
 					<input type="text" name="puntosJugador" id="puntosJugador" readonly>
 					<button type="submit" name="botonEnviar" id="botonEnviar">Publicar</button>
 					<a href=""><button type="button" name="botonSalir">Volver al menú</button></a>
