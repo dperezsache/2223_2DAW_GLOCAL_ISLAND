@@ -261,6 +261,7 @@
                             echo '<td>'.$fila['numPreguntas'].'</td>';
                             echo '<td>';
                                 echo '<a href="../index.php/controladorreflexiones?id='.$fila['id'].'&texto='.$fila['texto'].'&numPreguntas='.$fila['numPreguntas'].'&nombre='.$fila['nombre'].'">✏</a>';
+                                echo '<a id="eliminarReflexion" href="../index.php/controladorreflexiones?id='.$fila['id'].'">🗑</a>';
                             echo '</td>';
                         echo'</tr>';
                     }

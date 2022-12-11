@@ -15,5 +15,11 @@ export class VistaReflexiones extends Vista {
 	constructor(div, controlador) {
 		super(div)
           this.controlador = controlador
+          this.btnEliminarReflexion=document.getElementById("eliminarReflexion");
+          this.btnEliminarReflexion.addEventListener("onclick",this.confirmarEliminacion.bind(this))
 	}
+     confirmarEliminacion(event){
+          event.preventDefault();
+          console.log("HOLAAAAA MIARMAAAA");
+     }
 }

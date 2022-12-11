@@ -41,11 +41,19 @@
        }
        switch($metodo){
         case 'POST':
-            $controlador->post($_POST);
+            if(!isset($_POST["id"])){
+                $controlador->post($_POST);
+            }else{
+                $controlador->actualizar($_POST);
+            }
             die();
             break;
         case "GET":
-            $controlador->dom($parametrosQuery);
+            if(sizeof($parametrosQuery)>2){
+                $controlador->modificar($parametrosQuery);
+            }else{
+                $controlador->eliminar($parametrosQuery);
+            }
             die();
             break;
    }
