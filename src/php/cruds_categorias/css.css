@@ -64,7 +64,9 @@ button:hover{
     background-color: #FF8400;
 }
 
-
+a{
+    text-decoration: none !important;
+}
 
 /*-----MENU-----*/
 
@@ -381,6 +383,10 @@ nav #btnMenu {
 #divModPreguntasRespuestas table {
     width: 90%;
 }
+
+ #numPregunta{
+    display:none;
+ }
 
 /*-----FOOTER-----*/
 #footer{

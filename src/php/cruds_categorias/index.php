@@ -13,7 +13,7 @@
 		<title>Glocal Island</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css.css">
-		<link rel="shotcut icon" href="../../../img/logo.png">
+		<link rel="shotcut icon" href="../../img/logo.png">
 	</head>
     <body>
         <!-- MENU -->
@@ -64,46 +64,39 @@
                 </thead>
                 <tbody>
                     <?php
-                        require_once('../config/conexion.php');
-                        $conexionPreguntas = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-                        $consultaPreguntas = "SELECT pregunta,respuesta AS 'respuesta1',correcta, numRespuesta,Categorias.nombre AS 'Cat'
-                        FROM Preguntas 
-                        INNER JOIN Subcategorias ON(Preguntas.idSubcategoria=Subcategorias.id)
-                        INNER JOIN Categorias ON(Subcategorias.idCategoria=Categorias.id)
-                        INNER JOIN Respuestas ON(Respuestas.numPregunta=Preguntas.numPregunta AND Respuestas.idSubcategoria=Preguntas.idSubcategoria)
-                        WHERE Respuestas.numRespuesta=1";
-
-                        $preguntas=$conexionPreguntas->query($consultaPreguntas);
+                        require_once('../modelos/modelopreguntas.php');
+                        $modeloPreguntas=new ModeloPreguntas();
+                        $preguntas=$modeloPreguntas->consultarPreguntas();
                         while($fila = $preguntas->fetch_assoc()){
                             echo '<tr>';
-                                echo '<td data-titulo="Categoria">'.$fila['Cat'].'</td>';
-                                echo '<td data-titulo="Pregunta">'.$fila['pregunta'].'</td>';
-                                echo '<td data-titulo="Resp1">'.$fila['respuesta1'].'</td>';
-
-                                $consultaRespuesta= "SELECT pregunta,respuesta, S.id, Respuestas.numPregunta, numRespuesta FROM Preguntas 
-                                INNER JOIN Subcategorias S ON(Preguntas.idSubcategoria=S.id)
-                                INNER JOIN Categorias ON(S.idCategoria=Categorias.id)
-                                INNER JOIN Respuestas ON(Respuestas.numPregunta=Preguntas.numPregunta AND Respuestas.idSubcategoria=Preguntas.idSubcategoria)
-                                WHERE Respuestas.numRespuesta=2 AND Preguntas.pregunta='".$fila['pregunta']."';";
-                                $respuesta=$conexionPreguntas->query($consultaRespuesta);
+                                $categoria=$fila['Cat'];
+                                $pregunta=$fila['pregunta'];
+                                $respuesta1=$fila['respuesta'];
+                                $idCategoria=$fila['id'];
+                                $numPregunta=$fila['numPregunta'];
+                                echo '<td data-titulo="Categoria">'.$categoria.'</td>';
+                                echo '<td data-titulo="Pregunta">'.$pregunta.'</td>';
+                                echo '<td data-titulo="Resp1">'.$respuesta1.'</td>';
+                                $respuesta=$modeloPreguntas->consultarPreguntas2($fila['numPregunta'], $fila['idSubcategoria']);
+                                
                                 while($resp = $respuesta->fetch_assoc()){
-                                    $respuesta2=$resp['numRespuesta'];
+                                    $respuesta2=$resp['respuesta'];
                                     $idSubcategoria=$resp['id'];
-                                    $numpregunta=$resp['numPregunta'];
                                     echo '<td data-titulo="Resp2">'.$resp['respuesta'].'</td>';
                                 }
 
                                 if($fila['correcta']==1){
                                     echo '<td data-titulo="Resp. correcta">respuesta1</td>';
+                                    $correcta='respuesta1';
                                 }
                                 else{
                                     echo '<td data-titulo="Resp. correcta">respuesta2</td>';
+                                    $correcta='respuesta2';
                                 }
-                                echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?idSubcategoria='.$idSubcategoria.'&numPregunta='.$numpregunta.'&numRespuesta1='.$fila['numRespuesta'].'&numRespuesta2='.$respuesta2.'">✎</a>/<a href="../cruds_preguntas/borrarpregunta.php?id='.$fila['pregunta'].'">🗑</a></td>';
+                                echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?categoria='.$categoria.'&idCategoria='.$idCategoria.'&numPregunta='.$numPregunta.'&respuesta1='.$respuesta1.'&respuesta2='.$respuesta2.'&pregunta='.$pregunta.'&correcta='.$correcta.'">✎</a>/<a href="../cruds_preguntas/borrarpregunta.php?id='.$fila['pregunta'].'">🗑</a></td>';
                             echo'</tr>';
                         }
-                        // Cerrar conexión
-                        mysqli_close($conexionPreguntas);
+                        
                     ?>
                 </tbody>
             </table>
@@ -359,6 +352,9 @@
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
             </form>
+        </div>
+        <div id="footer">
+            <p>Glocal Island</p>
         </div>
         <script type="module" src="../../js/servicios/controladoradmin.js"></script>
     </body>

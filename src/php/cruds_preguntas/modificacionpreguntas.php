@@ -5,18 +5,7 @@
     if(!isset($_SESSION['nombre'])) {
         header('Location: ../../index/html/index.html');
     } 
-    $resp=$_GET;
     require_once '../config/conexion.php';
-    
-    $idSubcategoria=$resp['idSubcategoria'];
-    $numPregunta=$resp['numPregunta'];
-    $numRespuesta1=$resp['numRespuesta1'];
-    $numRespuesta2=$resp['numRespuesta2'];
-
-    /* echo $idSubcategoria;
-    echo $numPregunta;
-    echo $numRespuesta1;
-    echo $numRespuesta2; */
 ?>
 <!-- MODIFICACIÓN -->
 <html>
@@ -61,74 +50,64 @@
                 </ul>
             </nav>
         </header>
-        <?php
-            //If para hacer la inserción si se pulsa el botón de crear las subcategorías
-            if(isset ($_POST["enviarModSubCat"])){
-                require_once('../config/conexion.php');
-                $idSubcategoria = $_GET["id"];
-                //Conexión con la base de datos
-                $conexion2 = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-                //Valores introducidos en el formulario, los recogemos en variables
-                $nombre = $_POST['nombreSubCat'];
-                $categoria = $_POST['categoria'];
-                
-                //Consulta preparada para insertar Subcategotias en la bbdd
-                $sql = 'UPDATE Subcategorias SET nombre="'.$nombre.'",idCategoria="'.$categoria.'" WHERE id='.$idSubcategoria.';';
-                $resultado=$conexion2->query($sql);
-                echo'Modificado con éxito';
-                echo'<a href="index.php">Volver</a>';
-                // Cerrar conexión
-                mysqli_close($conexion2);
-            }
-        ?>
 
         <div id="divModPreguntasRespuestas">
             <h1>MODIFICAR PREGUNTAS Y RESPUESTAS</h1>
-            <?php
-                require_once('../config/conexion.php');
-                $conexionPreguntas = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-                $consulta="SELECT pregunta,respuesta AS 'respuesta1',correcta, numRespuesta,Categorias.nombre AS 'Cat'
-                FROM Preguntas 
-                INNER JOIN Subcategorias ON(Preguntas.idSubcategoria=Subcategorias.id)
-                INNER JOIN Categorias ON(Subcategorias.idCategoria=Categorias.id)
-                INNER JOIN Respuestas ON(Respuestas.numPregunta=Preguntas.numPregunta AND Respuestas.idSubcategoria=Preguntas.idSubcategoria)
-                WHERE Respuestas.numRespuesta=1 AND Subcategorias.id=1 AND Respuestas.numPregunta=1";
-                $preguntas=$conexionPreguntas->query($consulta);
-                $fila=$preguntas->fetch_assoc();
-            ?>
-            <form id="formModPreguntasRespuestas" method="post">
+            <form id="formModPreguntasRespuestas" action="../fachada/fachada.php/controladormodificacion" method="post">
                 <!-- PREGUNTAS -->
                 <div>
-                    <label for="nuevaPregunta">
-                        Pregunta<br/>
-                        <textarea id="nuevaPregunta" rows="3" cols="60" required><?php echo $fila['pregunta'];?>
-                        </textarea>
+                    <label for="nuevaPregunta">Pregunta<br/>
+                        <textarea id="nuevaPregunta" name="nuevaPregunta" rows="3" cols="60" required><?php echo $_GET['pregunta'];?></textarea>
                     </label>
+                    <input name="numPregunta" id="numPregunta" value="<?php echo $_GET['numPregunta']?>">
                 </div>
                 <div>
                     <label for="categoriaPregunta">
                         Categoría de la pregunta
-                        <select id="categoriaPregunta">
-                            <option>Agua</option>
-                            <option>Tierra</option>
-                            <option>Aire</option>
+                        <select id="categoriaPregunta" name="categoriaPregunta">
+                            <?php 
+                                switch ($_GET['idCategoria']){
+                                    case 1:
+                                        echo '  <option value="3">Agua</option>
+                                                <option value="2">Tierra</option>
+                                                <option value="1" selected>Aire</option>';
+                                        break;
+                                    case 2:
+                                        echo '  <option value="3">Agua</option>
+                                                <option value="2" selected>Tierra</option>
+                                                <option value="1">Aire</option>';
+                                        break;
+                                    case 3:
+                                        echo '  <option value="3" selected>Agua</option>
+                                                <option value="2">Tierra</option>
+                                                <option value="1">Aire</option>';
+                                        break;
+                                }
+                            ?>
                         </select>
                     </label>
                 </div>
                 <div>            
                     <label for="imagenPregunta">Imagen</label>
-                    <input type="file" id="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg" required/><br/>
+                    <input type="file" id="imagenPregunta" name="imagenPregunta" value="Adjuntar imagen" accept="image/png, image/jpeg"/><br/>
                 </div>
                 <hr/>
                 <!-- RESPUESTAS -->
                 <fieldset>
-                    <legend></legend>
                     <div>
                         <label for="primeraRespuesta">
-                            Respuesta uno <input id="primeraRespuesta" type="text" maxlength="300" required/>
+                            Respuesta uno <input id="primeraRespuesta" name="primeraRespuesta" type="text" maxlength="300" required value="<?php echo $_GET['respuesta1'];?>"/>
                         </label>
                         <label class="textoCorrectas" for="btnCorrecta1">
-                            ¿Es la correcta? <input type="radio" id="btnCorrecta1" name="btnCorrecta" required/>
+                            <?php 
+                                if($_GET['correcta']=='respuesta1'){
+                                    echo ' ¿Es la correcta? <input type="radio" id="btnCorrecta" name="btnCorrecta" required checked="checked"/>';
+                                }
+                                else{
+                                    echo '¿Es la correcta? <input type="radio" id="btnCorrecta" name="btnCorrecta" required/>';
+                                }
+                            ?>
+                           
                         </label>
                     </div>
                 </fieldset>
@@ -137,17 +116,24 @@
                     <legend></legend>
                     <div>
                         <label for="segundaRespuesta">
-                            Respuesta dos <input id="segundaRespuesta" type="text" maxlength="300" required/>
+                            Respuesta dos <input id="segundaRespuesta" name="segundaRespuesta" type="text" maxlength="300" required value="<?php echo $_GET['respuesta2'];?>"/>
                         </label>
                         <label class="textoCorrectas" for="btnCorrecta2">
-                            ¿Es la correcta? <input type="radio" id="btnCorrecta2" name="btnCorrecta" required/>
+                            <?php
+                            if($_GET['correcta']=='respuesta2'){
+                                echo '¿Es la correcta? <input type="radio" id="btnCorrecta" name="btnCorrecta" required checked="checked"/>';
+                            }
+                            else{
+                                echo '¿Es la correcta? <input type="radio" id="btnCorrecta" name="btnCorrecta" required/>';
+                            }
+                            ?>
                         </label>
                     </div>
                 </fieldset>
 
                 <!-- BOTONES FORMULARIO -->
                 <div>
-                    <button type="reset">Cancelar</button>
+                <a href="../cruds_categorias/index.php"><button type="button">Cancelar</button></a>
                     <button type="submit">Enviar</button>
                 </div>
             </form>
