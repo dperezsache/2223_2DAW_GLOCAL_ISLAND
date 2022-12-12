@@ -55,6 +55,20 @@ body{
     animation-direction: alternate;
 }
 
+#botonInstrucciones{
+    display: block;
+    background-color: #FFA90D;
+    width: 3%;
+    height: 5%;
+    position: absolute;
+    left:90%;
+    z-index: 15;
+}
+
+#botonInstrucciones:hover{
+    background-color: #C4830A;
+}
+
 #divInicio #divAgua{
     width: 100%;
     height: 32.55208333%;/*La altura ideada es de 768px para el body, y para estos dos div seria de 200px*/
@@ -363,7 +377,7 @@ div#divFinJuego {
     height: 120px;
     background-size: cover;
     position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
-    top: 20%;
+    top: -43%;
     bottom: 0;
     left: 60%;
     right: 0;
@@ -396,6 +410,9 @@ form button:hover {
     /*Para el paso a porcentaje, escogímos de medida una partalla con un width de 455px y un height de 768px para los calculos*/
 	#divBotones{
         display: none;
+    }
+    #botonInstrucciones{
+        display:none;
     }
     #imgIslas{
         width:87.91208791%;/*400px la imagen seria de unos 400px*/

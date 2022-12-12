@@ -522,12 +522,12 @@ export class VistaJuego extends Vista {
 
                     //p para poner el fin del juego
                     let p = document.createElement('p')
-                    p.id="textoRespuesta";
+                    p.id="textoRespuesta"
                     this.div.appendChild(p)
                     p.appendChild(document.createTextNode('FIN DEL JUEGO'))
                     p.style.display = 'block'
                     p.style.position = 'absolute'
-                    p.style.top = '30%'
+                    p.style.top = '0'
                     p.style.left = '70%'
 
                     //muestro el div con el formulario de registro de alias
@@ -540,69 +540,87 @@ export class VistaJuego extends Vista {
 
                     this.puntosJugador=document.getElementsByTagName('input')[1]
                     this.puntosJugador.value=this.puntuacionGlobal
-
-
-
-                   /* PRUEBA CON FORMULARIO DE DOM
-                   
-                    this.form=document.createElement('form')
-                    this.divJuegoCartas.appendChild(this.form)
                     
-                    //label para Alias
-                    let label = document.createElement('label')
-                    label.id="textoRespuesta";
-                    this.form.appendChild(label)
-                    label.appendChild(document.createTextNode('Alias'))
-                    label.style.display = 'block'
-                    label.style.position = 'absolute'
-                    label.style.top = '30%'
-                    label.style.left = '80%'
-
-                    //input text para introducir el nombre del alias
-                    let input=document.createElement('input')
-                    this.form.appendChild(input)
-                    input.style.type = 'text'
-                    input.style.position = 'absolute'
-                    input.style.top = '35%'
-                    input.style.left = '76%'
-
-                    //label para puntuación
-                    let label2 = document.createElement('label')
-                    label2.id="textoRespuesta";
-                    this.form.appendChild(label2)
-                    label2.appendChild(document.createTextNode('Puntuación'))
-                    label2.style.display = 'block'
-                    label2.style.position = 'absolute'
-                    label2.style.top = '40%'
-                    label2.style.left = '80%'
-
-                    //input text que muestra la puntuación
-                    let input2=document.createElement('input')
-                    this.form.appendChild(input2)
-                    input2.style.type = 'text'
-                    input2.style.position = 'absolute'
-                    input2.style.top = '45%'
-                    input2.style.left = '76%'
-                    input2.value= this.puntuacionGlobal
-                    input2.readOnly= true
-
-                    //boton enviar para el formulario de introducción de alias
-                    let button=document.createElement('button')
-                    this.form.appendChild(button)
-                    button.id='botonRanking'
-                    button.style.type = 'submit'
-                    button.style.position = 'absolute'
-                    button.style.top = '60%'
-                    button.style.left = '76%'
-                    button.style.backgroundColor='transparent'
-                    button.style.backgroundSize='150px 100px'
-                    button.style.backgroundRepeat='no-repeat'
-                    
-                    button.style.width = '10%'
-                    button.style.height = '10%'
-                    button.style.border='0px'*/
+                    this.reflexiones()
 
             }
+    }
+
+    reflexiones(){
+
+        let divReflexionesAgua = document.createElement('div')
+        this.divJuegoCartas.appendChild(divReflexionesAgua)
+        divReflexionesAgua.style.position = 'absolute'
+        divReflexionesAgua.style.width = '31%'
+        divReflexionesAgua.style.height = '19%'
+        divReflexionesAgua.style.top = '40%'
+        divReflexionesAgua.style.left = '65%'
+        divReflexionesAgua.style.fontSize = '1em'
+        divReflexionesAgua.style.backgroundImage = 'url(../../img/cartaFin.png)'
+        divReflexionesAgua.style.backgroundSize = 'contain'
+        divReflexionesAgua.style.backgroundRepeat = 'no-repeat'
+        let reflexionAgua=document.createElement('p')
+        divReflexionesAgua.appendChild(reflexionAgua)
+        reflexionAgua.style.display = 'block'
+        reflexionAgua.style.position = 'absolute'
+        reflexionAgua.style.top = '5%'
+        reflexionAgua.style.left = '5%'
+
+        let divReflexionesAire = document.createElement('div')
+        this.divJuegoCartas.appendChild(divReflexionesAire)
+        divReflexionesAire.style.position = 'absolute'
+        divReflexionesAire.style.width = '31%'
+        divReflexionesAire.style.height = '19%'
+        divReflexionesAire.style.top = '60%'
+        divReflexionesAire.style.left = '65%'
+        divReflexionesAire.style.fontSize = '1em'
+        divReflexionesAire.style.backgroundImage = 'url(../../img/cartaFin.png)'
+        divReflexionesAire.style.backgroundSize = 'contain'
+        divReflexionesAire.style.backgroundRepeat = 'no-repeat'
+        let reflexionAire=document.createElement('p')
+        divReflexionesAire.appendChild(reflexionAire)
+        reflexionAire.style.display = 'block'
+        reflexionAire.style.position = 'absolute'
+        reflexionAire.style.top = '5%'
+        reflexionAire.style.left = '5%'
+
+        let divReflexionesTierra = document.createElement('div')
+        this.divJuegoCartas.appendChild(divReflexionesTierra)
+        divReflexionesTierra.style.position = 'absolute'
+        divReflexionesTierra.style.width = '31%'
+        divReflexionesTierra.style.height = '19%'
+        divReflexionesTierra.style.top = '80%'
+        divReflexionesTierra.style.left = '65%'
+        divReflexionesTierra.style.fontSize = '1em'
+        divReflexionesTierra.style.backgroundImage = 'url(../../img/cartaFin.png)'
+        divReflexionesTierra.style.backgroundSize = 'contain'
+        divReflexionesTierra.style.backgroundRepeat = 'no-repeat'
+        let reflexionTierra=document.createElement('p')
+        divReflexionesTierra.appendChild(reflexionTierra)
+        reflexionTierra.style.display = 'block'
+        reflexionTierra.style.position = 'absolute'
+        reflexionTierra.style.top = '5%'
+        reflexionTierra.style.left = '5%'
+
+        let datos = {
+            'agua' : this.contadorErrores["Agua"],
+            'aire' : this.contadorErrores["Aire"],
+            'tierra' : this.contadorErrores["Tierra"]
+        }
+        let opciones = {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers:{ 'Content-Type': 'application/json'}
+        }
+        fetch('prueba.php', opciones)//Hacemos la petición
+            .then(respuesta => respuesta.json())  //Recibimos un objeto de tipo Response. respuesta.text devuelve una Promise
+            .then(datos =>{
+                reflexionAgua.textContent=datos[0].texto, 
+                reflexionAire.textContent=datos[1].texto, 
+                reflexionTierra.textContent=datos[2].texto
+            })
+        
+            
     }
 
     /**

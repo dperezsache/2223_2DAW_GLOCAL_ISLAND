@@ -1,12 +1,11 @@
 @font-face{
 	font-family:"Mabook";
-	src: url("fuente/mabook/Mabook.ttf");
-    src: url("fuente/mabook/Mabook.otf");
+	src: url("../../fonts/Mabook.ttf");
 }
 
 @font-face{
 	font-family:"Comfortaa";
-	src: url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
+	src: url("../../fonts/Comfortaa-VariableFont_wght.ttf");
 }
 
 /*La resolución nativa será 1366x768 y se hará adaptable*/
