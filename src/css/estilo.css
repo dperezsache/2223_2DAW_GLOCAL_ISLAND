@@ -334,11 +334,12 @@ div.respuestas{
 
 p#textoRespuesta{
 	position: absolute;
-	top:30%;
-	left: 40%;
+	/* top:30%;
+	left: 40%; */
 	text-align: center;
 	font-size: 3em;
 	font-family: Mabook;
+    width: 100%;
 }
 
 .drop-pregunta{

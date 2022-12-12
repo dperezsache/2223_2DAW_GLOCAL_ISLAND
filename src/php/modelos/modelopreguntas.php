@@ -17,6 +17,53 @@ class ModeloPreguntas{
     }
 
     /**
+     * Método para la insercción en la BBDD de una nueva pregunta y sus categorias
+     */
+    public function insertarPreguntayRespuesta($preguntaYrespuesta){
+        $this->conectar();
+        $sw=0;
+        $consulta=$this->conexion->prepare('INSERT INTO Preguntas(idSubcategoria,pregunta,imagen) VALUES(?,?,?)');
+        
+        $idSubCat=$preguntaYrespuesta['subcategoria'];
+        $pregunta=$preguntaYrespuesta['pregunta'];
+        $imagen=$preguntaYrespuesta['imagenPregunta'];
+        $respuesta1=$preguntaYrespuesta['respuesta1'];
+        $respuesta2=$preguntaYrespuesta['respuesta2'];
+        $correcta=0;
+        
+        $consulta->bind_Param('sss',$idSubCat,$pregunta,$imagen);
+        $arrayIndices=array_keys($preguntaYrespuesta);
+        for($i=0;$i<sizeof($arrayIndices);$i++){
+            if($arrayIndices[$i]=="respuesta1"){
+                if($arrayIndices[$i+1]=="btnCorrecta"){
+                    $correcta=1;
+                    $sw=1;
+                }else{
+                    $correcta=0;
+                    $sw=0;
+                }
+            }
+        }
+        $consulta->execute();
+        //Con esto obtenemos el ultimo id insertado tras la consulta para poder hacer la siguiente insercción de las respuestas asociadas a pregunta
+        $ultimoID=$this->conexion->insert_id;
+        $this->conexion->close();
+        //INSERCCIÓN DE LAS RESPUESTAS
+        $this->conectar();
+        $consulta=$this->conexion->prepare('INSERT INTO Respuestas(idSubcategoria,numPregunta,respuesta,correcta) VALUES(?,?,?,?)');
+        $consulta->bind_Param('sssi',$idSubCat,$ultimoID,$respuesta1,$correcta);
+        $consulta->execute();
+        if($sw==1){
+            $correcta=0;
+        }else{
+            $correcta=1;
+        }
+        $consulta->bind_Param('sssi',$idSubCat,$ultimoID,$respuesta2,$correcta);
+        $consulta->execute();
+        $this->conexion->close();
+    }
+
+    /**
      * Método para sacar las preguntas del listado
      */
     public function consultarPreguntas(){
@@ -82,6 +129,9 @@ class ModeloPreguntas{
         header('location:../../cruds_categorias/index.php');
     }
 
+    /**
+     * 
+     */
     public function sacarSubcategoria($id){
         $this->conectar();
         $consultaSub= "SELECT S.nombre FROM Subcategorias S WHERE S.id=".$id.";";
@@ -100,6 +150,14 @@ class ModeloPreguntas{
         else{
             header('ERROR 404 INTERNAL ERROR.');
         }
+        $this->conexion->close();
+    }
+
+    public function sacarListadoSubcategorias(){
+        $this->conectar();
+        $consultaSub= "SELECT S.nombre, S.id FROM Subcategorias S;";
+        $id=$this->conexion->query($consultaSub);
+        return $id;
         $this->conexion->close();
     }
 }

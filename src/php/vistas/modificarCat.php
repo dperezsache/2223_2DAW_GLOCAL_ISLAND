@@ -113,7 +113,7 @@
                         </label>
                     </div>
                 </fieldset>
-
+                <div><p>*Recuerda que las respuestas no pueden ser iguales. Sino, la modificación no se hará.</p></div>
                 <!-- BOTONES FORMULARIO -->
                 <div>
                 <a href="../cruds_categorias/index.php"><button type="button">Cancelar</button></a>
@@ -124,6 +124,5 @@
         <div id="footer">
             <p>Glocal Island</p>
         </div>
-        <script type="module" src="../../js/servicios/controladormodificarsub.js"></script>
     </body>
 </html>

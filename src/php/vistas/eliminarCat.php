@@ -49,13 +49,12 @@
                     <input class="none" id="idSubcategoria" name="idSubcategoria" value="<?php echo $_GET['idSubcategoria']?>"></input>
                     <input class="none" id="numPregunta" name="numPregunta" value="<?php echo $_GET['numPregunta']?>"></input>
                 <a href="../cruds_categorias/index.php"><button type="button">Volver</button></a>
-                <a href="../cruds_preguntas/eliminar.php?idSubcategoria=<?php echo $_GET['idSubcategoria']?>&numPregunta=<?php echo $_GET['numPregunta']?>"><button>Eliminar</button></a>
+                <button type="submit">Eliminar</button>
                 </div>
             </form>
         </div>
         <div id="footer">
             <p>Glocal Island</p>
         </div>
-        <script type="module" src="../../js/servicios/controladormodificarsub.js"></script>
     </body>
 </html>

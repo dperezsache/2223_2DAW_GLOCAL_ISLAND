@@ -97,7 +97,7 @@
                                     $correcta='respuesta2';
                                 }
                                 echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?categoria='.$categoria.'&idCategoria='.$idCategoria.'&idSubcategoria='.$sub.'&numPregunta='.$numPregunta.'&respuesta1='.$respuesta1.'&respuesta2='.$respuesta2.'&pregunta='.$pregunta.'&correcta='.$correcta.'">✎</a>
-                                        /<a href="../cruds_preguntas/borrarpregunta.php?idSubcategoria='.$idSubcategoria.'&numPregunta='.$numPregunta.'">🗑</a></td>';
+                                        <a href="../cruds_preguntas/borrarpregunta.php?idSubcategoria='.$idSubcategoria.'&numPregunta='.$numPregunta.'">🗑</a></td>';
                             echo'</tr>';
                         }
                         
@@ -283,8 +283,8 @@
         </div>
         <!-- CRUD PREGUNTAS -->
         <div id="divCrudPreguntasRespuestas">
-        <h1>CREAR PREGUNTA & RESPUESTAS</h1>
-            <form id="formPreguntasRespuestas" method="post">
+            <h1>CREAR PREGUNTA & RESPUESTAS</h1>
+            <form id="formPreguntasRespuestas" action="../index.php/controladorpreguntas" method="POST" enctype="multipart/form-data">
                 <!-- PREGUNTAS -->
                 <div>
                     <label for="nuevaPregunta">
@@ -294,11 +294,15 @@
                 </div>
                 <div>
                     <label for="categoriaPregunta">
-                        Categoría de la pregunta
+                        Subcategoría de la pregunta
                         <select id="categoriaPregunta">
-                            <option>Agua</option>
-                            <option>Tierra</option>
-                            <option>Aire</option>
+                            <?php 
+                                $modeloPreg=new ModeloPreguntas();
+                                $subcate=$modeloPreg->sacarListadoSubcategorias();
+                                while($fila = $subcate->fetch_assoc()){
+                                    echo '<option value="'.$fila['id'].'">'.$fila['nombre'].'</option>';
+                                }
+                            ?>
                         </select>
                     </label>
                 </div>
@@ -361,6 +365,34 @@
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
             </form>
+            <table>
+                <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Reflexión</th>
+                    <th>Cantidad de preguntas fallidas</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                    require_once('../modelos/modeloreflexiones.php');
+                    $modeloReflexiones=new ModeloReflexiones();
+                    $reflexiones=$modeloReflexiones->sacarReflexiones();
+                    while($fila = $reflexiones->fetch_assoc()){
+                        echo'<tr>';
+                            echo '<td>'.$fila['nombre'].'</td>';
+                            echo '<td>'.$fila['texto'].'</td>';
+                            echo '<td>'.$fila['numPreguntas'].'</td>';
+                            echo '<td>';
+                                echo '<a href="../index.php/controladorreflexiones?id='.$fila['id'].'&texto='.$fila['texto'].'&numPreguntas='.$fila['numPreguntas'].'&nombre='.$fila['nombre'].'">✏</a>';
+                                echo '<a id="eliminarReflexion" href="../index.php/controladorreflexiones?id='.$fila['id'].'">🗑</a>';
+                            echo '</td>';
+                        echo'</tr>';
+                    }
+                ?>
+                </tbody>
+            </table>
         </div>
         <div id="footer">
             <p>Glocal Island</p>

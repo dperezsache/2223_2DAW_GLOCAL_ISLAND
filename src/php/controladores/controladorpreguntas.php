@@ -1,5 +1,5 @@
 <?php
-    require_once('../modelos/modelopreguntas.php');
+    require_once('modelos/modelopreguntas.php');
     /**
      * Clase para la gestión de objetos de tipo ControladorPreguntas
      */
