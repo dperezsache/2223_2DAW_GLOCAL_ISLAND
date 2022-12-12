@@ -384,13 +384,13 @@ nav #btnMenu {
     width: 90%;
 }
 
- #numPregunta{
+#numPregunta{
     display:none;
- }
- .none{
-    display:none;
- }
+}
 
+.none{
+    display:none;
+ }
 /*-----FOOTER-----*/
 #footer{
     width: 100%;

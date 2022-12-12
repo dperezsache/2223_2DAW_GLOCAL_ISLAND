@@ -6,7 +6,7 @@
         header('Location: ../../index/html/index.html');
     }
 ?>
-<html>
+<!DOCTYPE html>
     <head>
 		<meta charset="utf-8">
 		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
@@ -50,6 +50,7 @@
             </header>
         <!-- LISTADO -->
         <div id="divListado">
+            <p id="error"></p>
             <h1>LISTADO DE PREGUNTAS</h1>
             <table>
                 <thead>
@@ -70,11 +71,13 @@
                         while($fila = $preguntas->fetch_assoc()){
                             echo '<tr>';
                                 $categoria=$fila['Cat'];
+                                $subcat=$fila['nombre'];
                                 $pregunta=$fila['pregunta'];
                                 $respuesta1=$fila['respuesta'];
                                 $idCategoria=$fila['id'];
+                                $sub=$fila['sub'];
                                 $numPregunta=$fila['numPregunta'];
-                                echo '<td data-titulo="Categoria">'.$categoria.'</td>';
+                                echo '<td data-titulo="Categoria">'.$subcat.'</td>';
                                 echo '<td data-titulo="Pregunta">'.$pregunta.'</td>';
                                 echo '<td data-titulo="Resp1">'.$respuesta1.'</td>';
                                 $respuesta=$modeloPreguntas->consultarPreguntas2($fila['numPregunta'], $fila['idSubcategoria']);
@@ -93,7 +96,8 @@
                                     echo '<td data-titulo="Resp. correcta">respuesta2</td>';
                                     $correcta='respuesta2';
                                 }
-                                echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?categoria='.$categoria.'&idCategoria='.$idCategoria.'&numPregunta='.$numPregunta.'&respuesta1='.$respuesta1.'&respuesta2='.$respuesta2.'&pregunta='.$pregunta.'&correcta='.$correcta.'">✎</a>/<a href="../cruds_preguntas/borrarpregunta.php?id='.$fila['pregunta'].'">🗑</a></td>';
+                                echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?categoria='.$categoria.'&idCategoria='.$idCategoria.'&idSubcategoria='.$sub.'&numPregunta='.$numPregunta.'&respuesta1='.$respuesta1.'&respuesta2='.$respuesta2.'&pregunta='.$pregunta.'&correcta='.$correcta.'">✎</a>
+                                        /<a href="../cruds_preguntas/borrarpregunta.php?idSubcategoria='.$idSubcategoria.'&numPregunta='.$numPregunta.'">🗑</a></td>';
                             echo'</tr>';
                         }
                         
@@ -244,6 +248,9 @@
             <table>
                 <thead>
                     <tr>
+                    <th>
+                            Categoria
+                        </th>
                         <th>
                             Nombre
                         </th>
@@ -255,13 +262,15 @@
                 <tbody>
                     <?php
                         $conexionListado = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-                        $consultaListado = 'SELECT id,nombre
-                        FROM Subcategorias
+                        $consultaListado = 'SELECT S.id, S.nombre,C.nombre AS sub
+                        FROM Subcategorias S, Categorias C
+                        WHERE S.idCategoria=C.id
                         ORDER BY id';
 
                         $nombresSubcategorias=mysqli_query($conexionListado,$consultaListado);
                         while($fila = $nombresSubcategorias->fetch_array()){
                             echo '<tr>';
+                                echo '<td>'.$fila['sub'].'</td>';
                                 echo '<td>'.$fila['nombre'].'</td>';
                                 echo '<td><a href="modificar.php?id='.$fila['id'].'">✎</a>/<a href="borrar.php?id='.$fila['id'].'">🗑</a></td>';
                             echo'</tr>';

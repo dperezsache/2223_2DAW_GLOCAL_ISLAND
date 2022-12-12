@@ -21,7 +21,7 @@ class ModeloPreguntas{
      */
     public function consultarPreguntas(){
         $this->conectar();
-        $consultaPreguntas = "SELECT pregunta,respuesta, Preguntas.numPregunta, Categorias.id, Preguntas.idSubcategoria, correcta, numRespuesta,Categorias.nombre AS 'Cat'
+        $consultaPreguntas = "SELECT pregunta,respuesta, Preguntas.numPregunta, Subcategorias.nombre, Subcategorias.id AS sub, Categorias.id, Preguntas.idSubcategoria, correcta, numRespuesta,Categorias.nombre AS 'Cat'
         FROM Preguntas 
         INNER JOIN Subcategorias ON(Preguntas.idSubcategoria=Subcategorias.id)
         INNER JOIN Categorias ON(Subcategorias.idCategoria=Categorias.id)
@@ -80,6 +80,27 @@ class ModeloPreguntas{
        
         $this->conexion->close();
         header('location:../../cruds_categorias/index.php');
+    }
+
+    public function sacarSubcategoria($id){
+        $this->conectar();
+        $consultaSub= "SELECT S.nombre FROM Subcategorias S WHERE S.id=".$id.";";
+        $id=$this->conexion->query($consultaSub);
+        return $id;
+        $this->conexion->close();
+    }
+
+    public function eliminarPreguntayRespuesta($datos){
+        $this->conectar();
+        $consultaEliminar= "DELETE FROM P, R USING Preguntas P, Respuestas R WHERE P.idSubcategoria=".$datos['idSubcategoria']." AND P.numPregunta=".$datos['numPregunta']." AND R.idSubcategoria=".$datos['idSubcategoria']." AND R.numPregunta=".$datos['numPregunta'].";";
+        $resultado=$this->conexion->query($consultaEliminar);
+        if($resultado>0){
+            header('location:../../cruds_categorias/index.php');
+        }
+        else{
+            header('ERROR 404 INTERNAL ERROR.');
+        }
+        $this->conexion->close();
     }
 }
 
