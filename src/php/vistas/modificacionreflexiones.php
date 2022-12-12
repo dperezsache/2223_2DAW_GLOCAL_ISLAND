@@ -9,9 +9,9 @@
         <form action="../index.php/controladorreflexiones" method="POST" id="fomularioReflexiones">
             <input name="id" type="hidden" value=<?php echo '"'.$parametrosquery["id"].'"'?>>
             <label for="reflexion">Reflexión</label>
-            <textarea name="reflexion" id="reflexion"><?php echo $parametrosquery["texto"] ?></textarea><br>
+            <textarea name="texto" id="reflexion"><?php echo $parametrosquery["texto"] ?></textarea><br>
             <label for="cantPreguntas">Número de preguntas</label>
-            <input name="cantPreguntas" type="number" min="1" max="5" value=<?php echo '"'.$parametrosquery["numPreguntas"].'"'?>><br>
+            <input name="numPreguntas" type="number" min="1" max="5" value=<?php echo '"'.$parametrosquery["numPreguntas"].'"'?>><br>
             <label for="respuesta1">Categoria de reflexion</label>
             <select name="categoria" id="" value=<?php echo '"'.$parametrosquery["categoria"].'"'?>>
                 <option value="1">Aire</option>

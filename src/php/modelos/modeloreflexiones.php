@@ -33,8 +33,8 @@
             $this->conectar();
             $consulta=$this->conexion->prepare('UPDATE Reflexiones SET texto=?,numPreguntas=?,idCategoria=? WHERE id=?');
             $consulta->bind_param('siii',$texto,$numPreguntas,$idCategoria,$id);
-            $texto=$reflexion['reflexion'];
-            $numPreguntas=$reflexion['cantPreguntas'];
+            $texto=$reflexion['texto'];
+            $numPreguntas=$reflexion['numPreguntas'];
             $idCategoria=$reflexion['categoria'];
             $id=$reflexion['id'];
             $consulta->execute();

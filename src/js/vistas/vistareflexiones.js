@@ -18,8 +18,8 @@ export class VistaReflexiones extends Vista {
           this.btnEliminarReflexion=document.getElementById("eliminarReflexion");
           this.btnEliminarReflexion.addEventListener("onclick",this.confirmarEliminacion.bind(this))
 	}
-     confirmarEliminacion(event){
-          event.preventDefault();
+     confirmarEliminacion(){
+          //event.preventDefault();
           console.log("HOLAAAAA MIARMAAAA");
      }
 }
