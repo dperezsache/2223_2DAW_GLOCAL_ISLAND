@@ -220,16 +220,15 @@ y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimient
 
 /* -----PANTALLA RANKINGS----- */
 body#bodyClasificaciones {
-    margin: 0;
-    padding: 0;
     text-align: center;
-
+    width: auto;
+    height: auto;
 }
 
 html#htmlClasificaciones {
     width: auto;
     height: auto;
-    overflow: auto; /* Para que deje hacer scroll (la especificación de html arriba tiene overflow hidden) */
+    overflow-y: auto; /* Para que deje hacer scroll vertical (la especificación html de arriba tiene overflow hidden) */
 }
 
 div#logo {
@@ -242,19 +241,21 @@ div#logo {
 
 header#cabecera {
     background-color: #FEA832;
-    position: fixed;
-    top: 0;
+    height: 100px;
     width: 100%;
 }
 
 header#cabecera h1 {
     font-family: Mabook;
     text-align: center;
+    padding-top: 20px;
+    margin: 0;
 }
 
 div#divClasificaciones {
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 30px;
+    margin-bottom: 130px;
 }
 
 table#tablaClasificaciones {
@@ -263,10 +264,16 @@ table#tablaClasificaciones {
     width: 60%;
 }
 
-table#tablaClasificaciones td, th {
+table#tablaClasificaciones td, 
+table#tablaClasificaciones th {
     border: 1px solid black;
     padding: 10px;
     text-align: center;
+}
+
+table#tablaClasificaciones td.aliasTexto {
+    max-width: 50px;
+    word-wrap: break-word;  /* Si el texto del alias pasa de 50px, partir el texto a la siguiente línea */
 }
 
 table#tablaClasificaciones th {
@@ -286,25 +293,25 @@ div#logo2 {
 }
 
 footer#footerClasificaciones {
-    width: 100%;
     background-color: #FEA832;
     padding: 7.5px 0;
+    width: 100%;
+    height: 100px;
     position: fixed;
     bottom: 0;
 }
 
 footer#footerClasificaciones img {
-    display: block;
     width: 128px;
     height: 50px;
-    margin: 5px auto;
 }
 
+/* Media Queries - Pantalla rankings */
 @media (max-width:700px){
     header#cabecera h1 {
         font-size: 1.5em;
         text-align: left;
-        padding-left: 128px;
+        padding-left: 100px;
     }
 
     div#divClasificaciones {
@@ -325,6 +332,7 @@ footer#footerClasificaciones img {
     header#cabecera h1 {
         font-size: 1.25em;
         padding: 0;
+        padding-top: 25px;
         text-align: center;
     }
 
