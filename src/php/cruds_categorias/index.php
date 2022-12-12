@@ -269,6 +269,33 @@
                     mysqli_close($conexion);
                 ?>
             </table>
+            <!--<table>
+                <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Reflexión</th>
+                    <th>Cantidad de preguntas fallidas</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    /*require_once('../modelos/modeloreflexiones.php');
+                    $modeloReflexiones=new ModeloReflexiones();
+                    $reflexiones=$modeloReflexiones->sacarReflexiones();
+                    while($fila = $reflexiones->fetch_assoc()){
+                        echo'<tr>';
+                            echo '<td>'.$fila['nombre'].'</td>';
+                            echo '<td>'.$fila['texto'].'</td>';
+                            echo '<td>'.$fila['numPreguntas'].'</td>';
+                            echo '<td>';
+                                echo '<a href="../index.php/controladorreflexiones?id='.$fila['id'].'&texto='.$fila['texto'].'&numPreguntas='.$fila['numPreguntas'].'&nombre='.$fila['nombre'].'">✏</a>';
+                                echo '<a id="eliminarReflexion" href="../index.php/controladorreflexiones?id='.$fila['id'].'">🗑</a>';
+                            echo '</td>';
+                        echo'</tr>';
+                    }
+                </tbody>
+            </table>
+            <!--echo '<a id="eliminarReflexion" href="../vistas/eliminarreflexion.php?id='.$fila['id'].'">🗑</a>';-->
         </div>
         <!-- CRUD PREGUNTAS -->
         <div id="divPreguntas">

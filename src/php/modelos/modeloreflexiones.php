@@ -85,5 +85,17 @@
             $this->conexion->close();
            echo json_encode($array,JSON_FORCE_OBJECT);
         }
+        /**
+        * Método para sacar las reflexiones
+        */
+        public function sacarReflexiones(){
+            $this->conectar();
+            $consulta = "SELECT Reflexiones.* ,Categorias.nombre
+            FROM Reflexiones INNER JOIN Categorias ON (Reflexiones.idCategoria=Categorias.id)";
+
+            $reflexiones= $this->conexion->query($consulta);
+            return $reflexiones;
+            $this->conexion->close();
+        }
     }
 ?>
