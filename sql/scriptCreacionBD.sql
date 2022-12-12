@@ -11,41 +11,42 @@ CREATE TABLE Administrador(
 CREATE TABLE Categorias(
     id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
-    imagen VARCHAR(30) NOT NULL,
+    icono VARCHAR(30) NOT NULL,
     CONSTRAINT PK_idCategoria PRIMARY KEY(id),
     CONSTRAINT UQ_nombreCategoria UNIQUE(nombre)
 );
 
 CREATE TABLE Subcategorias(
-    idCategoria TINYINT UNSIGNED NOT NULL,
-    numSub TINYINT UNSIGNED NOT NULL,
+    idCategoria TINYINT UNSIGNED,
+    id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
-    CONSTRAINT UQ_numSub UNIQUE(numSub),
+    CONSTRAINT UQ_id UNIQUE(id),
     CONSTRAINT FK_Subcategorias_idCategoria FOREIGN KEY(idCategoria) REFERENCES Categorias(id),
     CONSTRAINT PK_idSubCategoria PRIMARY KEY(idCategoria, numSub),
     CONSTRAINT UQ_nombreSubcategoria UNIQUE(nombre)
 );
 
 CREATE TABLE Preguntas(
-    id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    numPregunta TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     pregunta VARCHAR(300) NOT NULL,
-    puntos TINYINT UNSIGNED NOT NULL CHECK(puntos > 0),
-    imagen VARCHAR(30) NOT NULL,
-    idCategoria TINYINT UNSIGNED NOT NULL,
-    CONSTRAINT PK_idPreguntas PRIMARY KEY(id),
-    CONSTRAINT UQ_pregunta UNIQUE(pregunta),
-    CONSTRAINT FK_Preguntas_idCategoria FOREIGN KEY(idCategoria) REFERENCES Categorias(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    imagen VARCHAR(30),
+    idSubcategoria TINYINT UNSIGNED NOT NULL,
+    CONSTRAINT FK_Preguntas_idCategoria FOREIGN KEY(idSubcategoria) REFERENCES Subcategorias(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT PK_Preguntas PRIMARY KEY(idSubcategoria,id),
+    CONSTRAINT UQ_pregunta UNIQUE(pregunta)
+    
 );
 
 CREATE TABLE Respuestas(
-    idPregunta TINYINT UNSIGNED NOT NULL,
-    numRespuesta TINYINT UNSIGNED NOT NULL,
+    idSubcategoria TINYINT UNSIGNED NOT NULL,
+    numPregunta TINYINT UNSIGNED NOT NULL,
+    numRespuesta TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     respuesta VARCHAR(300) NOT NULL,
-    imagen VARCHAR(30) NOT NULL,
     correcta BIT NOT NULL,
     CONSTRAINT UQ_numRespuesta UNIQUE(numRespuesta),
-    CONSTRAINT FK_Respuestas_idPregunta FOREIGN KEY(idPregunta) REFERENCES Preguntas(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT PK_idRespuesta PRIMARY KEY(idPregunta, numRespuesta)
+    CONSTRAINT FK_Respuestas_numPregunta FOREIGN KEY(idPregunta) REFERENCES Preguntas(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK_Respuestas_idSubcategoria FOREIGN KEY(idSubcategoria) REFERENCES Subcategorias(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT PK_Respuesta PRIMARY KEY(idSubcategoria,numPregunta, numRespuesta)
 );
 
 CREATE TABLE Clasificacion(

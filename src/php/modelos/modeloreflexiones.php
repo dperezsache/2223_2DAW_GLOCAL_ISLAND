@@ -58,5 +58,32 @@
             $this->conexion->close();
             header('Location:../cruds_categorias/index.php');
         }
+        public function obtenerReflexiones($body){
+            header('mime-type: application/json');
+           $this->conectar();
+           $respuesta=[];
+           $array=[];
+           $id=$body->agua;
+           $consulta='SELECT texto FROM Reflexiones WHERE numPreguntas='.$id;
+           $respuesta=$this->conexion->query($consulta);
+           while($fila = $respuesta->fetch_assoc()){
+                array_push($array,$fila);
+            }
+            $id=$body->aire;
+            $consulta='SELECT texto FROM Reflexiones WHERE numPreguntas='.$id;
+            $respuesta=$this->conexion->query($consulta);
+            while($fila = $respuesta->fetch_assoc()){
+                array_push($array,$fila);
+            }
+            
+            $id=$body->tierra;
+            $consulta='SELECT texto FROM Reflexiones WHERE numPreguntas='.$id;
+            $respuesta=$this->conexion->query($consulta);
+            while($fila = $respuesta->fetch_assoc()){
+                array_push($array,$fila);
+            }
+            $this->conexion->close();
+           echo json_encode($array,JSON_FORCE_OBJECT);
+        }
     }
 ?>

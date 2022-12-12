@@ -31,5 +31,8 @@
         public function eliminar($parametrosQuery){
             $this->modelo->eliminarReflexion($parametrosQuery);
         }
+        public function obtenerReflexiones($body){
+            $this->modelo->obtenerReflexiones($body);
+        }
     }
 ?>
