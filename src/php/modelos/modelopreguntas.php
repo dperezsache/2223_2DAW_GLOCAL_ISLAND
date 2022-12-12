@@ -58,6 +58,7 @@
             $consulta->bind_Param('sssi',$idSubCat,$ultimoID,$respuesta2,$correcta);
             $consulta->execute();
             $this->conexion->close();
+            header('Location:../cruds_categorias/index.php');
         }
         /**
          * Método para la conexión con la BBDD del juego
