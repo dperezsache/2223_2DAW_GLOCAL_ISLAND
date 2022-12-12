@@ -483,6 +483,16 @@ export class VistaJuego extends Vista {
                     p.id="textoPregunta";
                     this.pregunta.appendChild(p)
                     p.appendChild(document.createTextNode(this.preguntasYrespuestas[i].pregunta))
+                    
+                    if( this.preguntasYrespuestas[i].imagen!='' ){
+
+                        let imagen=document.createElement('img')
+                        imagen.id="grifo";
+                        this.pregunta.appendChild(imagen)
+                        imagen.src = '../../img/subidas_bbdd/'+this.preguntasYrespuestas[i].imagen
+                        imagen.draggable = false
+                    }
+                        
                 
                     this.respuesta1=document.createElement('div');
                     this.respuesta1.setAttribute("value",this.preguntasYrespuestas[i].correcta);
@@ -548,6 +558,8 @@ export class VistaJuego extends Vista {
 
     reflexiones(){
 
+
+        //div y p de la reflexión de agua
         let divReflexionesAgua = document.createElement('div')
         this.divJuegoCartas.appendChild(divReflexionesAgua)
         divReflexionesAgua.style.position = 'absolute'
@@ -566,6 +578,7 @@ export class VistaJuego extends Vista {
         reflexionAgua.style.top = '5%'
         reflexionAgua.style.left = '5%'
 
+        //div y p de la reflexión de aire
         let divReflexionesAire = document.createElement('div')
         this.divJuegoCartas.appendChild(divReflexionesAire)
         divReflexionesAire.style.position = 'absolute'
@@ -584,6 +597,7 @@ export class VistaJuego extends Vista {
         reflexionAire.style.top = '5%'
         reflexionAire.style.left = '5%'
 
+        //div y p de la reflexión de tierra
         let divReflexionesTierra = document.createElement('div')
         this.divJuegoCartas.appendChild(divReflexionesTierra)
         divReflexionesTierra.style.position = 'absolute'
