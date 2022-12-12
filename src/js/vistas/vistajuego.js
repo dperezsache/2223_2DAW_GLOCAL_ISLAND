@@ -40,7 +40,12 @@ export class VistaJuego extends Vista {
         //CONTADOR PARA HACER APARECER UN NUMERO POR RESPUESTA, BORRAR AQUI Y EN LA CREACIÓN DINÁMICA DE LAS CARTAS (THIS.NUEVAPREGUNTA())
         this.contadorProvisional=0;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+        this.direccionCat={
+            "Agua":"../../img/subidas_bbdd/icono_agua.png",
+            "Tierra":"../../img/subidas_bbdd/icono_tierra.png",
+            "Aire":"../../img/subidas_bbdd/icono_aire.png"
+        }
+
         this.temporizadorPajaro1 = null
         this.pajaro1 = {
             img: null,
@@ -483,6 +488,12 @@ export class VistaJuego extends Vista {
                     p.id="textoPregunta";
                     this.pregunta.appendChild(p)
                     p.appendChild(document.createTextNode(this.preguntasYrespuestas[i].pregunta))
+
+                    let iconoCat=document.createElement('img')
+                    iconoCat.id="icono";
+                    this.pregunta.appendChild(iconoCat)
+                    iconoCat.src = this.direccionCat[this.preguntasYrespuestas[i].Cat]
+                    iconoCat.draggable = false
                     
                     if( this.preguntasYrespuestas[i].imagen!='' ){
 
@@ -616,6 +627,7 @@ export class VistaJuego extends Vista {
         reflexionTierra.style.top = '5%'
         reflexionTierra.style.left = '5%'
 
+        //envío y petición a ajax para reflexiones
         let datos = {
             'agua' : this.contadorErrores["Agua"],
             'aire' : this.contadorErrores["Aire"],
@@ -627,7 +639,7 @@ export class VistaJuego extends Vista {
             headers:{ 'Content-Type': 'application/json'}
         }
         fetch('prueba.php', opciones)//Hacemos la petición
-            .then(respuesta => respuesta.json())  //Recibimos un objeto de tipo Response. respuesta.text devuelve una Promise
+            .then(respuesta => respuesta.json())
             .then(datos =>{
                 reflexionAgua.textContent=datos[0].texto, 
                 reflexionAire.textContent=datos[1].texto, 
