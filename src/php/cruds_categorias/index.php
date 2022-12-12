@@ -261,7 +261,7 @@
                             echo '<td>'.$fila['numPreguntas'].'</td>';
                             echo '<td>';
                                 echo '<a href="../index.php/controladorreflexiones?id='.$fila['id'].'&texto='.$fila['texto'].'&numPreguntas='.$fila['numPreguntas'].'&nombre='.$fila['nombre'].'">✏</a>';
-                                echo '<a id="eliminarReflexion" href="../index.php/controladorreflexiones?id='.$fila['id'].'">🗑</a>';
+                                echo '<a id="eliminarReflexion" href="../vistas/eliminarreflexion.php?id='.$fila['id'].'">🗑</a>';
                             echo '</td>';
                         echo'</tr>';
                     }
@@ -289,6 +289,7 @@
                                 <option value="1">Agua</option>
                                 <option value="2">Tierra</option>
                                 <option value="3">Aire</option>
+                                
                             </select>
                         </label>
                     </div>
@@ -329,6 +330,9 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div id="footer">
+            <p>Glocal Island</p>
         </div>
         <script type="module" src="../../js/servicios/controladoradmin.js"></script>
     </body>

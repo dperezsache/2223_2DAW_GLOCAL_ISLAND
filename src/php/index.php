@@ -58,6 +58,7 @@
         case "GET":
             if(sizeof($parametrosQuery)>2){
                 $controlador->modificar($parametrosQuery);
+                
             }else{
                 $controlador->eliminar($parametrosQuery);
             }

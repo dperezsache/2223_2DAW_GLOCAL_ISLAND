@@ -66,5 +66,12 @@
         {     
             $this->conexion = new mysqli($this->servidor,  $this->usuario,  $this->contrasenia, $this->bd);
         }
+        public function obtenerSubcategorias(){
+            $this->conectar();
+            $consulta="SELEC id,nombre FROM Subcategorias";
+            $respuesta=$this->conexion->query($consulta);
+            return $respuesta;
+
+        }
     }
 ?>
