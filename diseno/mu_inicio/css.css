@@ -223,12 +223,13 @@ body#bodyClasificaciones {
     margin: 0;
     padding: 0;
     text-align: center;
-    overflow: hidden;
+
 }
 
 html#htmlClasificaciones {
     width: auto;
     height: auto;
+    overflow: auto; /* Para que deje hacer scroll (la especificación de html arriba tiene overflow hidden) */
 }
 
 div#logo {
@@ -241,7 +242,8 @@ div#logo {
 
 header#cabecera {
     background-color: #FEA832;
-    position: absolute;
+    position: fixed;
+    top: 0;
     width: 100%;
 }
 
@@ -287,7 +289,7 @@ footer#footerClasificaciones {
     width: 100%;
     background-color: #FEA832;
     padding: 7.5px 0;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 }
 
