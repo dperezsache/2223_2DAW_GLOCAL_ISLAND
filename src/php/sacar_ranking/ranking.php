@@ -38,7 +38,7 @@
                         while($fila = $tablaRanking->fetch_array()){
                             echo '<tr>';
                                 echo '<td>'.$i.'º</td>';
-                                echo '<td>'.$fila['alias'].'</td>';
+                                echo '<td class="textoAlias">'.$fila['alias'].'</td>';
                                 echo '<td class="soloDesktop">'.$fila['fechaHora'].'</td>';
                                 echo '<td>'.$fila['puntuacion'].'</td><br><br>';
                                 $i++;
