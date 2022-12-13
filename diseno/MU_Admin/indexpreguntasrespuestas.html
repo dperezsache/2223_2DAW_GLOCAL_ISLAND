@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="es">
+    <head>
+		<meta charset="utf-8"/>
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García"/>
+		<title>Glocal Island</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="../MU_Admin/css.css"/>
+		<link rel="shortcut icon" href="../Logo/logo2.png"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+	</head>
+    <body>
+        <!-- MENU -->
+        <header>
+            <div class="logo">
+                <img src="../Logo/logo1.png" alt="Logo Glocal Island"/>
+            </div>
+            <nav>
+                <input type="checkbox" id="check"/>
+                <label for="check" id="btnMenu">
+                    <img src="../Logo/menu.png" alt="Icono de menú" />
+                </label>
+                <ul>
+                    <li id="flex0"><img src="../Logo/logo1.png" alt="Logo Glocal Island"/></li>
+                    <li><a class="opciones" id="liListado">Listado</a></li>
+                    <li><a class="opciones" id="liCategorias">Categorías</a></li>
+                    <li><a class="opciones" id="liReflexiones">Reflexiones</a></li>
+                    <li><a class="opciones" id="liPreguntas">Preguntas</a></li>
+                    <li id="flex1"><a class="opciones" id="liCerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- PREGUNTAS Y RESPUESTAS -->
+        <div id="divCrudPreguntasRespuestas">
+            <h1>CREAR PREGUNTA & RESPUESTAS</h1>
+            <form id="formPreguntasRespuestas" method="post">
+                <!-- PREGUNTAS -->
+                <div>
+                    <label for="nuevaPregunta">
+                        Pregunta<br/>
+                        <textarea id="nuevaPregunta" rows="3" cols="60" required></textarea>
+                    </label>
+                </div>
+                <div>
+                    <label for="categoriaPregunta">
+                        Categoría de la pregunta
+                        <select id="categoriaPregunta">
+                            <option>Agua</option>
+                            <option>Tierra</option>
+                            <option>Aire</option>
+                        </select>
+                    </label>
+                </div>
+                <div>            
+                    <label for="imagenPregunta">Imagen</label>
+                    <input type="file" id="imagenPregunta" accept="image/png, image/jpeg" required/><br/>
+                </div>
+                <hr/>
+                <!-- RESPUESTAS -->
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="primeraRespuesta">
+                            Respuesta uno <input id="primeraRespuesta" type="text" maxlength="300" required/>
+                        </label>
+                        <label class="textoCorrectas" for="btnCorrecta1">
+                            ¿Es la correcta? <input type="radio" id="btnCorrecta1" name="btnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="segundaRespuesta">
+                            Respuesta dos <input id="segundaRespuesta" type="text" maxlength="300" required/>
+                        </label>
+                        <label class="textoCorrectas" for="btnCorrecta2">
+                            ¿Es la correcta? <input type="radio" id="btnCorrecta2" name="btnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- BOTONES FORMULARIO -->
+                <div>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+            <h1>LISTADO PREGUNTAS & RESPUESTAS</h1>
+            <table id="listadoPreguntasRespuestas">
+                <thead>
+                    <tr>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Pregunta</th>
+                        <th scope="col">Respuesta 1</th>
+                        <th scope="col">Respuesta 2</th>
+                        <th scope="col">Resp. correcta</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" data-titulo="Categoría">Agua</td>
+                        <td data-titulo="Pregunta">¿Se ahorra agua si cierras el grifo al lavarte los dientes?</td>
+                        <td data-titulo="Respuesta 1">Sí</td>
+                        <td data-titulo="Respuesta 2">No</td>
+                        <td data-titulo="Resp. correcta">Respuesta 1</td>
+                        <td data-titulo="Opciones">
+                            <a><span class="material-symbols-outlined">edit</span></a>
+                            <a><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row" data-titulo="Categoría">Tierra</td>
+                        <td data-titulo="Pregunta">Los desechos diarios como servilletas de cocina o los papeles sucios. ¿Deben ir al contenedor azul?</td>
+                        <td data-titulo="Respuesta 1">Sí</td>
+                        <td data-titulo="Respuesta 2">No</td>
+                        <td data-titulo="Resp. correcta">Respuesta 2</td>
+                        <td data-titulo="Opciones">
+                            <a><span class="material-symbols-outlined">edit</span></a>
+                            <a><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- MODIFICACIÓN PREGUNTAS RESPUESTAS -->
+        <div id="divModPreguntasRespuestas">
+            <h1>EDITAR PREGUNTA & RESPUESTAS</h1>
+            <form id="formModPreguntasRespuestas" method="post">
+                <!-- MODIFICAR PREGUNTAS -->
+                <div>
+                    <label for="modPregunta">
+                        Nueva pregunta<br/>
+                        <textarea id="modPregunta" rows="3" cols="60" required>¿Es bueno tirar pilas al río?</textarea>
+                    </label>
+                </div>
+                <div>
+                    <label for="modCategoriaPregunta">
+                        Nueva categoría de la pregunta
+                        <select id="modCategoriaPregunta">
+                            <option>Agua</option>
+                            <option>Tierra</option>
+                            <option>Aire</option>
+                        </select>
+                    </label>
+                </div>
+                <div>            
+                    <label for="modImagenPregunta">Nueva imagen</label>
+                    <input type="file" id="modImagenPregunta" accept="image/png, image/jpeg" required/><br/>
+                </div>
+                <hr/>
+                <!-- MODIFICAR RESPUESTAS -->
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="modPrimeraRespuesta">
+                            Nueva respuesta uno <input id="modPrimeraRespuesta" type="text" maxlength="300" value="Sí" required/>
+                        </label>
+                        <label class="textoCorrectas" for="modBtnCorrecta1">
+                            ¿Es la correcta? <input type="radio" id="modBtnCorrecta1" name="modBtnCorrecta" required/>
+                        </label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend></legend>
+                    <div>
+                        <label for="modSegundaRespuesta">
+                            Nueva respuesta dos <input id="modSegundaRespuesta" type="text" maxlength="300" value="No" required/>
+                        </label>
+                        <label class="textoCorrectas" for="modBtnCorrecta2">
+                            ¿Es la correcta? <input type="radio" id="modBtnCorrecta2" name="modBtnCorrecta" checked required/>
+                        </label>
+                    </div>
+                </fieldset>
+                <!-- BOTONES FORMULARIO MODIFICAR -->
+                <div>
+                    <button type="reset">Cancelar</button>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div id="footer">
+            <p>GLOCAL ISLAND</p>
+            <img src="img/wcag2AA.png" alt="Logo WCAG 2.0 AA"/>
+        </div>
+    </body>
+</html>

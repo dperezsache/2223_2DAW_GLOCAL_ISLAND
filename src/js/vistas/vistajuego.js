@@ -454,8 +454,6 @@ export class VistaJuego extends Vista {
         }
         
         this.nuevaPregunta()
-
-        
     }
 
     /**
@@ -562,13 +560,19 @@ export class VistaJuego extends Vista {
                     this.puntosJugador.value=this.puntuacionGlobal
                     
                     this.reflexiones()
+<<<<<<< HEAD
 
+=======
+>>>>>>> sprint3_david
             }
     }
 
     reflexiones(){
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> sprint3_david
         //div y p de la reflexión de agua
         let divReflexionesAgua = document.createElement('div')
         this.divJuegoCartas.appendChild(divReflexionesAgua)
@@ -644,8 +648,11 @@ export class VistaJuego extends Vista {
                 reflexionAire.textContent=datos[1].texto, 
                 reflexionTierra.textContent=datos[2].texto
             })
+<<<<<<< HEAD
         
             
+=======
+>>>>>>> sprint3_david
     }
 
     /**
@@ -690,17 +697,30 @@ export class VistaJuego extends Vista {
             if(this.alturaAgua<320)
                 this.alturaAgua+=120;
         }
-        if(this.contadorErrores["Tierra"]%3==0 && this.contadorErrores["Tierra"]!=0){
-            //this.contadorErrores["tierra"]=0;
-            console.log("ERROR DE TIERRA")
+     
+        //this.contadorErrores["tierra"]=0;
+        switch(this.contadorErrores["Tierra"]) {
+            case 1:
+                this.isla.src = "../../img/islatierra1.png"
+                console.log("ERROR DE TIERRA 1")
+                break
+            case 2:
+                this.isla.src = '../../img/islatierra2.png'
+                console.log("ERROR DE TIERRA 2")
+                break
+            case 3:
+                this.isla.src = '../../img/islatierra3.png'
+                console.log("ERROR DE TIERRA 3")
+                break
+            default:
+                break
         }
+
         if(this.contadorErrores["Aire"]>=1/*this.contadorErrores["Aire"]%3==0 && this.contadorErrores["Aire"]!=0*/){
             //this.contadorErrores["aire"]=0
             console.log("ERROR DE AIRE")
             this.juego.style.backgroundColor=coloresCielo[this.contadorErrores["Aire"]];
         }
-        
-        
     }
 
     /**

@@ -4,14 +4,18 @@
 	src:
 		url("fuente/mabook/Mabook.ttf");
 }
-/*La resolución nativa será 1366x768 y se hará adaptable*/
-html{
-	overflow:hidden;
+
+@font-face{
+	font-family:"Comfortaa";
+	src:
+		url("fuente/comfortaa/Comfortaa-VariableFont_wght.ttf");
 }
 
+/*La resolución nativa será 1366x768 y se hará adaptable*/
 body{
-	height:100%;
-	width:100%;
+	width: 1366px;
+	height: 768px;
+	overflow:hidden;
 }
 
 img{
@@ -99,4 +103,95 @@ img#icono{
 	top:-3%;
 	left:-3%;
 	margin: 0 auto;
+}
+
+/* -----Fin juego----- */
+div#divJuegoAcabado {
+	float: left;
+	height: 100%;
+	width: 50%;
+	background-color: #CBD8FE;
+}
+
+div#divFinJuego {
+	margin: auto;
+	background: url(img/cartaFin.png);
+	width: 430px;
+	height: 120px;
+	background-size: cover;
+	position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	padding: 0 20px;
+	font-family: Comfortaa;
+	z-index: 1;
+}
+
+span#puntos {
+	color: red;
+	font-weight: bold;
+}
+
+form button {
+	background-color: #ffed9b;
+	border: 2px solid #e6993b;
+	border-radius: 5px;
+}
+
+form button:hover {
+	background-color: #ffe678;
+}
+
+div#divCanvas h1 {
+	font-family: Mabook;
+	position: absolute;
+	left: 65%;
+	top: 25%;
+}
+
+/* Media Queries de Fin juego */
+@media (max-width: 1200px) {
+	div#divJuegoAcabado {
+		display: none;
+	}
+
+	div#divFinJuego {
+		left: 0;
+	}
+
+	div#divCanvas {
+		width: 100%;
+	}
+
+	div#divCanvas h1 {
+		left: 5%;
+		top: 20%;
+	}
+
+	body {
+		margin: 0;
+	}
+}
+
+@media (max-width: 500px) {
+	div#divFinJuego {
+		left: 0;
+		width: 250px;
+		height: 180px;
+	}
+
+	form button {
+		display: block;
+		margin: 5px 0;
+	}
+
+	div#divCanvas {
+		width: 100%;
+	}
+
+	div#divCanvas h1 {
+		top: 20%;
+	}
 }

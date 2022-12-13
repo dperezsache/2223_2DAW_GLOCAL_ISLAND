@@ -217,6 +217,56 @@ nav #btnMenu {
     #divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones{
         margin: 50px 0 !important;
     }
+
+    /* -----AJUSTES PREGUNTAS Y RESPUESTAS----- */
+    #divCrudPreguntasRespuestas fieldset,
+    #divModPreguntasRespuestas fieldset {
+        display: block;
+    }
+
+    .textoCorrectas {
+        font-size: 0.4em;
+    }
+
+    #divCrudPreguntasRespuestas table,
+    #divModPreguntasRespuestas table {
+        table-layout: fixed;
+        padding: 0;
+        width: auto;    /* Calcular el ancho automáticamente (ya no es 90%) */
+        margin: auto;
+    }
+
+    /* Hacer que cada tr esté separado del siguiente */
+    #divCrudPreguntasRespuestas tr,
+    #divModPreguntasRespuestas tr {
+        display: block;
+        margin: 10px;
+    }
+
+    /* Hacer que el título de los campos de la tabla salgan dentro de los td */
+    #divCrudPreguntasRespuestas td::before,
+    #divModPreguntasRespuestas td::before {
+        content: attr(data-titulo); /* Se coge el valor del atributo personalizado creado en HTML */
+        font-weight: bold;
+        padding-right: 15px;
+    }
+
+    /* Ocultar cabecera de la tabla */
+    #divCrudPreguntasRespuestas thead,
+    #divModPreguntasRespuestas thead {
+        display: none;
+    }
+
+    #divCrudPreguntasRespuestas td,
+    #divModPreguntasRespuestas td {
+        font-size: 0.5em;
+        display: block;
+        text-align: left;
+        width: 435px;
+        height: auto; /* Para quitar el 30px especificado por un estilo más general */
+        padding: 5px;
+        margin: auto;
+    }
 }
 /*---------Media Query Movil---------*/
 @media (max-width:540px){
@@ -237,12 +287,26 @@ nav #btnMenu {
         padding-top: 25px;
     }
 
+    /* -----AJUSTES PREGUNTAS Y RESPUESTAS----- */
+    .textoCorrectas {
+        display: block;
+    }
+
+    #divCrudPreguntasRespuestas td, th,
+    #divModPreguntasRespuestas td, th {
+        width: 270px;
+    }
+
+    #divCrudPreguntasRespuestas textarea,
+    #divModPreguntasRespuestas textarea {
+        width: 250px;
+    }
 }
 
 /*-----CATEGORIAS Y SUBCATEGORIAS-----*/
 
-#divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones{
-    margin: 150px 0;
+#divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divReflexiones, #divModReflexiones {
+    margin: 50px 0;
     font-size: 1.5em;
 }
 
@@ -265,21 +329,70 @@ nav #btnMenu {
     margin-top: 40px;
     font-family: "Comfortaa";
 }
+
+/* -----PREGUNTAS Y RESPUESTAS----- */
+#divCrudPreguntasRespuestas, #divModPreguntasRespuestas {
+    margin: 50px 0;
+    font-size: 1.5em;
+}
+
+#divCrudPreguntasRespuestas input, select,
+#divModPreguntasRespuestas input, select {
+    margin-bottom: 20px;
+}
+
+#divCrudPreguntasRespuestas textarea,
+#divModPreguntasRespuestas textarea {
+    resize: none;
+}
+
+#divCrudPreguntasRespuestas hr,
+#divModPreguntasRespuestas hr {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(210,210,210,1) 25%, rgba(210,210,210,1) 75%, rgba(255,255,255,1) 100%);
+}
+
+#divCrudPreguntasRespuestas fieldset,
+#divModPreguntasRespuestas fieldset {
+    display: inline-block;
+    border: 0;
+}
+
+.textoCorrectas {
+	font-size: 0.6em;
+}
+
+#divCrudPreguntasRespuestas table,
+#divModPreguntasRespuestas table {
+    width: 90%;
+}
+
 /* -----REFLEXIONES----- */
 
-#divReflexiones textarea{
+#divReflexiones textarea,
+#divModReflexiones textarea {
     vertical-align: middle;
     min-width: 300px;
     min-height: 80px;
+}
+
+#divReflexiones table {
+    width: 90%;
 }
 
 /*-----FOOTER-----*/
 #footer{
     width: 100%;
     background-color: #FF8400;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
     margin-top: 50px;
     position: relative;
     bottom: 0;
+}
+
+#footer img {
+    width: 128px;
+    height: 50px;
 }

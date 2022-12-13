@@ -1,43 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-		<meta charset="utf-8">
-		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
+		<meta charset="utf-8"/>
+		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García"/>
 		<title>Glocal Island</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="./css.css">
-		<link rel="shotcut icon" href="../Logo/logo2.png">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="../MU_Admin/css.css"/>
+		<link rel="shortcut icon" href="../Logo/logo2.png"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 	</head>
     <body>
         <!-- MENU -->
         <header>
             <div class="logo">
-                <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
+                <img src="../Logo/logo1.png" alt="Logo Glocal Island"/>
             </div>
             <nav>
                 <input type="checkbox" id="check" />
                 <label for="check" id="btnMenu">
-                    <img src="../Logo/menu.png" alt="Icono de menú" />
+                    <img src="../Logo/menu.png" alt="Icono de menú"/>
                 </label>
                 <ul>
-                    <li id="flex0">
-                        <img src="../Logo/logo1.png" alt="Logo Glocal Island" id="logo" />
-                    </li>
-                    <li >
-                        <a class="opciones" id="liListado">Listado</a>
-                    </li>
-                    <li >
-                        <a class="opciones" id="liCategorias">Categorías</a>
-                    </li>
-                    <li >
-                        <a class="opciones" id="liReflexiones">Reflexiones</a>
-                    </li>
-                    <li >
-                        <a class="opciones" id="liPreguntas">Preguntas</a>
-                    </li>
-                    <li id="flex1">
-                        <a class="opciones" id="liCerrarSesion">Cerrar sesión</a>
-                    </li>
+                    <li id="flex0"><img src="../Logo/logo1.png" alt="Logo Glocal Island"/></li>
+                    <li><a class="opciones" id="liListado">Listado</a></li>
+                    <li><a class="opciones" id="liCategorias">Categorías</a></li>
+                    <li><a class="opciones" id="liReflexiones">Reflexiones</a></li>
+                    <li><a class="opciones" id="liPreguntas">Preguntas</a></li>
+                    <li id="flex1"><a class="opciones" id="liCerrarSesion">Cerrar sesión</a></li>
                 </ul>
             </nav>
         </header>
@@ -50,23 +39,80 @@
                 <textarea name="reflexion" id="reflexion"></textarea><br>
                 <label for="numPreguntas">Número de preguntas</label>
                 <select id="numPreguntas">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
                 </select><br>
                 <button type="reset">Cancelar</button>
                 <button type="submit">Enviar</button>
             </form>
+            
+            <h1>LISTADO DE REFLEXIONES</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nº preguntas</th>
+                        <th>Reflexión</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </td>
+                        <td>
+                            <a><span class="material-symbols-outlined">edit</span></a>
+                            <a><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </td>
+                        <td>
+                            <a><span class="material-symbols-outlined">edit</span></a>
+                            <a><span class="material-symbols-outlined">delete</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="divModReflexiones">
+            <h1>MODIFICAR REFLEXION</h1>
+            <label for="modReflexion">Nueva reflexión</label>
+                <textarea name="modReflexion" id="modReflexion">Lorem ipsum dolor sit amet</textarea><br>
+                <label for="modNumPreguntas">Nuevo nº de preguntas</label>
+                <select id="modNumPreguntas">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Enviar</button>
         </div>
         <div id="footer">
-            <p>Glocal Island</p>
+            <p>GLOCAL ISLAND</p>
+            <img src="img/wcag2AA.png" alt="Logo WCAG 2.0 AA"/>
         </div>
     </body>
 </html>
