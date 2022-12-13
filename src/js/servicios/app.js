@@ -63,10 +63,10 @@ class Controlador {
 	/**
 	 * Método pulsarLogo que oculta las vistas y muestra la del inicio
 	 */
-	pulsarLogo() {
-		this.ocultarVistas()
+	/*pulsarLogo() {
 		this.vistaInicio.mostrar(true)
-	}
+		this.vistaJuego.mostrar(false)
+	}*/
 
 	/**
 	 * Método pulsarComenzarInicio quer oculta las vistas y muestra la del juego
@@ -74,6 +74,8 @@ class Controlador {
 	pulsarComenzarInicio() {
 		this.ocultarVistas()
 		this.getPreguntasRespuestas()
+		this.divFinJuego = document.getElementById('divFinJuego')
+		this.divFinJuego.style.display='none'
 		this.vistaJuego.mostrar(true)
 	}
 

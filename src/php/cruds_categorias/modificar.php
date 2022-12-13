@@ -80,7 +80,7 @@
                 FROM Subcategorias
                 WHERE id='.$idSubcategoria.'';
 
-                $nombres=mysqli_query($conexionNombre,$consultaNombre);
+                $nombres=$conexionNombre->query($consultaNombre);
                 while($fila = $nombres->fetch_array()){
                     $nombreSubCategoria = $fila['nombre'];
                 }
@@ -102,7 +102,7 @@
                         FROM Categorias
                         ORDER BY id';
 
-                        $nombres=mysqli_query($conexionCategoria,$consultaMod);
+                        $nombres=$conexionCategoria->query($consultaMod);
                         $i=1;
                         while($fila = $nombres->fetch_array()){
                             echo '<option value='.$i.'>'.$fila['nombre'].'</option>';

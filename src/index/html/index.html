@@ -10,6 +10,7 @@
 	<body>
 		<!-- PANTALLA DE INICIO -->
 		<div id="divInicio">
+			<button id="botonInstrucciones">📜</button>
 			<img id="imgSol" src="../../img/sol.png" alt="Un radiante y brillante sol amarillo"/>
 			<img id="imgLuna" src="../../img/luna.png" alt="Una puntiaguda y grisacea luna menguante"/>
 			<img class="imgNubePeque" src="../../img/nube.png" alt="Una pequeña y esponjosa nube blanca"/>
@@ -23,22 +24,34 @@
 			<div id="divAgua" class="carga ola"></div>
 			<div id="divBotones">
 				<button id="botonComenzar"></button><br>
-				<button id="botonRanking"></button>
+				<a href="../../php/sacar_ranking/ranking.php"><button id="botonRanking"></button></a>
 			</div>
 		</div>
 		<!-- PANTALLA DEL JUEGO -->
 		<div id="divCanvas">
-			<div id="divJuego"><img draggable="false" src="../../img/logo.png" id="logo"  alt="Logotipo de colores llamativos azules y naranja referenciando una playa desierta con letras que dice Glocal Island"></div>
+			<div id="divJuego"><a href=""><img draggable="false" src="../../img/logo.png" id="logo"  alt="Logotipo de colores llamativos azules y naranja referenciando una playa desierta con letras que dice Glocal Island"></a></div>
 			<div id="divPregunta" draggable="true">
-				<p id="textoPregunta">Cierras el grifo cuando te lavas los dientes?</p>
-				<img id="grifo" src="../../img/grifo.png" draggable="false">
-				<img id="icono" src="../../img/icono_agua.png" draggable="false">
+				<p id="textoPregunta">La primera es de prueba, arrastra hacia una respuesta para iniciar</p>
 			</div>
 			<div id="divRespuesta1" class="respuestas">
-				<p id="textoRespuesta">SI</p>
+				<p id="textoRespuesta">COMENZAR</p>
 			</div>
 			<div id="divRespuesta2" class="respuestas">
-				<p id="textoRespuesta">NO</p>
+				<p id="textoRespuesta">COMENZAR</p>
+			</div>
+			<div id="divFinJuego">
+				<p>
+					Has conseguido <span id="puntos"></span> puntos, 
+					introduce un alias para que tu puntuación se publique.
+				</p>
+				<form method='post' action="../../php/sacar_ranking/introducirRanking.php">
+					<label for="aliasJugador">
+						Alias:	<input type="text" name="aliasJugador" maxlength="50" placeholder="Alias del jugador"/>
+					</label>
+					<input type="text" name="puntosJugador" id="puntosJugador" readonly>
+					<button type="submit" name="botonEnviar" id="botonEnviar">Publicar</button>
+					<a href=""><button type="button" name="botonSalir">Menú</button></a>
+				</form>
 			</div>
 		</div>
 		<script type=module src="../../js/servicios/app.js"></script>

@@ -157,7 +157,7 @@
                     $idcategoria = "SELECT id
                     FROM Categorias
                     WHERE nombre='".$nombre."';";
-                    $idSacado=mysqli_query($conexion3,$idcategoria);
+                    $idSacado=$conexion3->query($idcategoria);
                     while($fila = $idSacado->fetch_array()){
                         $id=$fila['id'];
                     }
@@ -188,7 +188,7 @@
                         FROM Categorias
                         ORDER BY id';
 
-                        $nombres=mysqli_query($conexionSUB,$consultaSUB);
+                        $nombres=$conexionSUB->query($consultaSUB);
                         $i=1;
                         while($fila = $nombres->fetch_array()){
                             echo '<option value="'.$i.'">'.$fila['nombre'].'</option>';
@@ -215,7 +215,7 @@
                         FROM Categorias
                         ORDER BY id';
 
-                        $nombres=mysqli_query($conexion,$consulta);
+                        $nombres=$conexion->query($consulta);
                         $i=1;
                         while($fila = $nombres->fetch_array()){
                             echo '<option value='.$i.'>'.$fila['nombre'].'</option>';
@@ -269,7 +269,7 @@
                         WHERE S.idCategoria=C.id
                         ORDER BY id';
 
-                        $nombresSubcategorias=mysqli_query($conexionListado,$consultaListado);
+                        $nombresSubcategorias=$conexionListado->query($consultaListado);
                         while($fila = $nombresSubcategorias->fetch_array()){
                             echo '<tr>';
                                 echo '<td>'.$fila['sub'].'</td>';

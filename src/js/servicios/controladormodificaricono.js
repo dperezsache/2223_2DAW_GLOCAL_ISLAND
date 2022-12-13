@@ -45,11 +45,10 @@ class ControladorModificarIcono {
 		window.location.href = 'index.php'
 	}
 
-	/*
+	
 	pulsarNavReflexiones() {
 		window.location.href = 'index.php'
 	}
-	*/
 
 	/**
 	 * Atención a la pulsación sobre el enlace de preguntas

@@ -1,7 +1,17 @@
+@font-face{
+	font-family:"Mabook";
+	src: url("../../fonts/Mabook.ttf");
+}
+
+@font-face{
+	font-family:"Comfortaa";
+	src: url("../../fonts/Comfortaa-VariableFont_wght.ttf");
+}
+
 /*La resolución nativa será 1366x768 y se hará adaptable*/
 html{
 	height:768px;
-	/*width:1366px;*/
+	width:1366px;
 	overflow:hidden;
 	background-color: white;
 }
@@ -16,28 +26,15 @@ body{
 	margin:0;
 }
 
-@font-face{
-	font-family: 'Mabook';
-	src: url('../fonts/Mabook.ttf');
-	font-style: normal;
-	font-weight: normal;
-}
-a{
-	cursor:pointer !important;
-}
-
-button{
-	cursor:pointer !important;
+/* -----PANTALLA DE INICIO----- */
+audio{
+    width:50px;
+    position:absolute;
+    left:96.5%;
+    background-color: #3AE8A5;
+    opacity: 0.5;
 }
 
-@font-face{
-	font-family: 'Comfortaa';
-	src: url('../fonts/Comfortaa-VariableFont_wght.ttf');
-	font-style: normal;
-	font-weight: normal;
-}
-
-/* ----------PANTALLA DE INICIO----------- */
 #divInicio{
 	height:100%;
 	width: 100%;
@@ -62,20 +59,6 @@ button{
     animation-direction: alternate;
 }
 
-#botonInstrucciones{
-    display: block;
-    background-color: #FFA90D;
-    width: 3%;
-    height: 5%;
-    position: absolute;
-    left:90%;
-    z-index: 15;
-}
-
-#botonInstrucciones:hover{
-    background-color: #C4830A;
-}
-
 #divInicio #divAgua{
     width: 100%;
     height: 32.55208333%;/*La altura ideada es de 768px para el body, y para estos dos div seria de 200px*/
@@ -87,7 +70,38 @@ button{
 div img{
     width:100%;
     height:auto;
+}
+
+button{
+    width: 100%;/*150px de ancho por boton, su div tendrá el ancho del tamaño del botón*/
+    height: 83.33333333%;
+    border: none;
+    margin-top: 16.6666667%;
+}
+#botonComenzar{
+    background-image: URL("img/botonComenzar.png");
+    background-repeat:no-repeat;
+    background-position:center;
+                    
+    background-size: 66.66666667% 166.66666667%;/*Para el calculo del background-size, usé el mismo metodo, cogí las medidas en px iniciales y calculé*/
+    background-color: transparent;              /*Ambas medidas eran de 100px, la altura antes del porcentaje era de 60px y el ancho de 150px*/
+    
+}
+#botonRanking{
+    background-image: URL("img/boton_ranking.png");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size: 66.66666667% 166.66666667%;
+    background-color: transparent;
+    
+    
+}
+
+#imgIslas{
+    width:51.24450952%;/*La imagen de la isla seria de unos 700px y se distribuiria en el body 1366px*/
     position:absolute;
+    left:21.96193265%;
+    top:10.41666667%;
 }
 
 #divBotones{
@@ -98,46 +112,6 @@ div img{
     top:67.70833333%;
     left:42.45973646%;/*580px;*/
     margin-top: 2.604166667%;
-    
-}
-
-#divBotones button{
-    width: 100%;/*150px de ancho por boton, su div tendrá el ancho del tamaño del botón*/
-    height: 83.33333333%;
-	margin-top: 16.6666667%;
-    transition: .5s;
-    cursor: pointer;
-    border:none;
-}
-
-#botonComenzar{
-    background-image: URL("../img/boton_comenzar.png");
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size: 66.66666667% 166.66666667%;/*Para el calculo del background-size, usé el mismo metodo, cogí las medidas en px iniciales y calculé*/
-    background-color: transparent;              /*Ambas medidas eran de 100px, la altura antes del porcentaje era de 60px y el ancho de 150px*/
-}
-
-#botonRanking{
-    background-image: URL("../img/boton_ranking.png");
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size: 66.66666667% 166.66666667%;
-    background-color: transparent;
-}
-
-#hidden{
-    background-color: black;
-    overflow: hidden;
-    width: 200px;
-    height: 200px;
-}
-
-#imgIslas{
-    width:51.24450952%;/*La imagen de la isla seria de unos 700px y se distribuiria en el body 1366px*/
-    position:absolute;
-    left:21.96193265%;
-    top:10.41666667%;
 }
 
 #imgSol{
@@ -146,7 +120,6 @@ div img{
     animation: sol;
     animation-duration: 40s;
     animation-iteration-count: infinite;
-    overflow: hidden;
     animation-play-state:20s;
 }
 
@@ -157,7 +130,6 @@ div img{
     left:-50%;/*Propiedad para evitar que la luna aparezca antes de empezar su animación*/
     animation-duration: 40s;
     animation-iteration-count: infinite;
-    overflow: hidden;
 }
 
 .imgNubeGrande{
@@ -178,7 +150,6 @@ div img{
     animation-direction: reverse;
     animation-timing-function: linear;
 }
-
 /*ANIMACIONES DE LA PÁGINA DE INICIO. MOVIMIENTO Y CICLO DIA Y NOCHE*/
 
 /*Movimiento del logotipo cambiando su width para el efecto de pulso del logotipo establecido en la página de inicio*/
@@ -206,9 +177,9 @@ div img{
 @keyframes sol {
     0%{left:0px; top:36.87315634%;}
     25%{left:40.26354319%;top:0px;opacity: 1;}
-    50%{left:95.90043924%;top:36.87315634%;opacity: 1;}
+    50%{left:95.90043924%;top:36.87315634%;opacity: 1;width: 7.320644217%;}
     51%{left:95.90043924%;top:36.87315634%;opacity: 0}
-    100%{left:95.90043924%;top:36.87315634%;opacity: 0;}
+    100%{left:95.90043924%;top:36.87315634%;opacity: 0;width: 0%;}
 }
 /*--------------------------*/
 /*Animación ambiental para crear un ciclo dia/noche en la página de inicio*/
@@ -246,267 +217,134 @@ y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimient
     opacity:0.5;
 }
 
-/* ----------CSS Pantalla de Juego---------- */
-
-/* Clase que se añade a las tarjetas de respuesta cuando intentamos meter la pregunta en él */
-canvas{
-    width:100%;
-    height: 100%;
-}
-.drag-over {
-    background-color:#C4830A !important;
+/* -----PANTALLA RANKINGS----- */
+body#bodyClasificaciones {
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding-bottom: 150px;  /* Para compensar la altura del footer (115px) más un extra de separación */
 }
 
-div#divCanvas{
-	height:90%;
-	width:100%;
-	background-color: #FFA90D;
-	position:relative;
+html#htmlClasificaciones {
+    width: auto;
+    height: auto;
+    overflow-y: auto; /* Para que deje hacer scroll vertical (la especificación html de arriba tiene overflow hidden) */
+    position: relative;
+    min-height: 100%;
 }
 
-div#divJuego{
-	float:left;
-	height:100%;
-	width:60%;
-	background-color: #cbe7fe;
-}
-
-div#divJuego img{
-	position:absolute;
-	height:auto;
-	width:120px;
-    cursor: pointer;
-}
-
-div#divPregunta{
-	float:left;
-	left:71%;
-	top:5%;
-	height:45%;
-	position:absolute;
-	width:18%;
-	cursor: grab;
-    background-image: url(../img/cartaBambu.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-p#textoPregunta{
-	position: absolute;
-	top:7%;
-	padding:7%;
-	text-align: center;
-	font-size: 1.2em;
-	font-family: Mabook;
-}
-
-img#grifo{
-	width:60%;
-	height:auto;
-	margin: 0 auto;
-	left:20%;
-	top:45%;
-}
-
-img#icono{
-	width:20%;
-	height:auto;
-	top:-3%;
-	left:-3%;
-	margin: 0 auto;
-}
- 
-img#marcoPregunta{
-	width:100%;
-	height:100%;
-}
-
-div#divRespuesta1{
-	margin-left:1%;
-}
-
-div#divRespuesta2{
-	margin-left:2%;
-	margin-right:1%;
-}
-div#divPuntuacion{
+div#logo {
+    width: 128px;
+    height: 80px;
     position: absolute;
-    top:50px;
-    left: 400px;
-    font-family: Mabook;
-}
-div#divCronometro{
-    position:absolute;
-    top:20px;
-    left:1500px;
-    font-family: Mabook;
+    top: 0;
+    left: 0;
 }
 
-div.respuestas{
-	float:left;
-	height:45%;
-	top:50%;
-	position:relative;
-	width:18%;
-    background-image: url(../img/cartaBambu.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-p#textoRespuesta{
-	position: absolute;
-	/* top:30%;
-	left: 40%; */
-	text-align: center;
-	font-size: 3em;
-	font-family: Mabook;
+header#cabecera {
+    background-color: #FEA832;
+    height: 100px;
     width: 100%;
 }
 
-.drop-pregunta{
-	width:100% !important;
-	height: 100% !important;
-	top:0 !important;
-	left:0 !important;
+header#cabecera h1 {
+    font-family: Mabook;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0;
 }
 
-.dragging-pregunta{
-    cursor:grabbing !important;
+div#divClasificaciones {
+    margin-top: -30px;
+    margin-left: 30px;
 }
 
-
-/* -----Fin juego----- */
-
-div#divFinJuego {
-    display: none;
+table#tablaClasificaciones {
+    border-collapse: collapse;
     margin: auto;
-    background: url(../img/cartaFin.png);
-    width: 430px;
-    height: 120px;
-    background-size: cover;
-    position: absolute;	/* Absolute para que no afecte a los demás divs, y todas las posiciones a 0 para centrarlo */
-    top: -43%;
+    width: 60%;
+}
+
+table#tablaClasificaciones td, 
+table#tablaClasificaciones th {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+table#tablaClasificaciones td.aliasTexto {
+    max-width: 50px;
+    word-wrap: break-word;  /* Si el texto del alias pasa de 50px, partir el texto a la siguiente línea */
+}
+
+table#tablaClasificaciones th {
+    background-color: #FEA832;
+}
+
+table#tablaClasificaciones tr:nth-child(even) {
+    background-color: rgb(250, 250, 250);
+}
+
+div#logo2 {
+    width: 172px;
+    height: 128px;
+    margin: auto;
+    margin-top: 20px;
+    display: none;
+}
+
+footer#footerClasificaciones {
+    position: absolute;
     bottom: 0;
-    left: 60%;
-    right: 0;
-    padding: 0 20px;
-    font-family: Comfortaa;
-    z-index: 1;
+    width: 100%;
+    height: 50px;
+    background-color: #FEA832;
+    padding: 7.5px 0;
 }
 
-span#puntos {
-    color: red;
-    font-weight: bold;
+/* Media Queries - Pantalla rankings */
+@media (max-width:700px){
+    header#cabecera h1 {
+        font-size: 1.5em;
+        text-align: left;
+        padding-left: 100px;
+    }
+
+    div#divClasificaciones {
+        margin-left: 0;
+    }
+
+    table#tablaClasificaciones {
+        width: 40%;
+    }
+
+    div#logo {
+        width: 100px;
+        height: 64px;
+    }
 }
 
-input#puntosJugador{
-    display:none;
-}
+@media (max-width:530px){
+    header#cabecera h1 {
+        font-size: 1.25em;
+        padding: 0;
+        padding-top: 25px;
+        text-align: center;
+    }
 
-form button {
-    background-color: #ffed9b;
-    border: 2px solid #e6993b;
-    border-radius: 5px;
-}
-
-form button:hover {
-    background-color: #ffe678;
-}
-
-/*Media querie ideada para smartphones*/
-@media only screen and (min-width: 360px) and (max-width: 768px) {
-    /*Para el paso a porcentaje, escogímos de medida una partalla con un width de 455px y un height de 768px para los calculos*/
-	#divBotones{
+    div#logo {
         display: none;
     }
-    #botonInstrucciones{
-        display:none;
-    }
-    #imgIslas{
-        width:87.91208791%;/*400px la imagen seria de unos 400px*/
-        position:absolute;
-        left:8.791208791%;/*40px de left*/
-        top:38.45833333%;/*280px de top*/
-    }
-    #divAgua{
-        height: 30.04166667% !important;
-        top:70.3125% !important;
-    }
-    #divLogo{
-        width: 87.91208791%;
-        top:13.02083333%;
-        left:13.18681319%!important;
-    }
-    .imgNubeGrande{
-        top:13.02083333%;
-        width:32.96703297%;/*El tamaño de la nube sería de 100px y su body de 1366px*/
-    }
-    
-    .imgNubePeque{
-        top:19.53125%;
-        width:21.97802198%;/*Tamaño de la nube mas grande, la idea era de 200px, su body es de 1366px*/
-        
-    }
-    #imgSol{
-        width:13.02083333%;
-    }
-    #imgLuna{
-        width:13.02083333%;
-    }
-    /*Ajuste de las animaciones para la adaptación a la resolución elegida*/
-    @keyframes movLogo {
-        from{width:76.92307692%;}
-        to{width:81.31868132%;}
-    }
-    @keyframes carga-animacion{
-        0%{background-size:45% 100% ;}
-        50%{background-size:60% 100% ;}
-        100%{background-size:85% 100%;}
+
+    .soloDesktop {
+        display: none;
     }
 
-    
-/* Media Queries de Fin juego */
-@media (max-width: 1200px) {
-	div#divJuegoAcabado {
-		display: none;
-	}
+    table#tablaClasificaciones {
+        width: 90%;
+    }
 
-	div#divFinJuego {
-		left: 0;
-	}
-
-	div#divCanvas {
-		width: 100%;
-	}
-
-	div#divCanvas h1 {
-		left: 5%;
-		top: 20%;
-	}
-
-	body {
-		margin: 0;
-	}
-}
-
-@media (max-width: 500px) {
-	div#divFinJuego {
-		left: 0;
-		width: 250px;
-		height: 180px;
-	}
-
-	form button {
-		display: block;
-		margin: 5px 0;
-	}
-
-	div#divCanvas {
-		width: 100%;
-	}
-
-	div#divCanvas h1 {
-		top: 20%;
-	}
-}
+    div#logo2 {
+        display: block;
+    }
 }

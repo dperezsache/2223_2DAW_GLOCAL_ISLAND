@@ -123,6 +123,18 @@ class ControladorAdmin {
 	}
 
 	/**
+	 * Atención a la pulsación sobre el enlace de Reflexiones
+	 */
+	 pulsarNavReflexiones() {
+		this.vistaListado.mostrar(false)
+        this.vistaPreguntas.mostrar(false)
+		this.vistaSubcategorias.mostrar(false)
+		this.vistaCategorias.mostrar(false)
+		this.vistaReflexiones.mostrar(true)
+	}
+
+
+	/**
 	 * Atención a la pulsación sobre el enlace de cerrar sesión
 	 */
 	pulsarNavCerrarSesion() {
