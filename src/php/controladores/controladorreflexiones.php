@@ -46,7 +46,6 @@
            if(strlen($nuevaReflexion['reflexion'])>1000 || strlen($nuevaReflexion['reflexion'])<10){
                 throw new Exception('Tamaño de reflexión no válido, vuelva a intentarlo.');
             }
-
             
         }
         public function validarModificacion($reflexion){

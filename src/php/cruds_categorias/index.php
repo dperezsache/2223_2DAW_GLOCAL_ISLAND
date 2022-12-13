@@ -6,13 +6,14 @@
         header('Location: ../../index/html/index.html');
     }
 ?>
-<html>
+<!DOCTYPE html>
     <head>
 		<meta charset="utf-8">
 		<meta author="Team Glocal Guadalupe: David Pérez, Juan Manuel Rincón, Laura Merino y Daniel García">
 		<title>Glocal Island</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="css.css">
+		<link rel="shotcut icon" href="../../img/logo.png">
 	</head>
     <body>
         <!-- MENU -->
@@ -49,6 +50,61 @@
             </header>
         <!-- LISTADO -->
         <div id="divListado">
+            <p id="error"></p>
+            <h1>LISTADO DE PREGUNTAS</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Subcategoría</th>
+                        <th scope="col">Pregunta</th>
+                        <th scope="col">Respuesta 1</th>
+                        <th scope="col">Respuesta 2</th>
+                        <th scope="col">Resp. correcta</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        require_once('../modelos/modelopreguntas.php');
+                        $modeloPreguntas=new ModeloPreguntas();
+                        $preguntas=$modeloPreguntas->consultarPreguntas();
+                        while($fila = $preguntas->fetch_assoc()){
+                            echo '<tr>';
+                                $categoria=$fila['Cat'];
+                                $subcat=$fila['nombre'];
+                                $pregunta=$fila['pregunta'];
+                                $respuesta1=$fila['respuesta'];
+                                $idCategoria=$fila['id'];
+                                $sub=$fila['sub'];
+                                $numPregunta=$fila['numPregunta'];
+                                echo '<td data-titulo="Categoria">'.$subcat.'</td>';
+                                echo '<td data-titulo="Pregunta">'.$pregunta.'</td>';
+                                echo '<td data-titulo="Resp1">'.$respuesta1.'</td>';
+                                $respuesta=$modeloPreguntas->consultarPreguntas2($fila['numPregunta'], $fila['idSubcategoria']);
+                                
+                                while($resp = $respuesta->fetch_assoc()){
+                                    $respuesta2=$resp['respuesta'];
+                                    $idSubcategoria=$resp['id'];
+                                    echo '<td data-titulo="Resp2">'.$resp['respuesta'].'</td>';
+                                }
+
+                                if($fila['correcta']==1){
+                                    echo '<td data-titulo="Resp. correcta">respuesta1</td>';
+                                    $correcta='respuesta1';
+                                }
+                                else{
+                                    echo '<td data-titulo="Resp. correcta">respuesta2</td>';
+                                    $correcta='respuesta2';
+                                }
+                                echo '<td data-titulo="Opciones"><a href="../cruds_preguntas/modificacionpreguntas.php?categoria='.$categoria.'&idCategoria='.$idCategoria.'&idSubcategoria='.$sub.'&numPregunta='.$numPregunta.'&respuesta1='.$respuesta1.'&respuesta2='.$respuesta2.'&pregunta='.$pregunta.'&correcta='.$correcta.'">✎</a>
+                                        <a href="../cruds_preguntas/borrarpregunta.php?idSubcategoria='.$idSubcategoria.'&numPregunta='.$numPregunta.'">🗑</a></td>';
+                            echo'</tr>';
+                        }
+                        
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
         </div>
         
@@ -194,6 +250,9 @@
             <table>
                 <thead>
                     <tr>
+                    <th>
+                            Categoria
+                        </th>
                         <th>
                             Nombre
                         </th>
@@ -205,15 +264,17 @@
                 <tbody>
                     <?php
                         $conexionListado = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
-                        $consultaListado = 'SELECT id,nombre
-                        FROM Subcategorias
+                        $consultaListado = 'SELECT S.id, S.nombre,C.nombre AS sub
+                        FROM Subcategorias S, Categorias C
+                        WHERE S.idCategoria=C.id
                         ORDER BY id';
 
                         $nombresSubcategorias=mysqli_query($conexionListado,$consultaListado);
                         while($fila = $nombresSubcategorias->fetch_array()){
                             echo '<tr>';
+                                echo '<td>'.$fila['sub'].'</td>';
                                 echo '<td>'.$fila['nombre'].'</td>';
-                                echo '<td><a href="modificar.php?id='.$fila['id'].'">M</a>/<a href="borrar.php?id='.$fila['id'].'">B</a></td>';
+                                echo '<td><a href="modificar.php?id='.$fila['id'].'">✎</a>/<a href="borrar.php?id='.$fila['id'].'">🗑</a></td>';
                             echo'</tr>';
                         }
                         // Cerrar conexión
@@ -269,33 +330,7 @@
                     mysqli_close($conexion);
                 ?>
             </table>
-            <!--<table>
-                <thead>
-                <tr>
-                    <th>Categoria</th>
-                    <th>Reflexión</th>
-                    <th>Cantidad de preguntas fallidas</th>
-                    <th>Opciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                    /*require_once('../modelos/modeloreflexiones.php');
-                    $modeloReflexiones=new ModeloReflexiones();
-                    $reflexiones=$modeloReflexiones->sacarReflexiones();
-                    while($fila = $reflexiones->fetch_assoc()){
-                        echo'<tr>';
-                            echo '<td>'.$fila['nombre'].'</td>';
-                            echo '<td>'.$fila['texto'].'</td>';
-                            echo '<td>'.$fila['numPreguntas'].'</td>';
-                            echo '<td>';
-                                echo '<a href="../index.php/controladorreflexiones?id='.$fila['id'].'&texto='.$fila['texto'].'&numPreguntas='.$fila['numPreguntas'].'&nombre='.$fila['nombre'].'">✏</a>';
-                                echo '<a id="eliminarReflexion" href="../index.php/controladorreflexiones?id='.$fila['id'].'">🗑</a>';
-                            echo '</td>';
-                        echo'</tr>';
-                    }
-                </tbody>
-            </table>
-            <!--echo '<a id="eliminarReflexion" href="../vistas/eliminarreflexion.php?id='.$fila['id'].'">🗑</a>';-->
+        
         </div>
         <!-- CRUD PREGUNTAS -->
         <div id="divPreguntas">

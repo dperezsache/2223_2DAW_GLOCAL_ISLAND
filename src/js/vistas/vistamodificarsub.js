@@ -42,7 +42,7 @@ export class VistaModificarSub extends Vista {
         // Comprobaciones
         if (valor == '') errorTexto = 'El campo está vacío.'
         else if (valor.length > 50) errorTexto = 'Superado límite de caracteres permitidos (50).'
-        else if (!valor.match(/^[A-Z]+$/i)) errorTexto = 'El formato introducido no es el correcto.'
+        else if (!valor.match(/^[A-Z\sa-z]+$/)) errorTexto = 'El formato introducido no es el correcto.'
         else correcto = true
 
         if (correcto) {

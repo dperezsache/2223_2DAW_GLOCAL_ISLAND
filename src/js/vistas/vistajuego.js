@@ -446,8 +446,6 @@ export class VistaJuego extends Vista {
                 this.eventosErrores(draggable.getAttribute('value'))
                 this.rachaAciertos=0;
             }
-               
-            
         }
         
         this.nuevaPregunta()

@@ -90,7 +90,7 @@
             <h1>MODIFICAR SUBCATEGORIA</h1>
             <?php echo '<form action="modificar.php?id='.$idSubcategoria.'" method="post">';?>
                 <label for="modNombre">Subcategoría</label>
-                <?php echo'<input id="modNombre" type="text" value='.$nombreSubCategoria.' name="nombreSubCat" required>';?><br>
+                <?php echo'<input id="modNombre" type="text" value="'.$nombreSubCategoria.'" name="nombreSubCat" required>';?><br>
                 <label for="modCat">Categoría</label>
                 <select id="modCat" name="categoria">
                     <?php

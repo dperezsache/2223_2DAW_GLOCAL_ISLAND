@@ -6,10 +6,10 @@
     */
     return array(
         'debug' => true,
-		'path_controladores' => '../controladores/',
-		'path_vistas' => '../vistas/',
-		'path_modelos' => '../modelos/',
-		'path_html' => '../vistas/html/'
+		'path_controladores' => 'controladores/',
+		'path_vistas' => 'vistas/',
+		'path_modelos' => 'modelos/',
+		'path_html' => 'vistas/html/'
     );
 
 ?>

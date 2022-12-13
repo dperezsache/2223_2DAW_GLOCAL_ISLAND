@@ -49,8 +49,10 @@ export class VistaNavAdmin
 		this.controlador.pulsarNavCategorias()
 	}
 
-	
-	 pulsarReflexiones() {
+	/**
+	 *	Atención a la pulsación sobre el enlace de reflexiones
+	 */
+	pulsarReflexiones() {
 		this.controlador.pulsarNavReflexiones()
 	}
 	
