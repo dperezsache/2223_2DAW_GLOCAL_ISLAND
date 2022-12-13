@@ -96,7 +96,6 @@ class ModeloPreguntas{
     }
 
     public function modificarPreguntayRespuesta($datos){
-        print_r ($datos);
         $this->conectar();
         $arrayIndices=array_keys($datos);
         for($i=0;$i<sizeof($arrayIndices);$i++){
@@ -110,7 +109,29 @@ class ModeloPreguntas{
                 }
             }
         }
-        $consultaPregunta= "UPDATE Preguntas SET pregunta='".$datos['nuevaPregunta']."' WHERE Preguntas.idSubcategoria=".$datos['categoriaPregunta']." AND Preguntas.numPregunta=".$datos['numPregunta'].";";
+        $consultaAntique = 'SELECT imagen FROM Preguntas
+        WHERE idSubcategoria="'.$datos['categoriaPregunta'].' AND numPregunta='.$datos['numPregunta'].'"';
+
+        $nombres=$this->conexion->query($consultaAntique);
+        while($fila = $nombres->fetch_array()){
+            $imagenAntigua = $fila['imagen'];
+        }
+
+        $nom_archivo = $_FILES['imagenPregunta']['name'];
+
+        $ruta = "../../img/subidas_bbdd/".$nom_archivo;
+
+        $archivo=$_FILES['imagenPregunta']['tmp_name'];
+        $subir=move_uploaded_file($archivo,$ruta);
+        echo $imagenAntigua;
+        unlink(realpath("../../img/subidas_bbdd/".$imagenAntigua));
+
+        if(isset($datos['imagenPregunta'])){
+            $consultaPregunta= "UPDATE Preguntas SET pregunta='".$datos['nuevaPregunta']."', imagen='".$nom_archivo."' WHERE Preguntas.idSubcategoria=".$datos['categoriaPregunta']." AND Preguntas.numPregunta=".$datos['numPregunta'].";";
+        }
+        else{
+            $consultaPregunta= "UPDATE Preguntas SET pregunta='".$datos['nuevaPregunta']."' WHERE Preguntas.idSubcategoria=".$datos['categoriaPregunta']." AND Preguntas.numPregunta=".$datos['numPregunta'].";";
+        }
         $pregunta=$this->conexion->query($consultaPregunta);
         if($sw==1){     //si la respuesta correcta es la primera
             $consultaRespuesta= "UPDATE Respuestas SET respuesta='".$datos['primeraRespuesta']."', correcta=1 WHERE idSubcategoria=".$datos['categoriaPregunta']." AND numPregunta=".$datos['numPregunta']." AND Respuestas.numRespuesta=1;";
@@ -126,7 +147,7 @@ class ModeloPreguntas{
         }
        
         $this->conexion->close();
-        header('location:../../cruds_categorias/index.php');
+        header('location:../../cruds_categorias/index.php'); 
     }
 
     /**

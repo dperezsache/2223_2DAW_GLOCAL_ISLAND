@@ -16,6 +16,14 @@ body{
 	text-align:center;
 }
 
+a{
+	cursor:pointer !important;
+}
+
+button{
+	cursor:pointer !important;
+}
+
 div#divInicioSesion{
     width: 100%;
     height: 100%;

@@ -43,7 +43,7 @@ td, th{
 }
 
 td a{
-    cursor: pointer;
+    cursor: pointer ;
     margin: 0 10px;
     text-decoration: none;
     color: black;
@@ -66,6 +66,7 @@ button:hover{
 
 a{
     text-decoration: none !important;
+    cursor: pointer !important;
 }
 
 /*-----MENU-----*/
@@ -309,7 +310,7 @@ nav #btnMenu {
 /*-----CATEGORIAS Y SUBCATEGORIAS-----*/
 
 #divCrudCategorias, #divCrudSubcategorias, #divModSubcategorias, #divCrudReflexiones{
-    margin: 150px 0;
+    margin: 50px 0;
     font-size: 1.5em;
 }
 

@@ -37,13 +37,6 @@
                 break;
             case 'controladormodificacion'://AQUI $FILE
                 require_once($config['path_controladores'].'controladormodificacion.php');
-                if(isset($_FILES["imagenPregunta"])){
-                    $nom_archivo = $_FILES['imagenPregunta']['name'];
-                    $ruta = "../img/subidas_bbdd/".$nom_archivo;
-                    $archivo=$_FILES['imagenPregunta']['tmp_name'];
-                    $subir=move_uploaded_file($archivo,$ruta);
-                    $_POST['imagenPregunta']=$nom_archivo;
-                }
                 $controlador=new ControladorModificacion();
                 break;
        }

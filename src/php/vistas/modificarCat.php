@@ -48,7 +48,7 @@
         ?>
         <div id="divModPreguntasRespuestas">
             <h1>MODIFICAR PREGUNTAS Y RESPUESTAS</h1>
-            <form id="formModPreguntasRespuestas" action="../fachada/fachada.php/controladormodificacion" method="post">
+            <form id="formModPreguntasRespuestas" action="../fachada/fachada.php/controladormodificacion" method="post" enctype="multipart/form-data">
                 <!-- PREGUNTAS -->
                 <div>
                     <label for="nuevaPregunta">Pregunta<br/>

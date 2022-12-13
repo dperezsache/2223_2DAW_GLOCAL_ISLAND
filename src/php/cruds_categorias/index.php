@@ -55,7 +55,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th scope="col">Categoría</th>
+                        <th scope="col">Subcategoría</th>
                         <th scope="col">Pregunta</th>
                         <th scope="col">Respuesta 1</th>
                         <th scope="col">Respuesta 2</th>
