@@ -219,15 +219,18 @@ y vamos ensanchando y haciendola mas pequeña para hacer ese efecto de movimient
 
 /* -----PANTALLA RANKINGS----- */
 body#bodyClasificaciones {
-    margin: 0;
-    padding: 0;
     text-align: center;
+    width: auto;
+    height: auto;
+    padding-bottom: 150px;  /* Para compensar la altura del footer (115px) más un extra de separación */
 }
 
 html#htmlClasificaciones {
     width: auto;
     height: auto;
-    overflow-y: auto;
+    overflow-y: auto; /* Para que deje hacer scroll vertical (la especificación html de arriba tiene overflow hidden) */
+    position: relative;
+    min-height: 100%;
 }
 
 div#logo {
@@ -237,7 +240,8 @@ div#logo {
     top: 0;
     left: 0;
 }
-header#cabecera{
+
+header#cabecera {
     background-color: #FEA832;
     height: 100px;
     width: 100%;
@@ -251,32 +255,33 @@ header#cabecera h1 {
 }
 
 div#divClasificaciones {
-    margin-top: 50px;
+    margin-top: -30px;
     margin-left: 30px;
 }
 
-.textoAlias{
-    max-width: 50px;
-    word-wrap: break-word;
-}
-
-table {
+table#tablaClasificaciones {
     border-collapse: collapse;
     margin: auto;
     width: 60%;
 }
 
-td, th {
+table#tablaClasificaciones td, 
+table#tablaClasificaciones th {
     border: 1px solid black;
     padding: 10px;
     text-align: center;
 }
 
-th {
+table#tablaClasificaciones td.aliasTexto {
+    max-width: 50px;
+    word-wrap: break-word;  /* Si el texto del alias pasa de 50px, partir el texto a la siguiente línea */
+}
+
+table#tablaClasificaciones th {
     background-color: #FEA832;
 }
 
-tr:nth-child(even) {
+table#tablaClasificaciones tr:nth-child(even) {
     background-color: rgb(250, 250, 250);
 }
 
@@ -289,27 +294,33 @@ div#logo2 {
 }
 
 footer#footerClasificaciones {
-    width: 100%;
-    background-color: #FEA832;
-    padding: 18px 0;
-    position: fixed;
-    height: 30px;
+    position: absolute;
     bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #FEA832;
+    padding: 7.5px 0;
 }
 
+/* Media Queries - Pantalla rankings */
 @media (max-width:700px){
     header#cabecera h1 {
         font-size: 1.5em;
         text-align: left;
-        padding-left: 128px;
-    }
-
-    table {
-        width: 40%;
+        padding-left: 100px;
     }
 
     div#divClasificaciones {
-        margin-top: 80px;
+        margin-left: 0;
+    }
+
+    table#tablaClasificaciones {
+        width: 40%;
+    }
+
+    div#logo {
+        width: 100px;
+        height: 64px;
     }
 }
 
@@ -317,6 +328,7 @@ footer#footerClasificaciones {
     header#cabecera h1 {
         font-size: 1.25em;
         padding: 0;
+        padding-top: 25px;
         text-align: center;
     }
 
@@ -328,12 +340,7 @@ footer#footerClasificaciones {
         display: none;
     }
 
-    div#divClasificaciones {
-        margin-top: 20px;
-        margin-left: 0;
-    }
-
-    table {
+    table#tablaClasificaciones {
         width: 90%;
     }
 

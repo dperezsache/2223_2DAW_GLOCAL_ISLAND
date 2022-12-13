@@ -15,7 +15,7 @@
             <h1>CLASIFICACIONES JUGADORES</h1>
         </header>
         <div id="divClasificaciones">
-            <table>
+            <table id="tablaClasificaciones">
                 <thead>
                     <tr>
                         <th>Posición</th>
@@ -38,7 +38,7 @@
                         while($fila = $tablaRanking->fetch_array()){
                             echo '<tr>';
                                 echo '<td>'.$i.'º</td>';
-                                echo '<td class="textoAlias">'.$fila['alias'].'</td>';
+                                echo '<td class="aliasTexto">'.$fila['alias'].'</td>';
                                 echo '<td class="soloDesktop">'.$fila['fechaHora'].'</td>';
                                 echo '<td>'.$fila['puntuacion'].'</td><br><br>';
                                 $i++;
@@ -52,7 +52,7 @@
             </div>
         </div>
         <footer id="footerClasificaciones">
-            GLOCAL ISLAND © 2022
+            <p>GLOCAL ISLAND © 2022<p>
         </footer>
     </body>
 </html>
