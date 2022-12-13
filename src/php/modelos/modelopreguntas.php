@@ -23,7 +23,12 @@
             
             $idSubCat=$preguntaYrespuesta['subcategoria'];
             $pregunta=$preguntaYrespuesta['pregunta'];
-            $imagen=$preguntaYrespuesta['imagenPregunta'];
+            if(!empty($preguntaYrespuesta['imagenPregunta'])){
+                $imagen=$preguntaYrespuesta['imagenPregunta'];
+            }else{
+                $imagen='NULL';
+            }
+
             $respuesta1=$preguntaYrespuesta['respuesta1'];
             $respuesta2=$preguntaYrespuesta['respuesta2'];
             $correcta=0;

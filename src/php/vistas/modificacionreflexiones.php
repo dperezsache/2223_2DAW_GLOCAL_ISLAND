@@ -37,6 +37,7 @@
             </nav>
         </header>
         <h1>MODIFICAR REFLEXION</h1>
+        
         <form action="../index.php/controladorreflexiones" method="POST" id="fomularioReflexiones">
             <input name="id" type="hidden" value=<?php echo '"'.$parametrosquery["id"].'"'?>>
             <label for="reflexion">Reflexión</label>
@@ -45,9 +46,23 @@
             <input name="numPreguntas" type="number" min="1" max="5" value=<?php echo '"'.$parametrosquery["numPreguntas"].'"'?>><br>
             <label for="respuesta1">Categoria de reflexion</label>
             <select name="categoria" id="" value=<?php echo '"'.$parametrosquery["categoria"].'"'?>>
-                <option value="1">Aire</option>
-                <option value="2">Tierra</option>
-                <option value="3">Agua</option>
+            <?php
+                if($parametrosquery["nombre"]=="Aire"){
+                    echo '<option value="1">Aire</option>';
+                    echo'<option value="2">Tierra</option>';
+                    echo '<option value="3">Agua</option>';
+                }
+                if($parametrosquery["nombre"]=="Tierra"){
+                    echo'<option value="2">Tierra</option>';
+                    echo '<option value="1">Aire</option>';
+                    echo '<option value="3">Agua</option>';
+                }
+                if($parametrosquery["nombre"]=="Agua"){
+                    echo '<option value="3">Agua</option>';
+                    echo '<option value="1">Aire</option>';
+                    echo'<option value="2">Tierra</option>';
+                }
+            ?>  
             </select>
             <button type="reset">Cancelar</button>
             <button type="submit">Enviar</button>
