@@ -6,7 +6,7 @@
     session_start();
     if(isset($_SESSION['nombre'])){
         //Obtenemos el array de configuración descrito en config/config.php para así facilitar la gestión
-        $config=require_once("config/config.php");
+        $config=require_once("config/config2.php");
         $usuario=$_SESSION['nombre'];
         //Leemos el metodo de la petición que recibimos
         $metodo=$_SERVER['REQUEST_METHOD'];

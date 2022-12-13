@@ -346,11 +346,16 @@
                     </div>
                     <div>
                         <label for="categoriaPregunta">
-                            Categoría de la pregunta
+                            Subcategoría de la pregunta
                             <select name="subcategoria" id="categoriaPregunta">
-                                <option value="1">Agua</option>
-                                <option value="2">Tierra</option>
-                                <option value="3">Aire</option>
+                            <?php 
+                                require_once('../modelos/modelopreguntas.php');
+                                $modeloPreguntas=new ModeloPreguntas();
+                                $subc=$modeloPreguntas->obtenerSubcategorias();
+                                while($fila = $subc->fetch_assoc()){
+                                    echo '<option value='.$fila['id'].'>'.$fila['nombre'].'</option>';
+                                }
+                           ?>
                                 
                             </select>
                         </label>

@@ -1,5 +1,9 @@
 <?php
-require_once('../config/conexion.php');
+//require_once('../config/conexion.php');
+define('SERVIDOR', '2daw.esvirgua.com');
+    define('USUARIO', 'user2daw_12');
+    define('CONTRASENIA', 'yGOd_ltp@CP1');
+    define('BD', 'user2daw_BD2-12');
 /**
      * Clase para la gestión de ModeloPreguntas desde servidor
      */
@@ -74,8 +78,9 @@ class ModeloPreguntas{
 
     public function obtenerSubcategorias(){
         $this->conectar();
-        $consulta="SELEC id,nombre FROM Subcategorias";
+        $consulta="SELECT id,nombre FROM Subcategorias";
         $respuesta=$this->conexion->query($consulta);
+        $this->conexion->close();
         return $respuesta;
 
     }
