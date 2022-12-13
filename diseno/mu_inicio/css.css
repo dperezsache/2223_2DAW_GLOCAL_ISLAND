@@ -297,7 +297,7 @@ footer#footerClasificaciones {
     padding: 7.5px 0;
     width: 100%;
     height: 100px;
-    position: fixed;
+    position: relative;
     bottom: 0;
 }
 

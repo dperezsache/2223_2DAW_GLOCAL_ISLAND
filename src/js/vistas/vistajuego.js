@@ -40,7 +40,12 @@ export class VistaJuego extends Vista {
         //CONTADOR PARA HACER APARECER UN NUMERO POR RESPUESTA, BORRAR AQUI Y EN LA CREACIÓN DINÁMICA DE LAS CARTAS (THIS.NUEVAPREGUNTA())
         this.contadorProvisional=0;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+        this.direccionCat={
+            "Agua":"../../img/subidas_bbdd/icono_agua.png",
+            "Tierra":"../../img/subidas_bbdd/icono_tierra.png",
+            "Aire":"../../img/subidas_bbdd/icono_aire.png"
+        }
+
         this.temporizadorPajaro1 = null
         this.pajaro1 = {
             img: null,
@@ -97,8 +102,8 @@ export class VistaJuego extends Vista {
 
         this.textoEstado = ''
 
-        this.btnlogo=document.getElementById('logo')
-        this.btnlogo.onclick=this.pulsarLogo.bind(this)
+        /*this.btnlogo=document.getElementById('logo')
+        this.btnlogo.onclick=this.pulsarLogo.bind(this)*/
         this.arrastrar()
         this.iniciar()
         this.puntuacionGlobal=0;
@@ -108,9 +113,9 @@ export class VistaJuego extends Vista {
     /**
      * Método pulsarLogo que se inicia al pulsar el logo de la esquina izquierda y llama al controlador
      */
-    pulsarLogo() {
+    /*pulsarLogo() {
         this.controlador.pulsarLogo()
-    }
+    }*/
 
     /**
      * Método iniciar que crea los objetos y el canvas
@@ -445,13 +450,9 @@ export class VistaJuego extends Vista {
                 this.eventosErrores(draggable.getAttribute('value'))
                 this.rachaAciertos=0;
             }
-               
-            
         }
         
         this.nuevaPregunta()
-
-        
     }
 
     /**
@@ -483,6 +484,22 @@ export class VistaJuego extends Vista {
                     p.id="textoPregunta";
                     this.pregunta.appendChild(p)
                     p.appendChild(document.createTextNode(this.preguntasYrespuestas[i].pregunta))
+
+                    let iconoCat=document.createElement('img')
+                    iconoCat.id="icono";
+                    this.pregunta.appendChild(iconoCat)
+                    iconoCat.src = this.direccionCat[this.preguntasYrespuestas[i].Cat]
+                    iconoCat.draggable = false
+                    
+                    if( this.preguntasYrespuestas[i].imagen!='' ){
+
+                        let imagen=document.createElement('img')
+                        imagen.id="grifo";
+                        this.pregunta.appendChild(imagen)
+                        imagen.src = '../../img/subidas_bbdd/'+this.preguntasYrespuestas[i].imagen
+                        imagen.draggable = false
+                    }
+                        
                 
                     this.respuesta1=document.createElement('div');
                     this.respuesta1.setAttribute("value",this.preguntasYrespuestas[i].correcta);
@@ -516,37 +533,111 @@ export class VistaJuego extends Vista {
                 console.log("CONTADOR DE PREGUNTAS",this.contadorPreguntas)
             }else{
                 console.log("JUEGO FINALIZADO")
-                this.pregunta=document.createElement('div')
-                    this.pregunta.id="divPregunta";
-                    this.divJuegoCartas.appendChild(this.pregunta)
-            
-                    let p=document.createElement('p')
-                    p.id="textoPregunta"
-                    this.pregunta.appendChild(p)
-                    p.appendChild(document.createTextNode("FIN DEL JUEGO"))
-                
-                    this.respuesta1=document.createElement('div');
-                    this.respuesta1.className="respuestas";
+                    this.divCronometro.style.display = 'none'
+                    this.div=document.createElement('div')
+                    this.divJuegoCartas.appendChild(this.div)
+
+                    //p para poner el fin del juego
+                    let p = document.createElement('p')
+                    p.id="textoRespuesta"
+                    this.div.appendChild(p)
+                    p.appendChild(document.createTextNode('FIN DEL JUEGO'))
+                    p.style.display = 'block'
+                    p.style.position = 'absolute'
+                    p.style.top = '0'
+                    p.style.left = '70%'
+
+                    //muestro el div con el formulario de registro de alias
+                    this.divFinJuego = document.getElementById('divFinJuego');
+                    this.divFinJuego.style.display='block'
+
+                    //poner los puntos en el span para mostrarlos en el mensaje
+                    this.spanPuntos=document.getElementById('puntos')
+                    this.spanPuntos.appendChild(document.createTextNode(this.puntuacionGlobal))
+
+                    this.puntosJugador=document.getElementsByTagName('input')[1]
+                    this.puntosJugador.value=this.puntuacionGlobal
                     
-            
-                    let respuestaBuena=document.createElement('p');
-                    respuestaBuena.id="textoRespuesta";
-                    this.respuesta1.appendChild(respuestaBuena)
-                    respuestaBuena.appendChild(document.createTextNode("GRACIAS"))
-                    this.divJuegoCartas.appendChild(this.respuesta1)
-            
-                    this.respuesta2=document.createElement('div');
-                    this.respuesta2.className="respuestas";
-                    let respuestaMala=document.createElement('p');
-                    this.respuesta2.appendChild(respuestaMala)
-                    respuestaMala.id="textoRespuesta";
-                    respuestaMala.appendChild(document.createTextNode("GRACIAS"))
-                    this.divJuegoCartas.appendChild(this.respuesta2);
-            
-                    this.divJuegoCartas.appendChild(this.divPuntuacion);
-                    this.divJuegoCartas.appendChild(this.divCronometro);
-                    
+                    this.reflexiones()
             }
+    }
+
+    reflexiones(){
+        //div y p de la reflexión de agua
+        let divReflexionesAgua = document.createElement('div')
+        this.divJuegoCartas.appendChild(divReflexionesAgua)
+        divReflexionesAgua.style.position = 'absolute'
+        divReflexionesAgua.style.width = '31%'
+        divReflexionesAgua.style.height = '19%'
+        divReflexionesAgua.style.top = '40%'
+        divReflexionesAgua.style.left = '65%'
+        divReflexionesAgua.style.fontSize = '1em'
+        divReflexionesAgua.style.backgroundImage = 'url(../../img/cartaFin.png)'
+        divReflexionesAgua.style.backgroundSize = 'contain'
+        divReflexionesAgua.style.backgroundRepeat = 'no-repeat'
+        let reflexionAgua=document.createElement('p')
+        divReflexionesAgua.appendChild(reflexionAgua)
+        reflexionAgua.style.display = 'block'
+        reflexionAgua.style.position = 'absolute'
+        reflexionAgua.style.top = '5%'
+        reflexionAgua.style.left = '5%'
+
+        //div y p de la reflexión de aire
+        let divReflexionesAire = document.createElement('div')
+        this.divJuegoCartas.appendChild(divReflexionesAire)
+        divReflexionesAire.style.position = 'absolute'
+        divReflexionesAire.style.width = '31%'
+        divReflexionesAire.style.height = '19%'
+        divReflexionesAire.style.top = '60%'
+        divReflexionesAire.style.left = '65%'
+        divReflexionesAire.style.fontSize = '1em'
+        divReflexionesAire.style.backgroundImage = 'url(../../img/cartaFin.png)'
+        divReflexionesAire.style.backgroundSize = 'contain'
+        divReflexionesAire.style.backgroundRepeat = 'no-repeat'
+        let reflexionAire=document.createElement('p')
+        divReflexionesAire.appendChild(reflexionAire)
+        reflexionAire.style.display = 'block'
+        reflexionAire.style.position = 'absolute'
+        reflexionAire.style.top = '5%'
+        reflexionAire.style.left = '5%'
+
+        //div y p de la reflexión de tierra
+        let divReflexionesTierra = document.createElement('div')
+        this.divJuegoCartas.appendChild(divReflexionesTierra)
+        divReflexionesTierra.style.position = 'absolute'
+        divReflexionesTierra.style.width = '31%'
+        divReflexionesTierra.style.height = '19%'
+        divReflexionesTierra.style.top = '80%'
+        divReflexionesTierra.style.left = '65%'
+        divReflexionesTierra.style.fontSize = '1em'
+        divReflexionesTierra.style.backgroundImage = 'url(../../img/cartaFin.png)'
+        divReflexionesTierra.style.backgroundSize = 'contain'
+        divReflexionesTierra.style.backgroundRepeat = 'no-repeat'
+        let reflexionTierra=document.createElement('p')
+        divReflexionesTierra.appendChild(reflexionTierra)
+        reflexionTierra.style.display = 'block'
+        reflexionTierra.style.position = 'absolute'
+        reflexionTierra.style.top = '5%'
+        reflexionTierra.style.left = '5%'
+
+        //envío y petición a ajax para reflexiones
+        let datos = {
+            'agua' : this.contadorErrores["Agua"],
+            'aire' : this.contadorErrores["Aire"],
+            'tierra' : this.contadorErrores["Tierra"]
+        }
+        let opciones = {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers:{ 'Content-Type': 'application/json'}
+        }
+        fetch('prueba.php', opciones)//Hacemos la petición
+            .then(respuesta => respuesta.json())
+            .then(datos =>{
+                reflexionAgua.textContent=datos[0].texto, 
+                reflexionAire.textContent=datos[1].texto, 
+                reflexionTierra.textContent=datos[2].texto
+            })
     }
 
     /**
@@ -591,17 +682,30 @@ export class VistaJuego extends Vista {
             if(this.alturaAgua<320)
                 this.alturaAgua+=120;
         }
-        if(this.contadorErrores["Tierra"]%3==0 && this.contadorErrores["Tierra"]!=0){
-            //this.contadorErrores["tierra"]=0;
-            console.log("ERROR DE TIERRA")
+     
+        //this.contadorErrores["tierra"]=0;
+        switch(this.contadorErrores["Tierra"]) {
+            case 1:
+                this.isla.src = "../../img/islatierra1.png"
+                console.log("ERROR DE TIERRA 1")
+                break
+            case 2:
+                this.isla.src = '../../img/islatierra2.png'
+                console.log("ERROR DE TIERRA 2")
+                break
+            case 3:
+                this.isla.src = '../../img/islatierra3.png'
+                console.log("ERROR DE TIERRA 3")
+                break
+            default:
+                break
         }
+
         if(this.contadorErrores["Aire"]>=1/*this.contadorErrores["Aire"]%3==0 && this.contadorErrores["Aire"]!=0*/){
             //this.contadorErrores["aire"]=0
             console.log("ERROR DE AIRE")
             this.juego.style.backgroundColor=coloresCielo[this.contadorErrores["Aire"]];
         }
-        
-        
     }
 
     /**
