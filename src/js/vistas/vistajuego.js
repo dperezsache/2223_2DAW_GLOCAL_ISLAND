@@ -102,8 +102,8 @@ export class VistaJuego extends Vista {
 
         this.textoEstado = ''
 
-        this.btnlogo=document.getElementById('logo')
-        this.btnlogo.onclick=this.pulsarLogo.bind(this)
+        /*this.btnlogo=document.getElementById('logo')
+        this.btnlogo.onclick=this.pulsarLogo.bind(this)*/
         this.arrastrar()
         this.iniciar()
         this.puntuacionGlobal=0;
@@ -113,9 +113,9 @@ export class VistaJuego extends Vista {
     /**
      * Método pulsarLogo que se inicia al pulsar el logo de la esquina izquierda y llama al controlador
      */
-    pulsarLogo() {
+    /*pulsarLogo() {
         this.controlador.pulsarLogo()
-    }
+    }*/
 
     /**
      * Método iniciar que crea los objetos y el canvas

@@ -63,10 +63,10 @@ class Controlador {
 	/**
 	 * Método pulsarLogo que oculta las vistas y muestra la del inicio
 	 */
-	pulsarLogo() {
-		this.ocultarVistas()
+	/*pulsarLogo() {
 		this.vistaInicio.mostrar(true)
-	}
+		this.vistaJuego.mostrar(false)
+	}*/
 
 	/**
 	 * Método pulsarComenzarInicio quer oculta las vistas y muestra la del juego
