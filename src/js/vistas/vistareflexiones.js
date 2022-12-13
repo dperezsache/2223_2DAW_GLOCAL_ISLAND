@@ -27,13 +27,13 @@ export class VistaReflexiones extends Vista {
      * @param {Event} e Evento del formulario.
      */
      comprobarReflexiones(e) {
-
-          //Comprobación de campo reflexión
+        console.log('estoooooy')
+        //Comprobación de campo reflexión
           let valor = this.campoReflexion.value
           let correcto = false
           let errorTexto = ''
   
-          // Comprobaciones
+        // Comprobaciones
         if (valor == '') errorTexto = 'El campo está vacío.'
         else if (valor.length > 500) errorTexto = 'Superado límite de caracteres permitidos (500).'
         else correcto = true
@@ -66,4 +66,10 @@ export class VistaReflexiones extends Vista {
               this.cancelar()
           }
      }
+     /**
+     * Limpiar los campos del formulario.
+     */
+    cancelar() {
+        this.campoReflexion.value = ''
+    }
 }
