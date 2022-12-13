@@ -747,12 +747,17 @@ export class VistaJuego extends Vista {
      */
     estadoIsla(e) {
         if(e.offsetX > this.persona.x && e.offsetX < this.persona.x + this.persona.width) {
-            this.textoEstado = '¡Que buen día hace!'
-            this.draw()
+            if(this.contadorErrores["Agua"]==2||this.contadorErrores["Aire"]==2||this.contadorErrores["Tierra"]==2){
+                this.textoEstado = '¡Esto es un desastre!'  
+            }
+            else{
+                this.textoEstado = '¡Que buen día hace!'
+            }
         }
         else {
             this.textoEstado = ''
         }
+        this.draw() 
     }
 
     /**
