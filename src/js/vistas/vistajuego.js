@@ -449,7 +449,7 @@ export class VistaJuego extends Vista {
                 
             }else{
                 this.eventosErrores(draggable.getAttribute('value'))
-                this.rachaAciertos=0;
+                this.rachaAciertos=1;
             }
         }
         
@@ -492,7 +492,7 @@ export class VistaJuego extends Vista {
                     iconoCat.src = this.direccionCat[this.preguntasYrespuestas[i].Cat]
                     iconoCat.draggable = false
                     
-                    if( this.preguntasYrespuestas[i].imagen!='' ){
+                    if( /*this.preguntasYrespuestas[i].imagen!='' ||*/ this.preguntasYrespuestas[i].imagen!='NULL'){
 
                         let imagen=document.createElement('img')
                         imagen.id="grifo";
@@ -546,7 +546,7 @@ export class VistaJuego extends Vista {
                     p.style.display = 'block'
                     p.style.position = 'absolute'
                     p.style.top = '0'
-                    p.style.left = '70%'
+                    p.style.left = '30%'
 
                     //muestro el div con el formulario de registro de alias
                     this.divFinJuego = document.getElementById('divFinJuego');
@@ -560,19 +560,12 @@ export class VistaJuego extends Vista {
                     this.puntosJugador.value=this.puntuacionGlobal
                     
                     this.reflexiones()
-<<<<<<< HEAD
-
-=======
->>>>>>> sprint3_david
             }
     }
 
     reflexiones(){
-<<<<<<< HEAD
 
 
-=======
->>>>>>> sprint3_david
         //div y p de la reflexión de agua
         let divReflexionesAgua = document.createElement('div')
         this.divJuegoCartas.appendChild(divReflexionesAgua)
@@ -641,6 +634,7 @@ export class VistaJuego extends Vista {
             body: JSON.stringify(datos),
             headers:{ 'Content-Type': 'application/json'}
         }
+
         fetch('prueba.php', opciones)//Hacemos la petición
             .then(respuesta => respuesta.json())
             .then(datos =>{
@@ -648,11 +642,8 @@ export class VistaJuego extends Vista {
                 reflexionAire.textContent=datos[1].texto, 
                 reflexionTierra.textContent=datos[2].texto
             })
-<<<<<<< HEAD
         
             
-=======
->>>>>>> sprint3_david
     }
 
     /**
@@ -693,24 +684,21 @@ export class VistaJuego extends Vista {
         }
         this.contadorErrores[categoria]++
         console.log("CONTADOR ERRORES", this.contadorErrores)
-        if(this.contadorErrores["Agua"]==1/*this.contadorErrores["Agua"]%3==0 && this.contadorErrores["Agua"]!=0*/){
+        if(this.contadorErrores["Agua"]%1==0 && this.contadorErrores["Agua"]!=0){
             if(this.alturaAgua<320)
-                this.alturaAgua+=120;
+                this.alturaAgua+=40;
         }
      
         //this.contadorErrores["tierra"]=0;
         switch(this.contadorErrores["Tierra"]) {
             case 1:
                 this.isla.src = "../../img/islatierra1.png"
-                console.log("ERROR DE TIERRA 1")
                 break
             case 2:
                 this.isla.src = '../../img/islatierra2.png'
-                console.log("ERROR DE TIERRA 2")
                 break
             case 3:
                 this.isla.src = '../../img/islatierra3.png'
-                console.log("ERROR DE TIERRA 3")
                 break
             default:
                 break
@@ -718,7 +706,6 @@ export class VistaJuego extends Vista {
 
         if(this.contadorErrores["Aire"]>=1/*this.contadorErrores["Aire"]%3==0 && this.contadorErrores["Aire"]!=0*/){
             //this.contadorErrores["aire"]=0
-            console.log("ERROR DE AIRE")
             this.juego.style.backgroundColor=coloresCielo[this.contadorErrores["Aire"]];
         }
     }
@@ -729,7 +716,6 @@ export class VistaJuego extends Vista {
      */
     setPreguntas(preguntasYrespuestas){
         this.preguntasYrespuestas=preguntasYrespuestas;
-        console.log("ESTAS SON LAS PREGUNTAS Y RESPUESTAS",this.preguntasYrespuestas)
     }
 
     /**

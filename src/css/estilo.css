@@ -338,7 +338,7 @@ div#divPuntuacion{
 div#divCronometro{
     position:absolute;
     top:20px;
-    left:1500px;
+    left: 95%;;
     font-family: Mabook;
 }
 

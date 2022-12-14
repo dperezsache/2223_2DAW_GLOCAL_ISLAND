@@ -5,24 +5,23 @@
     $conexion = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BD);
     $respuesta=[];
     $array=[];
-    $id=$body->agua;
-    $id=2;
-    $consulta='SELECT texto FROM Reflexiones WHERE numPreguntas='.$id;
+    $idagua=$body->agua;
+    $idaire=$body->aire;
+    $idtierra=$body->tierra;
+
+    $consulta='SELECT texto FROM Reflexiones WHERE idCategoria=3 AND numPreguntas='.$idagua;
     $respuesta=$conexion->query($consulta);
     while($fila = $respuesta->fetch_assoc()){
          array_push($array,$fila);
     }
-    $id=$body->aire;
-    $id=1;
-    $consulta='SELECT texto FROM Reflexiones WHERE numPreguntas='.$id;
+    
+    $consulta='SELECT texto FROM Reflexiones WHERE idCategoria=1 AND numPreguntas='.$idaire;
     $respuesta=$conexion->query($consulta);
     while($fila = $respuesta->fetch_assoc()){
         array_push($array,$fila);
     }
-
-    $id=$body->tierra;
-    $id=3;
-    $consulta='SELECT texto FROM Reflexiones WHERE numPreguntas='.$id;
+    
+    $consulta='SELECT texto FROM Reflexiones WHERE idCategoria=2 AND numPreguntas='.$idtierra;
     $respuesta=$conexion->query($consulta);
     while($fila = $respuesta->fetch_assoc()){
         array_push($array,$fila);

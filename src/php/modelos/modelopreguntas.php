@@ -145,10 +145,9 @@ class ModeloPreguntas{
 
         $archivo=$_FILES['imagenPregunta']['tmp_name'];
         $subir=move_uploaded_file($archivo,$ruta);
-        echo $imagenAntigua;
         unlink(realpath("../../img/subidas_bbdd/".$imagenAntigua));
 
-        if(isset($datos['imagenPregunta'])){
+        if(!$_FILES["imagenPregunta"]["name"]==''){
             $consultaPregunta= "UPDATE Preguntas SET pregunta='".$datos['nuevaPregunta']."', imagen='".$nom_archivo."' WHERE Preguntas.idSubcategoria=".$datos['categoriaPregunta']." AND Preguntas.numPregunta=".$datos['numPregunta'].";";
         }
         else{
@@ -169,7 +168,7 @@ class ModeloPreguntas{
         }
        
         $this->conexion->close();
-        header('location:../../cruds_categorias/index.php'); 
+        header('location:../../cruds_categorias/index.php');   
     }
 
     /**

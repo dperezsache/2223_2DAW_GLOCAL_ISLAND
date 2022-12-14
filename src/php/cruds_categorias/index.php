@@ -289,7 +289,7 @@
                 <label for="reflexion">Reflexión</label>
                 <textarea name="reflexion" id="reflexion"></textarea><br>
                 <label for="cantPreguntas">Número de preguntas</label>
-                <input name="cantPreguntas" type="number" min="1" max="5"><br>
+                <input name="cantPreguntas" type="number" min="0" max="5"><br>
                 <label for="respuesta1">Categoria de reflexion</label>
                 <select name="categoria" id="">
                     <option value="1">Aire</option>
@@ -303,7 +303,7 @@
                 <tr>
                     <th>Categoria</th>
                     <th>Reflexión</th>
-                    <th>Cantidad de preguntas fallidas</th>
+                    <th>Preguntas fallidas</th>
                     <th>Opciones</th>
                 </tr>
                 <?php
