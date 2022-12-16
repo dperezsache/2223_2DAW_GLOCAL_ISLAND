@@ -47,17 +47,17 @@
             <label for="respuesta1">Categoria de reflexion</label>
             <select name="categoria" id="" value=<?php echo '"'.$parametrosquery["categoria"].'"'?>>
             <?php
-                if($parametrosquery["nombre"]=="Aire"){
+                if($parametrosquery["nombre"]=="Aire" || $_POST["categoria"]=="1"){
                     echo '<option value="1">Aire</option>';
                     echo'<option value="2">Tierra</option>';
                     echo '<option value="3">Agua</option>';
                 }
-                if($parametrosquery["nombre"]=="Tierra"){
+                if($parametrosquery["nombre"]=="Tierra" || $_POST["categoria"]=="2"){
                     echo'<option value="2">Tierra</option>';
                     echo '<option value="1">Aire</option>';
                     echo '<option value="3">Agua</option>';
                 }
-                if($parametrosquery["nombre"]=="Agua"){
+                if($parametrosquery["nombre"]=="Agua" || $_POST["categoria"]=="3"){
                     echo '<option value="3">Agua</option>';
                     echo '<option value="1">Aire</option>';
                     echo'<option value="2">Tierra</option>';
